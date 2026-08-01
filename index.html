@@ -117,7 +117,9 @@
   }
   .hero-photo {
     width: 100%; height: 100%;
-    object-fit: cover;
+    object-fit: contain;
+    object-position: 40% center;
+    background: var(--midnight);
     display: block;
   }
   .hero-photo-fallback {
@@ -854,10 +856,10 @@
 
     /* Hero */
     .hero { grid-template-columns: 1fr; display: flex; flex-direction: column; min-height: auto; }
-    .hero-left { order: 1; padding: 2.5rem 2rem 2rem; }
+    .hero-left { order: 1; padding: 5rem 2rem 2rem; }
     .hero-right { order: 2; height: auto; position: relative; }
-    .hero-photo { height: 300px; width: 100%; object-fit: cover; display: block; }
-    .hero-quote { position: static; background: rgba(28,24,20,0.92); backdrop-filter: none; border-top: 2px solid var(--terracotta); }
+    .hero-photo { height: 420px; width: 100%; object-fit: cover; display: block; object-position: top; }
+    .hero-quote { display: none; }
     .hero-title { font-size: 2.5rem; }
     .hero-buttons { flex-direction: column; }
     .hero-buttons a { text-align: center; }
@@ -987,8 +989,8 @@
   </div>
   <div class="hero-right">
     <img class="hero-photo"
-      src="https://images.unsplash.com/photo-1607748851687-ba9a10438621?w=900&q=80"
-      alt="Women in community laughing and connecting"
+      src="https://i.imgur.com/8j4homk.jpeg"
+      alt="Women in community — Thank You for Being a Friend experience"
       onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
     <div class="hero-photo-fallback" style="display:none;"></div>
     <div class="hero-quote">
@@ -1005,19 +1007,25 @@
     <span>Connection</span><span class="dot">◆</span>
     <span>Movement</span><span class="dot">◆</span>
     <span>Sisterhood</span><span class="dot">◆</span>
+    <span>Desert Bloom</span><span class="dot">◆</span>
     <span>Adventure</span><span class="dot">◆</span>
+    <span>Beyond the Blue</span><span class="dot">◆</span>
     <span>Rest</span><span class="dot">◆</span>
-    <span>Reinvention</span><span class="dot">◆</span>
+    <span>Pour Into Yourself</span><span class="dot">◆</span>
     <span>Joy</span><span class="dot">◆</span>
+    <span>Breeze at the Sea</span><span class="dot">◆</span>
     <span>Bloom</span><span class="dot">◆</span>
     <span>Rich Experiences</span><span class="dot">◆</span>
     <span>Connection</span><span class="dot">◆</span>
     <span>Movement</span><span class="dot">◆</span>
     <span>Sisterhood</span><span class="dot">◆</span>
+    <span>Desert Bloom</span><span class="dot">◆</span>
     <span>Adventure</span><span class="dot">◆</span>
+    <span>Beyond the Blue</span><span class="dot">◆</span>
     <span>Rest</span><span class="dot">◆</span>
-    <span>Reinvention</span><span class="dot">◆</span>
+    <span>Pour Into Yourself</span><span class="dot">◆</span>
     <span>Joy</span><span class="dot">◆</span>
+    <span>Breeze at the Sea</span><span class="dot">◆</span>
     <span>Bloom</span><span class="dot">◆</span>
     <span>Rich Experiences</span><span class="dot">◆</span>
   </div>
@@ -1216,10 +1224,10 @@
       </div>
       <div class="exp-card-body">
         <div class="exp-card-icon">🌊</div>
-        <h3 class="exp-card-title">Seabreeze &amp; Soul</h3>
-        <p class="exp-card-location">Panama City Beach · April 22–25, 2027</p>
+        <h3 class="exp-card-title">Breeze at the Sea</h3>
+        <p class="exp-card-location">Panama City Beach, Florida · April 22–25, 2027</p>
         <p class="exp-card-desc">Good music, good food, great company, and lasting connections. This is more than a trip — it's our time.</p>
-        <a href="https://form.jotform.com/262057899218066" target="_blank" rel="noopener" class="exp-interest-btn">Register Now →</a>
+        <a href="https://form.jotform.com/262057899218066" target="_blank" rel="noopener" class="exp-interest-btn">Interest Form →</a>
       </div>
     </div>
   </div>
@@ -1229,13 +1237,13 @@
   <div class="exp-grid-new fade-up">
     <div class="exp-card-new exp-card-soon">
       <div class="exp-card-image">
-        <img src="https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=700&q=80" alt="California Wine Country" style="width:100%;height:220px;object-fit:cover;display:block;">
+        <img src="https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=700&q=80" alt="Napa Valley California Wine" style="width:100%;height:220px;object-fit:cover;display:block;">
         <div class="exp-card-badge">Coming Soon</div>
       </div>
       <div class="exp-card-body">
         <div class="exp-card-icon">🍷</div>
-        <h3 class="exp-card-title">California Wine Experience</h3>
-        <p class="exp-card-location">California · Date TBA</p>
+        <h3 class="exp-card-title">Pour Into Yourself</h3>
+        <p class="exp-card-location">Napa Valley/Sonoma, California · Date TBA</p>
         <p class="exp-card-desc">Wine country, beautiful views, meaningful conversations, and unforgettable moments with your people.</p>
         <a href="#connect" class="exp-interest-btn">Join the Interest List →</a>
       </div>
@@ -1252,8 +1260,8 @@
       </div>
       <div class="exp-card-body">
         <div class="exp-card-icon">🇬🇷</div>
-        <h3 class="exp-card-title">Greece</h3>
-        <p class="exp-card-location">Greece · Date TBA</p>
+        <h3 class="exp-card-title">Beyond the Blue — Greece 2027</h3>
+        <p class="exp-card-location">Greece · 2027 · Date TBA</p>
         <p class="exp-card-desc">Whitewashed walls, turquoise water, and the kind of trip that stays with you forever.</p>
         <a href="#connect" class="exp-interest-btn">Join the Interest List →</a>
       </div>
@@ -1420,9 +1428,29 @@
             <option>Other</option>
           </select>
         </div>
+        <div class="form-group">
+          <label>Which experiences interest you? <span style="opacity:0.5">(select all that apply)</span></label>
+          <div style="display:flex; flex-direction:column; gap:0.6rem; margin-top:0.3rem;">
+            <label style="display:flex; align-items:center; gap:0.6rem; font-size:0.9rem; color:rgba(255,255,255,0.8); text-transform:none; letter-spacing:0;">
+              <input type="checkbox" id="int-seabreeze" style="width:16px;height:16px;accent-color:var(--terracotta);"> Breeze at the Sea — Panama City Beach (April 2027)
+            </label>
+            <label style="display:flex; align-items:center; gap:0.6rem; font-size:0.9rem; color:rgba(255,255,255,0.8); text-transform:none; letter-spacing:0;">
+              <input type="checkbox" id="int-desert" style="width:16px;height:16px;accent-color:var(--terracotta);"> Desert Bloom 2027 — Scottsdale, Arizona
+            </label>
+            <label style="display:flex; align-items:center; gap:0.6rem; font-size:0.9rem; color:rgba(255,255,255,0.8); text-transform:none; letter-spacing:0;">
+              <input type="checkbox" id="int-wine" style="width:16px;height:16px;accent-color:var(--terracotta);"> Pour Into Yourself — Napa Valley/Sonoma, California
+            </label>
+            <label style="display:flex; align-items:center; gap:0.6rem; font-size:0.9rem; color:rgba(255,255,255,0.8); text-transform:none; letter-spacing:0;">
+              <input type="checkbox" id="int-greece" style="width:16px;height:16px;accent-color:var(--terracotta);"> Beyond the Blue — Greece 2027
+            </label>
+            <label style="display:flex; align-items:center; gap:0.6rem; font-size:0.9rem; color:rgba(255,255,255,0.8); text-transform:none; letter-spacing:0;">
+              <input type="checkbox" id="int-all" style="width:16px;height:16px;accent-color:var(--terracotta);"> All of the above — keep me posted on everything!
+            </label>
+          </div>
+        </div>
         <button class="btn-primary form-submit" onclick="submitForm('join')">Join the Movement →</button>
         <div id="join-success" class="form-success" style="display:none;">
-          ✦ Welcome to the movement! We'll be in touch soon.
+          ✦ Thank you for joining — welcome to the movement! We'll be in touch soon.
         </div>
       </div>
 
@@ -1581,6 +1609,14 @@
       const email  = document.getElementById('jm-email').value.trim();
       const source = document.getElementById('jm-source').value;
       if (!first || !email) { alert('Please enter your name and email to join the movement.'); return; }
+
+      const interests = [];
+      if (document.getElementById('int-seabreeze').checked) interests.push('Breeze at the Sea — Panama City Beach');
+      if (document.getElementById('int-desert').checked) interests.push('Desert Bloom 2027');
+      if (document.getElementById('int-wine').checked) interests.push('Pour Into Yourself');
+      if (document.getElementById('int-greece').checked) interests.push("Beyond the Blue — Greece 2027");
+      if (document.getElementById('int-all').checked) interests.push('All Experiences');
+
       const btn = document.querySelector('#tab-join .form-submit');
       btn.textContent = 'Sending…'; btn.disabled = true;
       const res = await fetch(`https://formspree.io/f/${WAITLIST_FORM_ID}`, {
@@ -1589,12 +1625,15 @@
         body: JSON.stringify({
           _subject: `Join the Movement — ${first} ${last}`,
           Name: `${first} ${last}`, Email: email,
-          'Heard About Us': source || '—', Type: 'Join the Movement'
+          'Heard About Us': source || '—',
+          'Interested In': interests.length > 0 ? interests.join(', ') : 'Not specified',
+          Type: 'Join the Movement'
         })
       });
       if (res.ok) {
         document.getElementById('join-success').style.display = 'block';
-        btn.style.opacity = '0.4';
+        btn.textContent = '✦ You\'re In!';
+        btn.style.opacity = '0.7';
       } else {
         btn.textContent = 'Join the Movement →'; btn.disabled = false;
         alert('Something went wrong. Please email us directly at hermidlifemovement@icloud.com');
@@ -1627,7 +1666,8 @@
 
       if (res.ok) {
         document.getElementById('waitlist-success').style.display = 'block';
-        btn.style.opacity = '0.4';
+        btn.textContent = '✦ You\'re On the List!';
+        btn.style.opacity = '0.7';
       } else {
         btn.textContent = 'Join the Waitlist →'; btn.disabled = false;
         alert('Something went wrong. Please email us directly at hermidlifemovement@icloud.com');
@@ -1658,7 +1698,8 @@
 
       if (res.ok) {
         document.getElementById('contact-success').style.display = 'block';
-        btn.style.opacity = '0.4';
+        btn.textContent = '✦ Message Sent!';
+        btn.style.opacity = '0.7';
       } else {
         btn.textContent = 'Send Message →'; btn.disabled = false;
         alert('Something went wrong. Please email us directly at hermidlifemovement@icloud.com');
