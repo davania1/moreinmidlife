@@ -503,10 +503,11 @@
     background: rgba(28,24,20,0.6); padding: 0.3rem 0.8rem;
   }
   .exp-card-badge {
-    position: absolute; top: 1rem; left: 1rem;
+    display: inline-block;
     font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase;
     background: var(--midnight); color: rgba(255,255,255,0.7);
-    padding: 0.3rem 0.8rem;
+    padding: 0.3rem 0.8rem; margin-bottom: 0.6rem;
+    position: static;
   }
   .exp-card-badge-open { background: var(--sage); color: #fff; }
   .exp-card-body { padding: 1.5rem 2rem 2rem; }
@@ -1219,11 +1220,10 @@
   <div class="exp-grid-new fade-up">
     <div class="exp-card-new">
       <div class="exp-card-image">
-        <img src="https://i.imgur.com/6jdaOlk.jpeg" alt="Seabreeze and Soul">
-        <div class="exp-card-badge exp-card-badge-open">Registration Open</div>
+        <img src="https://i.imgur.com/6jdaOlk.jpeg" alt="Breeze at the Sea Panama City Beach">
       </div>
       <div class="exp-card-body">
-        <div class="exp-card-icon">🌊</div>
+        <div class="exp-card-badge exp-card-badge-open">Registration Open</div>
         <h3 class="exp-card-title">Breeze at the Sea</h3>
         <p class="exp-card-location">Panama City Beach, Florida · April 22–25, 2027</p>
         <p class="exp-card-desc">Good music, good food, great company, and lasting connections. This is more than a trip — it's our time.</p>
