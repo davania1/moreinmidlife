@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Experiences | Her Midlife Movement</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #FAF6F0; --sand: #EFE6DA; --terracotta: #C4714A; --rust: #9B4E2A;
+    --sage: #7A8C6E; --desert-gold: #B8883A; --midnight: #1C1814;
+    --body-text: #3D322C; --muted: #6B5F56; --light-bg: #F5EDE3;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--cream); color: var(--body-text); font-family: 'DM Sans', sans-serif; font-weight: 400; overflow-x: hidden; }
+
+  nav { position: fixed; top: 0; width: 100%; z-index: 100; padding: 1.2rem 3rem; display: flex; justify-content: space-between; align-items: center; background: rgba(250,246,240,0.95); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(196,113,74,0.15); }
+  .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 400; letter-spacing: 0.05em; color: var(--midnight); text-decoration: none; }
+  .nav-logo span { color: var(--terracotta); }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a { font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--body-text); text-decoration: none; transition: color 0.3s; }
+  .nav-links a:hover, .nav-links a.active { color: var(--terracotta); }
+  .nav-cta { font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase; color: #fff; background: var(--terracotta); padding: 0.65rem 1.6rem; border: none; cursor: pointer; transition: background 0.3s; text-decoration: none; }
+  .nav-cta:hover { background: var(--rust); }
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+  .hamburger span { display: block; width: 24px; height: 2px; background: var(--midnight); }
+  .mobile-menu { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(28,24,20,0.97); z-index: 200; flex-direction: column; align-items: center; justify-content: center; gap: 2rem; }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a { font-size: 1.3rem; letter-spacing: 0.12em; text-transform: uppercase; color: #fff; text-decoration: none; font-family: 'Cormorant Garamond', serif; font-style: italic; }
+  .mobile-menu-close { position: absolute; top: 1.5rem; right: 1.5rem; background: none; border: none; color: #fff; font-size: 2rem; cursor: pointer; }
+  .menu-cta { font-size: 0.85rem !important; letter-spacing: 0.18em !important; color: #fff !important; background: var(--terracotta); padding: 0.9rem 2rem; font-style: normal !important; font-family: 'DM Sans', sans-serif !important; }
+
+  .page-header { padding: 10rem 5rem 5rem; background: var(--midnight); text-align: center; }
+  .page-header-eyebrow { font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase; color: #C9A96E; margin-bottom: 1rem; display: block; }
+  .page-header-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.5rem, 5vw, 5rem); font-weight: 300; color: #fff; line-height: 1.1; }
+  .page-header-title em { font-style: italic; color: var(--terracotta); }
+  .page-header-sub { font-size: 1rem; color: rgba(255,255,255,0.6); margin-top: 1.2rem; max-width: 500px; margin-left: auto; margin-right: auto; line-height: 1.8; }
+
+  /* EXPERIENCE SECTIONS */
+  .exp-section { padding: 7rem 5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
+  .exp-section.reverse { direction: rtl; }
+  .exp-section.reverse > * { direction: ltr; }
+  .exp-section.dark { background: var(--midnight); }
+  .exp-section.sand { background: var(--sand); }
+  .exp-section.light { background: var(--light-bg); }
+  .exp-visual { position: relative; }
+  .exp-visual img { width: 100%; display: block; }
+  .exp-visual-badge {
+    position: absolute; top: 1.5rem; left: 1.5rem;
+    font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase;
+    padding: 0.35rem 0.9rem;
+  }
+  .badge-booked { background: var(--midnight); color: rgba(255,255,255,0.7); }
+  .badge-open { background: var(--sage); color: #fff; }
+  .badge-soon { background: rgba(28,24,20,0.7); color: rgba(255,255,255,0.8); }
+  .badge-future { background: var(--desert-gold); color: #fff; }
+  .exp-content {}
+  .exp-icon { font-size: 2.5rem; margin-bottom: 1rem; display: block; }
+  .exp-eyebrow { font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--terracotta); margin-bottom: 0.8rem; display: block; }
+  .exp-eyebrow-light { color: #C9A96E; }
+  .exp-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.5rem, 4vw, 4rem); font-weight: 300; line-height: 1.15; margin-bottom: 0.5rem; }
+  .exp-title-dark { color: var(--midnight); }
+  .exp-title-light { color: #fff; }
+  .exp-title em { font-style: italic; color: var(--terracotta); }
+  .exp-location { font-size: 0.78rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--terracotta); margin-bottom: 1.5rem; }
+  .exp-location-light { color: #C9A96E; }
+  .exp-desc { font-size: 1rem; line-height: 1.9; margin-bottom: 2rem; }
+  .exp-desc-dark { color: var(--body-text); }
+  .exp-desc-light { color: rgba(255,255,255,0.78); }
+  .exp-features { display: grid; grid-template-columns: 1fr 1fr; gap: 0.7rem; margin-bottom: 2rem; }
+  .exp-feature { font-size: 0.85rem; display: flex; align-items: center; gap: 0.5rem; }
+  .exp-feature-dark { color: var(--body-text); }
+  .exp-feature-light { color: rgba(255,255,255,0.75); }
+  .exp-feature::before { content: '◆'; color: var(--terracotta); font-size: 0.45rem; flex-shrink: 0; }
+  .exp-details { display: flex; gap: 2rem; margin-bottom: 2rem; flex-wrap: wrap; }
+  .exp-detail { font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; }
+  .exp-detail-dark { color: var(--muted); }
+  .exp-detail-light { color: rgba(255,255,255,0.5); }
+  .exp-detail strong { display: block; margin-bottom: 0.2rem; color: var(--terracotta); }
+  .btn-primary { font-size: 0.85rem; letter-spacing: 0.16em; text-transform: uppercase; background: var(--terracotta); color: #fff; padding: 1.1rem 2.6rem; border: none; cursor: pointer; transition: background 0.3s; text-decoration: none; display: inline-block; }
+  .btn-primary:hover { background: var(--rust); }
+  .btn-outline { font-size: 0.85rem; letter-spacing: 0.16em; text-transform: uppercase; background: transparent; color: var(--terracotta); padding: 1.1rem 2.6rem; border: 1.5px solid var(--terracotta); cursor: pointer; transition: all 0.3s; text-decoration: none; display: inline-block; margin-left: 1rem; }
+  .btn-outline:hover { background: var(--terracotta); color: #fff; }
+  .btn-outline-light { border-color: rgba(255,255,255,0.5); color: rgba(255,255,255,0.8); margin-left: 0; }
+  .btn-outline-light:hover { background: rgba(255,255,255,0.1); color: #fff; border-color: #fff; }
+
+  /* COMING SOON / FUTURE */
+  .coming-soon-visual { background: linear-gradient(135deg, var(--terracotta), var(--desert-gold)); display: flex; align-items: center; justify-content: center; min-height: 400px; }
+  .coming-soon-icon { font-size: 5rem; opacity: 0.6; }
+  .future-visual { display: flex; align-items: center; justify-content: center; min-height: 400px; }
+
+  /* DIVIDER */
+  .section-divider { background: var(--midnight); padding: 0.5rem 0; text-align: center; }
+  .section-divider span { font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(255,255,255,0.3); }
+
+  /* CTA */
+  .exp-cta { background: var(--terracotta); padding: 5rem; text-align: center; }
+  .exp-cta-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 300; color: #fff; margin-bottom: 1.2rem; }
+  .exp-cta-title em { font-style: italic; }
+  .exp-cta-desc { font-size: 1rem; color: rgba(255,255,255,0.88); max-width: 500px; margin: 0 auto 2rem; line-height: 1.8; }
+
+  footer { background: var(--midnight); padding: 4rem 5rem; }
+  .footer-top { display: grid; grid-template-columns: 1fr repeat(3, auto); gap: 4rem; padding-bottom: 3rem; border-bottom: 1px solid rgba(255,255,255,0.08); margin-bottom: 2.5rem; }
+  .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: #fff; letter-spacing: 0.05em; display: block; margin-bottom: 0.8rem; text-decoration: none; }
+  .footer-logo span { color: var(--terracotta); }
+  .footer-tagline { font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.35); line-height: 1.6; }
+  .footer-col h4 { font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: #C9A96E; margin-bottom: 1.2rem; }
+  .footer-col ul { list-style: none; }
+  .footer-col ul li { margin-bottom: 0.7rem; }
+  .footer-col ul li a { font-size: 0.88rem; color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.3s; }
+  .footer-col ul li a:hover { color: #fff; }
+  .footer-bottom { display: flex; justify-content: space-between; align-items: center; }
+  .footer-copy { font-size: 0.75rem; color: rgba(255,255,255,0.25); }
+  .footer-instagram a { font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.4); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; transition: color 0.3s; }
+  .footer-instagram a:hover { color: #C9A96E; }
+
+  .fade-up { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 600px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links, .nav-cta { display: none; }
+    .hamburger { display: flex; }
+    .page-header { padding: 7rem 2rem 3rem; }
+    .exp-section { grid-template-columns: 1fr; padding: 4rem 2rem; gap: 2.5rem; direction: ltr; }
+    .exp-section.reverse { direction: ltr; }
+    .exp-features { grid-template-columns: 1fr; }
+    .exp-details { gap: 1.5rem; }
+    .btn-outline { margin-left: 0; margin-top: 0.8rem; }
+    .coming-soon-visual, .future-visual { min-height: 250px; }
+    .exp-cta { padding: 4rem 2rem; }
+    footer { padding: 3rem 2rem; }
+    .footer-top { grid-template-columns: 1fr; gap: 2.5rem; }
+    .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Her Midlife <span>Movement</span></a>
+  <ul class="nav-links">
+    <li><a href="about.html">About</a></li>
+    <li><a href="experiences.html" class="active">Experiences</a></li>
+    <li><a href="connect.html">Connect</a></li>
+  </ul>
+  <a href="connect.html" class="nav-cta">Join the Movement</a>
+  <button class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-menu-close" onclick="toggleMenu()">✕</button>
+  <a href="about.html" onclick="toggleMenu()">About</a>
+  <a href="experiences.html" onclick="toggleMenu()">Experiences</a>
+  <a href="connect.html" onclick="toggleMenu()">Connect</a>
+  <a href="connect.html" onclick="toggleMenu()" class="menu-cta">Join the Movement</a>
+</div>
+
+<div class="page-header">
+  <span class="page-header-eyebrow">Curated Experiences</span>
+  <h1 class="page-header-title">Every Experience<br><em>Tells a Story</em></h1>
+  <p class="page-header-sub">Her Midlife Movement doesn't just plan trips — we curate transformative moments designed to move you in every sense of the word.</p>
+</div>
+
+<!-- DESERT BLOOM -->
+<section class="exp-section" id="desert-bloom">
+  <div class="exp-visual fade-up">
+    <img src="https://i.imgur.com/L4UUfJZ.jpeg" alt="Desert Bloom Retreat">
+    <div class="exp-visual-badge badge-booked">Fully Booked · 2026</div>
+  </div>
+  <div class="exp-content fade-up">
+    <span class="exp-icon">🌵</span>
+    <span class="exp-eyebrow">Flagship Experience · Women's Retreat</span>
+    <h2 class="exp-title exp-title-dark">Desert<br><em>Bloom</em></h2>
+    <div class="exp-location">Scottsdale, Arizona · October 16–19, 2026</div>
+    <p class="exp-desc exp-desc-dark">Desert Bloom is an intimate women's retreat created by Her Midlife Movement — designed for women who are ready to rest, reset, and reconnect. Arrive solo or with a friend — connection unfolds naturally in this thoughtfully curated space where everything is taken care of. You don't have to plan anything. You just have to show up.</p>
+    <div class="exp-features">
+      <div class="exp-feature exp-feature-dark">Private Luxury Home</div>
+      <div class="exp-feature exp-feature-dark">Elevated Dining</div>
+      <div class="exp-feature exp-feature-dark">Signature Desert Experience</div>
+      <div class="exp-feature exp-feature-dark">Curated Moments</div>
+      <div class="exp-feature exp-feature-dark">Sisterhood Connection</div>
+      <div class="exp-feature exp-feature-dark">Time to Rest & Reset</div>
+      <div class="exp-feature exp-feature-dark">Scottsdale, Arizona</div>
+      <div class="exp-feature exp-feature-dark">Limited Intimate Group</div>
+    </div>
+    <a href="connect.html#waitlist" class="btn-primary">Stay Tuned for Desert Bloom 2027 →</a>
+  </div>
+</section>
+
+<div class="section-divider"><span>✦ Current Experience ✦</span></div>
+
+<!-- BREEZE AT THE SEA -->
+<section class="exp-section reverse sand" id="breeze">
+  <div class="exp-visual fade-up">
+    <img src="https://i.imgur.com/6jdaOlk.jpeg" alt="Breeze at the Sea — Panama City Beach">
+    <div class="exp-visual-badge badge-open">Registration Open</div>
+  </div>
+  <div class="exp-content fade-up">
+    <span class="exp-icon">🌊</span>
+    <span class="exp-eyebrow">Current Experience</span>
+    <h2 class="exp-title exp-title-dark">Breeze<br><em>at the Sea</em></h2>
+    <div class="exp-location">Panama City Beach, Florida · April 22–25, 2027</div>
+    <p class="exp-desc exp-desc-dark">Good music, good food, great company, and lasting connections. This is more than a trip — it's our time. Come ready to exhale, explore, and experience the kind of weekend that stays with you.</p>
+    <div class="exp-details">
+      <div class="exp-detail exp-detail-dark"><strong>Location</strong>Panama City Beach, FL</div>
+      <div class="exp-detail exp-detail-dark"><strong>Dates</strong>April 22–25, 2027</div>
+      <div class="exp-detail exp-detail-dark"><strong>Status</strong>Registration Open</div>
+    </div>
+    <a href="https://form.jotform.com/262057899218066" target="_blank" class="btn-primary">Interest Form →</a>
+    <a href="connect.html#join" class="btn-outline">Join the Interest List</a>
+  </div>
+</section>
+
+<div class="section-divider"><span>✦ Coming Soon ✦</span></div>
+
+<!-- POUR INTO YOURSELF -->
+<section class="exp-section" id="pour">
+  <div class="exp-visual fade-up">
+    <img src="https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=700&q=80" alt="Napa Valley Wine Country">
+    <div class="exp-visual-badge badge-soon">Coming Soon</div>
+  </div>
+  <div class="exp-content fade-up">
+    <span class="exp-icon">🍷</span>
+    <span class="exp-eyebrow">Coming Soon</span>
+    <h2 class="exp-title exp-title-dark">Pour Into<br><em>Yourself</em></h2>
+    <div class="exp-location">Napa Valley/Sonoma, California · Date TBA</div>
+    <p class="exp-desc exp-desc-dark">Wine country, stunning vineyards, beautiful views, meaningful conversations, and unforgettable moments with your people. This experience is designed to fill you up — in every sense of the word.</p>
+    <a href="connect.html#join" class="btn-primary">Join the Interest List →</a>
+  </div>
+</section>
+
+<div class="section-divider"><span>✦ Future Experiences ✦</span></div>
+
+<!-- BEYOND THE BLUE -->
+<section class="exp-section reverse dark" id="greece">
+  <div class="exp-visual fade-up">
+    <img src="https://images.unsplash.com/photo-1601581875309-fafbf2d3ed3a?w=700&q=80" alt="Santorini Greece">
+    <div class="exp-visual-badge badge-future">Future Experience</div>
+  </div>
+  <div class="exp-content fade-up">
+    <span class="exp-icon">🇬🇷</span>
+    <span class="exp-eyebrow exp-eyebrow-light">Future Experience</span>
+    <h2 class="exp-title exp-title-light">Beyond<br><em>the Blue</em></h2>
+    <div class="exp-location exp-location-light">Greece · 2027 · Date TBA</div>
+    <p class="exp-desc exp-desc-light">Whitewashed walls, turquoise water, breathtaking sunsets, and the kind of trip that stays with you forever. Beyond the Blue is a journey to one of the world's most iconic destinations — curated with intention, connection, and sisterhood at its heart.</p>
+    <a href="connect.html#join" class="btn-outline btn-outline-light">Join the Interest List →</a>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="exp-cta">
+  <div class="fade-up">
+    <h2 class="exp-cta-title">Which Experience <em>Calls You?</em></h2>
+    <p class="exp-cta-desc">Let us know which experiences you're interested in and we'll make sure you're the first to know when spots open up.</p>
+    <a href="connect.html#join" class="btn-primary" style="background:#fff; color:var(--terracotta);">Join the Interest List →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-top">
+    <div>
+      <a href="index.html" class="footer-logo">Her Midlife <span>Movement</span></a>
+      <div class="footer-tagline">Curating Rich Experiences<br>for Women in Midlife<br>moreinmidlife.com</div>
+    </div>
+    <div class="footer-col">
+      <h4>Explore</h4>
+      <ul>
+        <li><a href="about.html">About Davania</a></li>
+        <li><a href="about.html#why">Why I Do This</a></li>
+        <li><a href="about.html#foundations">Our Foundations</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Experiences</h4>
+      <ul>
+        <li><a href="#desert-bloom">Desert Bloom</a></li>
+        <li><a href="#breeze">Breeze at the Sea</a></li>
+        <li><a href="#pour">Pour Into Yourself</a></li>
+        <li><a href="#greece">Beyond the Blue</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Connect</h4>
+      <ul>
+        <li><a href="connect.html#join">Join the Movement</a></li>
+        <li><a href="connect.html#waitlist">Desert Bloom Waitlist</a></li>
+        <li><a href="connect.html#contact">Contact Davania</a></li>
+        <li><a href="https://instagram.com/hermidlife.movement" target="_blank">@hermidlife.movement</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2026 Her Midlife Movement · All Rights Reserved</div>
+    <div class="footer-instagram">
+      <a href="https://instagram.com/hermidlife.movement" target="_blank">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/></svg>
+        @hermidlife.movement
+      </a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  function toggleMenu() {
+    const menu = document.getElementById('mobileMenu');
+    menu.classList.toggle('open');
+    document.body.style.overflow = menu.classList.contains('open') ? 'hidden' : '';
+  }
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
