@@ -1,8 +1,10 @@
-<!DOCTYPE html> 
+
+<!DOCTYPE html>
 <html lang="en">
-<head><meta name="p:domain_verify" content="2c1336389c73afe9392ea97a7f6b5e46"/>
+<head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="p:domain_verify" content="2c1336389c73afe9392ea97a7f6b5e46"/>
 <title>Her Midlife Movement | moreinmidlife.com</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
@@ -58,6 +60,19 @@
     transition: background 0.3s; text-decoration: none; display: inline-block;
   }
   .nav-cta:hover { background: var(--rust); }
+
+  /* ── HERO SLIDESHOW ── */
+  .hero-slideshow {
+    position: absolute; inset: 0; overflow: hidden;
+    background: var(--midnight);
+  }
+  .hero-slideshow .slide {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: contain; object-position: center;
+    opacity: 0; transition: opacity 1.5s ease-in-out;
+  }
+  .hero-slideshow .slide.active { opacity: 1; }
 
   /* ── HERO ── */
   .hero {
@@ -429,21 +444,6 @@
   .cta-buttons { display: flex; justify-content: center; gap: 1.2rem; }
 
   /* ── FOOTER ── */
-  footer {
-    background: var(--midnight);
-    border-top: 1px solid rgba(255,255,255,0.08);
-    padding: 3rem 5rem;
-    display: flex; justify-content: space-between; align-items: center;
-  }
-  .footer-logo {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.2rem; color: #fff; letter-spacing: 0.05em;
-  }
-  .footer-logo span { color: var(--terracotta); }
-  .footer-tagline {
-    font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase;
-    color: rgba(255,255,255,0.4); margin-top: 0.4rem;
-  }
   .footer-links { display: flex; gap: 2rem; }
   .footer-links a {
     font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase;
@@ -822,8 +822,8 @@
   .footer-top {
     display: grid; grid-template-columns: 1.5fr repeat(3, 1fr);
     gap: 3rem; padding-bottom: 3rem;
-    border-bottom: 1px solid rgba(255,255,255,0.08); margin-bottom: 2rem;
-    align-items: start;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    margin-bottom: 2rem; align-items: start; width: 100%;
   }
   .footer-brand {}
   .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: #fff; letter-spacing: 0.05em; display: block; margin-bottom: 0.8rem; }
@@ -836,7 +836,7 @@
   .footer-col ul li a:hover { color: #fff; }
   .footer-bottom {
     display: flex; justify-content: space-between; align-items: center;
-    padding-top: 1.5rem; clear: both;
+    width: 100%; padding-top: 0;
   }
   .footer-copy { font-size: 0.75rem; color: rgba(255,255,255,0.25); letter-spacing: 0.05em; }
   .footer-insta { font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.4); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; transition: color 0.3s; }
@@ -903,7 +903,9 @@
     /* Hero — simplified */
     .hero { grid-template-columns: 1fr; display: flex; flex-direction: column; min-height: auto; }
     .hero-left { order: 1; padding: 5rem 2rem 2rem; }
-    .hero-right { order: 2; height: auto; position: relative; }
+    .hero-right { order: 2; height: 320px; position: relative; }
+    .hero-slideshow { position: absolute; inset: 0; }
+    .hero-quote { display: none; }
     .hero-photo { height: 380px; width: 100%; object-fit: cover; display: block; object-position: top; }
     .hero-quote { display: none; }
     .hero-title { font-size: 2.2rem; }
@@ -1119,11 +1121,16 @@
     </div>
   </div>
   <div class="hero-right">
-    <img class="hero-photo"
-      src="https://i.imgur.com/8j4homk.jpeg"
-      alt="Women in community — Thank You for Being a Friend experience"
-      onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-    <div class="hero-photo-fallback" style="display:none;"></div>
+    <div class="hero-slideshow">
+      <img src="https://i.imgur.com/8j4homk.jpeg" alt="Her Midlife Movement community" class="slide active">
+      <img src="https://i.imgur.com/lt6gFgV.jpeg" alt="Her Midlife Movement experience" class="slide">
+      <img src="https://i.imgur.com/TVXDzJh.jpeg" alt="Her Midlife Movement moment" class="slide">
+      <img src="https://i.imgur.com/QJziDfK.jpeg" alt="Her Midlife Movement travel" class="slide">
+      <img src="https://i.imgur.com/qBUCgGR.jpeg" alt="Her Midlife Movement sisterhood" class="slide">
+      <img src="https://i.imgur.com/xCMpllb.jpeg" alt="Her Midlife Movement wellness" class="slide">
+      <img src="https://i.imgur.com/C5lnzGH.jpeg" alt="Her Midlife Movement community" class="slide">
+      <img src="https://i.imgur.com/RKpiF5K.jpeg" alt="Her Midlife Movement adventure" class="slide">
+    </div>
     <div class="hero-quote">
       <p>"This is my ministry — using vision, creativity, and hospitality to create spaces where women feel seen, valued, and renewed."</p>
       <cite>Her Midlife Movement</cite>
@@ -1520,7 +1527,7 @@
   <div class="fade-up" style="max-width:680px; margin:0 auto;">
     <span class="section-eyebrow">Stay Connected</span>
     <h2 class="section-title">Ready to <em>Bloom</em>?</h2>
-    <p class="cta-sub">Join women who are choosing movement, meaningful travel, faith, wellness, and new experiences — one beautiful season at a time.</p>
+    <p class="cta-sub">Tell us what speaks to you, and we'll keep you connected to the experiences, encouragement, and updates that fit your season.</p>
 
     <!-- CONNECT CARDS -->
     <div class="connect-cards fade-up">
@@ -1551,7 +1558,7 @@
 
       <!-- JOIN THE MOVEMENT TAB -->
       <div id="tab-join" class="tab-panel active">
-        <p style="font-size:0.95rem; color:rgba(255,255,255,0.7); line-height:1.8; margin-bottom:1.5rem;">Join women who are choosing movement, meaningful travel, faith, wellness, and new experiences — one season at a time.</p>
+        <p style="font-size:0.95rem; color:rgba(255,255,255,0.7); line-height:1.8; margin-bottom:1.5rem;">Tell us what speaks to you, and we'll keep you connected to the experiences, encouragement, and updates that fit your season.</p>
         <div class="form-row">
           <div class="form-group">
             <label>First Name</label>
@@ -1732,6 +1739,15 @@
 </footer>
 
 <script>
+  // Slideshow
+  const slides = document.querySelectorAll('.hero-slideshow .slide');
+  let currentSlide = 0;
+  setInterval(() => {
+    slides[currentSlide].classList.remove('active');
+    currentSlide = (currentSlide + 1) % slides.length;
+    slides[currentSlide].classList.add('active');
+  }, 4000);
+
   function toggleMenu() {
     const menu = document.getElementById('mobileMenu');
     menu.classList.toggle('open');
@@ -1871,4 +1887,3 @@
 
 </body>
 </html>
-
