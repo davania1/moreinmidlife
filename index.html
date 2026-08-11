@@ -805,7 +805,7 @@
 
   /* ── CONNECT CARDS ── */
   .connect-cards {
-    display: grid; grid-template-columns: repeat(3, 1fr);
+    display: grid; grid-template-columns: repeat(2, 1fr);
     gap: 1.5rem; margin: 2.5rem 0;
   }
   .connect-card {
@@ -841,6 +841,39 @@
   .footer-copy { font-size: 0.75rem; color: rgba(255,255,255,0.25); letter-spacing: 0.05em; }
   .footer-insta { font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.4); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; transition: color 0.3s; }
   .footer-insta:hover { color: #C9A96E; }
+
+  /* ── DESERT BLOOM 2027 ── */
+  .desert-bloom-2027 {
+    background: var(--midnight);
+    padding: 6rem 5rem;
+  }
+  @media (max-width: 600px) {
+    .desert-bloom-2027 { padding: 4rem 2rem; }
+  }
+
+  /* ── 2027 POLL ── */
+  .poll-section { background: var(--midnight); padding: 7rem 5rem; }
+  .poll-inner { max-width: 1100px; margin: 0 auto; }
+  .poll-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.2rem, 4vw, 3.5rem); font-weight: 300; color: #fff; line-height: 1.2; margin: 1rem 0 1.2rem; }
+  .poll-title em { font-style: italic; color: var(--terracotta); }
+  .poll-subtitle { font-size: 1rem; color: rgba(255,255,255,0.65); margin-bottom: 3rem; line-height: 1.8; max-width: 600px; }
+  .poll-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-bottom: 3rem; }
+  .poll-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 2rem; border-top: 2px solid var(--terracotta); }
+  .poll-card-number { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; color: rgba(201,169,110,0.3); line-height: 1; margin-bottom: 0.8rem; }
+  .poll-card-title { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; color: #fff; margin-bottom: 0.5rem; line-height: 1.4; }
+  .poll-card-desc { font-size: 0.82rem; color: rgba(255,255,255,0.45); margin-bottom: 1.2rem; }
+  .poll-options { display: flex; flex-direction: column; gap: 0.7rem; }
+  .poll-option { display: flex; align-items: flex-start; gap: 0.7rem; cursor: pointer; }
+  .poll-option input { margin-top: 3px; accent-color: var(--terracotta); flex-shrink: 0; width: 15px; height: 15px; }
+  .poll-option span { font-size: 0.88rem; color: rgba(255,255,255,0.75); line-height: 1.5; }
+  .poll-option:hover span { color: #fff; }
+  .poll-submit-area { text-align: center; }
+  .poll-name-row { display: flex; gap: 1rem; justify-content: center; margin-bottom: 1.2rem; flex-wrap: wrap; }
+  .poll-input { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.18); color: #fff; font-family: 'DM Sans', sans-serif; font-size: 0.95rem; padding: 0.75rem 1.2rem; outline: none; transition: border-color 0.3s; width: 260px; }
+  .poll-input::placeholder { color: rgba(255,255,255,0.3); }
+  .poll-input:focus { border-color: var(--terracotta); }
+  .poll-btn { padding: 1rem 3rem; font-size: 0.85rem; border: none; cursor: pointer; }
+  .poll-success { margin-top: 1.5rem; font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-style: italic; color: #C9A96E; padding: 1rem; border: 1px solid rgba(201,169,110,0.3); max-width: 500px; margin-left: auto; margin-right: auto; }
 
   /* ── ANIMATIONS ── */
   .fade-up {
@@ -1065,6 +1098,12 @@
     /* Connect cards */
     .connect-cards { grid-template-columns: 1fr; gap: 1rem; }
 
+    /* Poll */
+    .poll-section { padding: 4rem 2rem; }
+    .poll-grid { grid-template-columns: 1fr; }
+    .poll-name-row { flex-direction: column; align-items: stretch; }
+    .poll-input { width: 100%; }
+
     /* Footer */
     footer { padding: 3rem 2rem; }
     .footer-top { grid-template-columns: 1fr; gap: 2rem; }
@@ -1116,8 +1155,8 @@
       Her Midlife Movement curates meaningful experiences that inspire connection, movement, adventure, and personal growth for those embracing the richness of midlife.
     </p>
     <div class="hero-buttons">
-      <a href="#desert-bloom" class="btn-primary">Explore Desert Bloom</a>
-      <a href="#meet-davania" class="btn-outline">Meet Davania</a>
+      <a href="#connect" class="btn-primary">Join the Movement</a>
+      <a href="#experiences" class="btn-outline">Explore Experiences</a>
     </div>
   </div>
   <div class="hero-right">
@@ -1246,7 +1285,7 @@
         <p>And God placed this vision on my heart because He knows what women need — and He chose me to help create it. That's not something I take lightly. Every experience I curate is an act of obedience, love, and service.</p>
         <p style="font-family:'Cormorant Garamond',serif; font-size:1.3rem; font-style:italic; color:var(--midnight);">This is why I do this.<br>And I'm so grateful you found your way here.</p>
       </div>
-      <a href="#connect" class="btn-primary" style="margin-top:2rem; display:inline-block;">Join Our Community →</a>
+      
     </div>
     <div class="why-photo fade-up">
       <img src="https://i.imgur.com/8Y0NU1q.png" alt="Her Midlife Movement — Why I Do This">
@@ -1269,7 +1308,7 @@
       <p>Every experience we curate is an act of love — an invitation for women to exhale, reconnect with themselves, and remember just how rich this season of life can be.</p>
       <p>You were made to bloom. We're here to tend the garden.</p>
       <div style="margin-top:2.5rem;">
-        <a href="#connect" class="btn-outline" style="border-color:#fff; color:#fff;">Join Our Community</a>
+        
       </div>
     </div>
   </div>
@@ -1281,8 +1320,7 @@
   <div class="bloom-visual fade-up">
     <img class="bloom-photo"
       src="https://i.imgur.com/L4UUfJZ.jpeg"
-      alt="Desert Bloom — The Arizona Midlife Reset">
-
+      alt="Desert Bloom 2026 — The Arizona Midlife Reset">
   </div>
   <div class="bloom-content fade-up">
     <span class="bloom-tag">Flagship Experience · Scottsdale, Arizona</span>
@@ -1303,7 +1341,24 @@
       <div class="bloom-feature">Scottsdale, Arizona</div>
       <div class="bloom-feature">Limited Intimate Group</div>
     </div>
-    <a href="#connect" class="btn-primary">Stay Tuned for Next Year →</a>
+    
+  </div>
+</section>
+
+<!-- DESERT BLOOM 2027 -->
+<section class="desert-bloom-2027">
+  <div class="fade-up" style="text-align:center; margin-bottom:3rem;">
+    <span class="section-eyebrow" style="color:#C9A96E;">What's Coming Next</span>
+    <h2 style="font-family:'Cormorant Garamond',serif; font-size:clamp(2rem,3.5vw,3rem); font-weight:300; color:#fff; margin-top:0.5rem;">Desert Bloom <em style="font-style:italic; color:var(--terracotta);">Becoming</em></h2>
+    <p style="font-size:1rem; color:rgba(255,255,255,0.65); margin-top:0.8rem; font-style:italic; font-family:'Cormorant Garamond',serif; font-size:1.2rem;">"There is still more unfolding."</p>
+  </div>
+  <div class="bloom-2027-flyer fade-up">
+    <img src="https://i.imgur.com/U1DvK12.png" alt="Desert Bloom Becoming 2027 — October 14-18 Scottsdale Arizona" style="width:100%; max-width:700px; height:auto; display:block; margin:0 auto;">
+  </div>
+  <div style="text-align:center; margin-top:2.5rem;" class="fade-up">
+    <p style="font-size:0.88rem; color:rgba(255,255,255,0.55); letter-spacing:0.15em; text-transform:uppercase; margin-bottom:1.5rem;">October 14–18, 2027 · Scottsdale, Arizona · Ladies Only</p>
+    <p style="font-family:'Cormorant Garamond',serif; font-size:1rem; color:rgba(255,255,255,0.7); margin-bottom:1.5rem; font-style:italic;">Investment starting at $1,675 · $350 deposit secures your place · Payment plans available</p>
+    <a href="#connect" class="btn-primary">Priority Registration Now Open →</a>
   </div>
 </section>
 
@@ -1336,7 +1391,7 @@
       <div class="community-invite-inner">
         <h3 class="community-invite-title">Be Part of <em>Our Story</em></h3>
         <p class="community-invite-text">The testimonials are coming — and we'd love yours to be among the first. Desert Bloom is just the beginning. Every experience we create is an opportunity for women to move, connect, and bloom together. Join our community and help us write this story.</p>
-        <a href="#connect" class="btn-primary">Join the Community →</a>
+        
       </div>
     </div>
   </div>
@@ -1358,7 +1413,7 @@
     <div class="exp-card-new">
       <div class="exp-card-badge exp-card-badge-open" style="position:static; display:inline-block; margin-bottom:0.5rem;">Registration Open</div>
       <div class="exp-card-image">
-        <img src="https://i.imgur.com/6jdaOlk.jpeg" alt="Breeze at the Sea Panama City Beach">
+        <img src="https://i.imgur.com/9lhc52J.png" alt="Breeze at the Sea Panama City Beach">
       </div>
       <div class="exp-card-body">
         <h3 class="exp-card-title">Breeze at the Sea</h3>
@@ -1367,47 +1422,89 @@
         <a href="https://form.jotform.com/262057899218066" target="_blank" rel="noopener" class="exp-interest-btn">Interest Form →</a>
       </div>
     </div>
-  </div>
-
-  <!-- COMING SOON -->
-  <div class="exp-category-label fade-up" id="pour" style="margin-top:3rem;">✦ Coming Soon</div>
-  <div class="exp-grid-new fade-up">
-    <div class="exp-card-new exp-card-soon">
-      <div class="exp-card-image">
-        <img src="https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=700&q=80" alt="Napa Valley California Wine" style="width:100%;height:220px;object-fit:cover;display:block;">
-        <div class="exp-card-badge">Coming Soon</div>
-      </div>
+    <div class="exp-card-new">
+      <div class="exp-card-badge exp-card-badge-open" style="position:static; display:inline-block; margin-bottom:0.5rem;">Priority Registration Open</div>
       <div class="exp-card-body">
-        <div class="exp-card-icon">🍷</div>
-        <h3 class="exp-card-title">Pour Into Yourself</h3>
-        <p class="exp-card-location">Napa Valley/Sonoma, California · Date TBA</p>
-        <p class="exp-card-desc">Wine country, beautiful views, meaningful conversations, and unforgettable moments with your people.</p>
-        <a href="#connect" class="exp-interest-btn">Join the Interest List →</a>
+        <h3 class="exp-card-title">Desert Bloom: <em style="font-style:italic; color:var(--terracotta);">Becoming</em></h3>
+        <p class="exp-card-location">Scottsdale, Arizona · October 14–18, 2027</p>
+        <p class="exp-card-desc">There is still more unfolding. An elevated ladies-only experience — luxury accommodations, thoughtfully curated moments, and sisterhood that stays with you. Investment starting at $1,675.</p>
+        <a href="#connect" class="exp-interest-btn">Register Now →</a>
       </div>
     </div>
   </div>
 
-  <!-- FUTURE -->
-  <div class="exp-category-label fade-up" id="greece" style="margin-top:3rem;">✦ Future Experiences</div>
-  <div class="exp-grid-new exp-grid-three fade-up">
-    <div class="exp-card-new exp-card-soon">
-      <div class="exp-card-image">
-        <img src="https://images.unsplash.com/photo-1601581875309-fafbf2d3ed3a?w=700&q=80" alt="Santorini Greece blue domes" style="width:100%;height:220px;object-fit:cover;display:block;">
-        <div class="exp-card-badge">Future</div>
+
+</section>
+
+<!-- 2027 POLL -->
+<section class="poll-section" id="vote">
+  <div class="poll-inner fade-up">
+    <span class="section-eyebrow" style="color:#C9A96E;">Where Will HMM Take Us Next?</span>
+    <h2 class="poll-title">New Places. New Experiences.<br><em>More Life to Live.</em></h2>
+    <p class="poll-subtitle">2027 experiences are being curated now. Help us shape what's next — cast your vote below.</p>
+
+    <div class="poll-grid">
+
+      <!-- QUESTION 1: Destination -->
+      <div class="poll-card">
+        <div class="poll-card-number">01</div>
+        <h3 class="poll-card-title">Where Should HMM Go in 2027?</h3>
+        <p class="poll-card-desc">Choose your top destination pick.</p>
+        <div class="poll-options" id="dest-options">
+          <label class="poll-option"><input type="radio" name="destination" value="Martha's Vineyard"> <span>🌊 Martha's Vineyard — coastal, relaxed, sisterhood</span></label>
+          <label class="poll-option"><input type="radio" name="destination" value="Greece"> <span>🇬🇷 Greece — international, beautiful, bucket-list</span></label>
+          <label class="poll-option"><input type="radio" name="destination" value="Desert Escape"> <span>🌵 Desert Escape — wellness, restoration, luxury</span></label>
+          <label class="poll-option"><input type="radio" name="destination" value="California Wine Country"> <span>🍷 California Wine Country — vineyards, food, scenery</span></label>
+          <label class="poll-option"><input type="radio" name="destination" value="Cruise/Island Escape"> <span>🛳️ Cruise/Island Escape — easy, fun, relaxed</span></label>
+          <label class="poll-option"><input type="radio" name="destination" value="Surprise Me"> <span>✈️ Surprise me — I trust the HMM experience</span></label>
+        </div>
       </div>
-      <div class="exp-card-body">
-        <div class="exp-card-icon">🇬🇷</div>
-        <h3 class="exp-card-title">Beyond the Blue — Greece 2027</h3>
-        <p class="exp-card-location">Greece · 2027 · Date TBA</p>
-        <p class="exp-card-desc">Whitewashed walls, turquoise water, and the kind of trip that stays with you forever.</p>
-        <a href="#connect" class="exp-interest-btn">Join the Interest List →</a>
+
+      <!-- QUESTION 2: Experience Type -->
+      <div class="poll-card">
+        <div class="poll-card-number">02</div>
+        <h3 class="poll-card-title">What Kind of Experience Would You Actually Book?</h3>
+        <p class="poll-card-desc">Select all that apply.</p>
+        <div class="poll-options">
+          <label class="poll-option"><input type="checkbox" name="experience" value="Long weekend getaway"> <span>Long weekend getaway (3–4 days)</span></label>
+          <label class="poll-option"><input type="checkbox" name="experience" value="4-5 day domestic"> <span>4–5 day domestic experience</span></label>
+          <label class="poll-option"><input type="checkbox" name="experience" value="6-8 day international"> <span>6–8 day international experience</span></label>
+          <label class="poll-option"><input type="checkbox" name="experience" value="Wellness retreat"> <span>Wellness/restoration retreat</span></label>
+          <label class="poll-option"><input type="checkbox" name="experience" value="Girls luxury getaway"> <span>Girls' luxury getaway</span></label>
+          <label class="poll-option"><input type="checkbox" name="experience" value="Adventure culture"> <span>Adventure/culture experience</span></label>
+          <label class="poll-option"><input type="checkbox" name="experience" value="Open destination matters most"> <span>I'm open — destination matters most</span></label>
+        </div>
+      </div>
+
+      <!-- QUESTION 3: Budget -->
+      <div class="poll-card">
+        <div class="poll-card-number">03</div>
+        <h3 class="poll-card-title">What's Your Realistic Budget for a 2027 HMM Experience?</h3>
+        <p class="poll-card-desc">This helps us curate the right experience for you.</p>
+        <div class="poll-options">
+          <label class="poll-option"><input type="radio" name="budget" value="Under $1,000"> <span>Under $1,000</span></label>
+          <label class="poll-option"><input type="radio" name="budget" value="$1,000-$1,500"> <span>$1,000 – $1,500</span></label>
+          <label class="poll-option"><input type="radio" name="budget" value="$1,500-$2,500"> <span>$1,500 – $2,500</span></label>
+          <label class="poll-option"><input type="radio" name="budget" value="$2,500-$3,500"> <span>$2,500 – $3,500</span></label>
+          <label class="poll-option"><input type="radio" name="budget" value="$3,500+"> <span>$3,500+ for the right experience</span></label>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Name + Email + Submit -->
+    <div class="poll-submit-area">
+      <div class="poll-name-row">
+        <input type="text" id="poll-name" placeholder="Your first name" class="poll-input">
+        <input type="email" id="poll-email" placeholder="Your email address" class="poll-input">
+      </div>
+      <button class="btn-primary poll-btn" onclick="submitPoll()">Cast Your Vote →</button>
+      <div id="poll-success" class="poll-success" style="display:none;">
+        ✦ Thank you! Your voice helps shape what's next for Her Midlife Movement.
       </div>
     </div>
   </div>
 </section>
-
-
-<!-- INTRO -->
 <section class="intro" id="about">
   <div class="intro-label">Who We Are</div>
   <div class="intro-content fade-up">
@@ -1422,26 +1519,6 @@
     </div>
   </div>
 </section>
-
-
-<!-- PHOTO ROW -->
-<div class="photo-row">
-  <div class="photo-row-item">
-    <img src="https://images.unsplash.com/photo-1598257006458-087169a1f08d?w=600&q=80"
-      alt="Women laughing together"
-      onerror="this.style.display='none'; this.parentNode.style.background='#C4714A';">
-  </div>
-  <div class="photo-row-item">
-    <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=600&q=80"
-      alt="Women in community connection"
-      onerror="this.style.display='none'; this.parentNode.style.background='#C9A96E';">
-  </div>
-  <div class="photo-row-item">
-    <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&q=80"
-      alt="Women wellness and movement"
-      onerror="this.style.display='none'; this.parentNode.style.background='#7A8C6E';">
-  </div>
-</div>
 
 
 <!-- PILLARS -->
@@ -1531,34 +1608,28 @@
 
     <!-- CONNECT CARDS -->
     <div class="connect-cards fade-up">
-      <div class="connect-card" onclick="switchTab('join', null); document.querySelector('.tab-btn').click();">
+      <div class="connect-card" onclick="switchTab('join', document.querySelectorAll('.tab-btn')[0])">
         <div class="connect-card-icon">🌸</div>
         <div class="connect-card-title">Join the Movement</div>
-        <div class="connect-card-desc">Stay connected for updates and upcoming experiences.</div>
+        <div class="connect-card-desc">Stay connected and tell us which experiences interest you.</div>
       </div>
-      <div class="connect-card" onclick="switchTab('waitlist', document.querySelectorAll('.tab-btn')[1])">
-        <div class="connect-card-icon">🌵</div>
-        <div class="connect-card-title">Desert Bloom Waitlist</div>
-        <div class="connect-card-desc">Be first to know when Desert Bloom 2027 opens.</div>
-      </div>
-      <div class="connect-card" onclick="switchTab('contact', document.querySelectorAll('.tab-btn')[2])">
+      <div class="connect-card" onclick="switchTab('contact', document.querySelectorAll('.tab-btn')[1])">
         <div class="connect-card-icon">✉️</div>
         <div class="connect-card-title">Contact Davania</div>
         <div class="connect-card-desc">Questions, partnerships, or just say hello.</div>
       </div>
     </div>
 
-    <!-- WAITLIST FORM -->
+    <!-- FORM -->
     <div class="waitlist-form fade-up">
       <div class="form-tabs">
         <button class="tab-btn active" onclick="switchTab('join', this)">Join the Movement</button>
-        <button class="tab-btn" onclick="switchTab('waitlist', this)">Desert Bloom Waitlist</button>
         <button class="tab-btn" onclick="switchTab('contact', this)">Contact Davania</button>
       </div>
 
       <!-- JOIN THE MOVEMENT TAB -->
       <div id="tab-join" class="tab-panel active">
-        <p style="font-size:0.95rem; color:rgba(255,255,255,0.7); line-height:1.8; margin-bottom:1.5rem;">Tell us what speaks to you, and we'll keep you connected to the experiences, encouragement, and updates that fit your season.</p>
+        <p style="font-size:0.95rem; color:rgba(255,255,255,0.7); line-height:1.8; margin-bottom:1.5rem;">Tell us what speaks to you and we'll keep you connected to everything Her Midlife Movement.</p>
         <div class="form-row">
           <div class="form-group">
             <label>First Name</label>
@@ -1588,67 +1659,19 @@
           <label>Which experiences interest you? <span style="opacity:0.5">(select all that apply)</span></label>
           <div style="display:flex; flex-direction:column; gap:0.6rem; margin-top:0.3rem;">
             <label style="display:flex; align-items:center; gap:0.6rem; font-size:0.9rem; color:rgba(255,255,255,0.8); text-transform:none; letter-spacing:0;">
-              <input type="checkbox" id="int-seabreeze" style="width:16px;height:16px;accent-color:var(--terracotta);"> Breeze at the Sea — Panama City Beach (April 2027)
+              <input type="checkbox" id="int-seabreeze" style="width:16px;height:16px;accent-color:var(--terracotta);"> 🌊 Breeze at the Sea — Panama City Beach (April 2027)
             </label>
             <label style="display:flex; align-items:center; gap:0.6rem; font-size:0.9rem; color:rgba(255,255,255,0.8); text-transform:none; letter-spacing:0;">
-              <input type="checkbox" id="int-desert" style="width:16px;height:16px;accent-color:var(--terracotta);"> Desert Bloom 2027 — Scottsdale, Arizona
+              <input type="checkbox" id="int-desert" style="width:16px;height:16px;accent-color:var(--terracotta);"> 🌵 Desert Bloom: Becoming — Scottsdale, Arizona (October 14–18, 2027)
             </label>
             <label style="display:flex; align-items:center; gap:0.6rem; font-size:0.9rem; color:rgba(255,255,255,0.8); text-transform:none; letter-spacing:0;">
-              <input type="checkbox" id="int-wine" style="width:16px;height:16px;accent-color:var(--terracotta);"> Pour Into Yourself — Napa Valley/Sonoma, California
-            </label>
-            <label style="display:flex; align-items:center; gap:0.6rem; font-size:0.9rem; color:rgba(255,255,255,0.8); text-transform:none; letter-spacing:0;">
-              <input type="checkbox" id="int-greece" style="width:16px;height:16px;accent-color:var(--terracotta);"> Beyond the Blue — Greece 2027
-            </label>
-            <label style="display:flex; align-items:center; gap:0.6rem; font-size:0.9rem; color:rgba(255,255,255,0.8); text-transform:none; letter-spacing:0;">
-              <input type="checkbox" id="int-all" style="width:16px;height:16px;accent-color:var(--terracotta);"> All of the above — keep me posted on everything!
+              <input type="checkbox" id="int-all" style="width:16px;height:16px;accent-color:var(--terracotta);"> ✨ Keep me posted on everything!
             </label>
           </div>
         </div>
         <button class="btn-primary form-submit" onclick="submitForm('join')">Join the Movement →</button>
         <div id="join-success" class="form-success" style="display:none;">
           ✦ Thank you for joining — welcome to the movement! We'll be in touch soon.
-        </div>
-      </div>
-
-      <!-- WAITLIST TAB -->
-      <div id="tab-waitlist" class="tab-panel" style="display:none;">
-        <p style="font-size:0.95rem; color:rgba(255,255,255,0.7); line-height:1.8; margin-bottom:1.5rem;">Desert Bloom 2026 is fully booked! Join the waitlist to be the first to know when Desert Bloom 2027 opens.</p>
-        <div class="form-row">
-          <div class="form-group">
-            <label>First Name</label>
-            <input type="text" id="wl-first" placeholder="Your first name">
-          </div>
-          <div class="form-group">
-            <label>Last Name</label>
-            <input type="text" id="wl-last" placeholder="Your last name">
-          </div>
-        </div>
-        <div class="form-group">
-          <label>Email Address</label>
-          <input type="email" id="wl-email" placeholder="your@email.com">
-        </div>
-        <div class="form-group">
-          <label>Phone (optional)</label>
-          <input type="tel" id="wl-phone" placeholder="(000) 000-0000">
-        </div>
-        <div class="form-group">
-          <label>How did you hear about us?</label>
-          <select id="wl-source">
-            <option value="">Select one…</option>
-            <option>Instagram</option>
-            <option>A friend or colleague</option>
-            <option>Facebook</option>
-            <option>Google Search</option>
-            <option>Other</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label>Anything you'd like us to know? <span style="opacity:0.5">(optional)</span></label>
-          <textarea id="wl-note" rows="3" placeholder="What draws you to Desert Bloom?"></textarea>
-        </div>
-        <button class="btn-primary form-submit" onclick="submitForm('waitlist')">Join the Waitlist →</button>
-        <div id="waitlist-success" class="form-success" style="display:none;">
-          ✦ You're on the list! We'll be in touch soon.
         </div>
       </div>
 
@@ -1672,7 +1695,8 @@
           <label>Subject</label>
           <select id="ct-subject">
             <option value="">Select one…</option>
-            <option>Desert Bloom Retreat</option>
+            <option>Desert Bloom: Becoming 2027</option>
+            <option>Breeze at the Sea 2027</option>
             <option>Upcoming Experiences</option>
             <option>Group or Private Event</option>
             <option>Media or Press</option>
@@ -1690,10 +1714,8 @@
         </div>
       </div>
     </div>
-
   </div>
 </section>
-
 
 <!-- FOOTER -->
 <footer>
@@ -1714,18 +1736,18 @@
     <div class="footer-col">
       <h4>Experiences</h4>
       <ul>
-        <li><a href="#desert-bloom">Desert Bloom</a></li>
+        <li><a href="#desert-bloom">Desert Bloom 2026</a></li>
+        <li><a href="#desert-bloom-2027">Desert Bloom: Becoming 2027</a></li>
         <li><a href="#breeze">Breeze at the Sea</a></li>
-        <li><a href="#pour">Pour Into Yourself</a></li>
-        <li><a href="#greece">Beyond the Blue</a></li>
+        <li><a href="#vote">What's Next for 2027?</a></li>
       </ul>
     </div>
     <div class="footer-col">
       <h4>Connect</h4>
       <ul>
         <li><a href="#connect">Join the Movement</a></li>
-        <li><a href="#connect">Desert Bloom Waitlist</a></li>
         <li><a href="#connect">Contact Davania</a></li>
+        <li><a href="#vote">Cast Your 2027 Vote</a></li>
       </ul>
     </div>
   </div>
@@ -1739,6 +1761,41 @@
 </footer>
 
 <script>
+  // Poll submission
+  async function submitPoll() {
+    const name = document.getElementById('poll-name').value.trim();
+    const email = document.getElementById('poll-email').value.trim();
+    if (!name || !email) { alert('Please enter your name and email to submit your vote.'); return; }
+
+    const destination = document.querySelector('input[name="destination"]:checked')?.value || 'Not selected';
+    const budget = document.querySelector('input[name="budget"]:checked')?.value || 'Not selected';
+    const experiences = [...document.querySelectorAll('input[name="experience"]:checked')].map(el => el.value).join(', ') || 'Not selected';
+
+    const btn = document.querySelector('.poll-btn');
+    btn.textContent = 'Sending…'; btn.disabled = true;
+
+    const res = await fetch(`https://formspree.io/f/mpqvbwnp`, {
+      method: 'POST',
+      headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        _subject: `HMM 2027 Poll — ${name}`,
+        Name: name, Email: email,
+        'Top Destination': destination,
+        'Experience Type': experiences,
+        'Budget Range': budget,
+        Type: '2027 Destination Poll'
+      })
+    });
+
+    if (res.ok) {
+      document.getElementById('poll-success').style.display = 'block';
+      btn.textContent = '✦ Vote Cast!'; btn.style.opacity = '0.7';
+    } else {
+      btn.textContent = 'Cast Your Vote →'; btn.disabled = false;
+      alert('Something went wrong. Please try again or email hermidlifemovement@icloud.com');
+    }
+  }
+
   // Slideshow
   const slides = document.querySelectorAll('.hero-slideshow .slide');
   let currentSlide = 0;
@@ -1790,9 +1847,7 @@
       const interests = [];
       if (document.getElementById('int-seabreeze').checked) interests.push('Breeze at the Sea — Panama City Beach');
       if (document.getElementById('int-desert').checked) interests.push('Desert Bloom 2027');
-      if (document.getElementById('int-wine').checked) interests.push('Pour Into Yourself');
-      if (document.getElementById('int-greece').checked) interests.push("Beyond the Blue — Greece 2027");
-      if (document.getElementById('int-all').checked) interests.push('All Experiences');
+      if (document.getElementById('int-all').checked) interests.push('Keep me posted on everything');
 
       const btn = document.querySelector('#tab-join .form-submit');
       btn.textContent = 'Sending…'; btn.disabled = true;
