@@ -479,9 +479,23 @@
     color: var(--terracotta); margin-bottom: 1.5rem; font-weight: 500;
   }
   .exp-grid-new {
-    display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; margin-bottom: 1rem;
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-bottom: 1rem;
   }
   .exp-grid-three { grid-template-columns: repeat(3, 1fr); }
+  /* ── EXPERIENCE ROWS ── */
+  .exp-row {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 5rem; align-items: center;
+    padding: 4rem 0; border-bottom: 1px solid rgba(107,95,86,0.1);
+  }
+  .exp-row:last-child { border-bottom: none; }
+  .exp-row-reverse { direction: rtl; }
+  .exp-row-reverse > * { direction: ltr; }
+  .exp-row-image img { width: 100%; display: block; }
+  .exp-row-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 300; color: var(--midnight); margin-bottom: 0.5rem; }
+  .exp-row-location { font-size: 0.78rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--terracotta); margin-bottom: 1.2rem; }
+  .exp-row-desc { font-size: 1rem; line-height: 1.9; color: var(--body-text); }
+
   .exp-card-new {
     background: var(--cream); border: 1px solid rgba(107,95,86,0.15);
     overflow: hidden; transition: transform 0.3s, box-shadow 0.3s;
@@ -1058,6 +1072,8 @@
 
     /* Experiences */
     .experiences { padding: 3.5rem 2rem; }
+    .exp-row { grid-template-columns: 1fr; gap: 2rem; padding: 3rem 0; direction: ltr; }
+    .exp-row-reverse { direction: ltr; }
     .exp-grid { grid-template-columns: 1fr; }
     .exp-grid-new, .exp-grid-three { grid-template-columns: 1fr; }
     .exp-photo { height: auto; max-height: none; object-fit: contain; }
@@ -1102,6 +1118,10 @@
     .poll-grid { grid-template-columns: 1fr; }
     .poll-name-row { flex-direction: column; align-items: stretch; }
     .poll-input { width: 100%; }
+
+    /* Martha's Vineyard */
+    #marthas-vineyard { padding: 4rem 2rem !important; }
+    #marthas-vineyard > div > div { grid-template-columns: 1fr !important; gap: 2.5rem !important; }
 
     /* Footer */
     footer { padding: 3rem 2rem; }
@@ -1313,186 +1333,80 @@
 </section>
 
 
-<!-- DESERT BLOOM -->
-<section class="desert-bloom" id="desert-bloom">
-  <div class="bloom-visual fade-up">
-    <img class="bloom-photo"
-      src="https://i.imgur.com/L4UUfJZ.jpeg"
-      alt="Desert Bloom 2026 — The Arizona Midlife Reset">
-  </div>
-  <div class="bloom-content fade-up">
-    <span class="bloom-tag">Flagship Experience · Scottsdale, Arizona</span>
-    <h2 class="bloom-title">
-      Desert<br>
-      <em>Bloom</em>
-    </h2>
-    <p class="bloom-desc">
-      Desert Bloom is an intimate women's retreat created by Her Midlife Movement — designed for women who are ready to rest, reset, and reconnect. Arrive solo or with a friend — connection unfolds naturally in this thoughtfully curated space where everything is taken care of. You don't have to plan anything. You just have to show up.
-    </p>
-    <div class="bloom-features">
-      <div class="bloom-feature">Private Luxury Home</div>
-      <div class="bloom-feature">Elevated Dining</div>
-      <div class="bloom-feature">Signature Desert Experience</div>
-      <div class="bloom-feature">Curated Moments</div>
-      <div class="bloom-feature">Sisterhood Connection</div>
-      <div class="bloom-feature">Time to Rest &amp; Reset</div>
-      <div class="bloom-feature">Scottsdale, Arizona</div>
-      <div class="bloom-feature">Limited Intimate Group</div>
-    </div>
-    
-  </div>
-</section>
-
-<!-- DESERT BLOOM 2027 -->
-<section class="desert-bloom-2027">
-  <div class="fade-up" style="text-align:center; margin-bottom:3rem;">
-    <span class="section-eyebrow" style="color:#C9A96E;">Desert Bloom · Scottsdale, Arizona</span>
-    <h2 style="font-family:'Cormorant Garamond',serif; font-size:clamp(2rem,3.5vw,3rem); font-weight:300; color:#fff; margin-top:0.5rem;">Are You Ready to <em style="font-style:italic; color:var(--terracotta);">Bloom in 2027?</em></h2>
-    <p style="font-family:'Cormorant Garamond',serif; font-size:1.2rem; color:rgba(255,255,255,0.65); margin-top:0.8rem; font-style:italic;">"There is still more unfolding."</p>
-  </div>
-  <div class="bloom-2027-flyer fade-up">
-    <img src="https://i.imgur.com/U1DvK12.png" alt="Desert Bloom Becoming 2027 — October 14-18 Scottsdale Arizona" style="width:100%; max-width:700px; height:auto; display:block; margin:0 auto;">
-  </div>
-  <div style="text-align:center; margin-top:2.5rem;" class="fade-up">
-    <p style="font-size:0.88rem; color:rgba(255,255,255,0.55); letter-spacing:0.15em; text-transform:uppercase; margin-bottom:1.5rem;">October 14–18, 2027 · Scottsdale, Arizona · Ladies Only</p>
-    <p style="font-family:'Cormorant Garamond',serif; font-size:1rem; color:rgba(255,255,255,0.7); margin-bottom:1.5rem; font-style:italic;">Investment starting at $1,675 · $350 deposit secures your place · Payment plans available</p>
-    <a href="#connect" class="btn-primary">Priority Registration Now Open →</a>
-  </div>
-</section>
-
-
-<!-- TESTIMONIALS -->
-<section class="testimonials-section" id="testimonials">
-  <div class="testimonials-inner fade-up">
-    <span class="section-eyebrow">Words That Move Us</span>
-    <h2 class="section-title">Voices That <em>Inspire</em></h2>
-    <div class="testimonials-grid fade-up">
-      <div class="testimonial-card">
-        <div class="testimonial-quote">"</div>
-        <p class="testimonial-text">The time and thoughtfulness Davania puts into making sure we love the Experience is what we love. We never know where we're going — and we trust her completely.</p>
-        <div class="testimonial-author">— Thank You for Being a Friend · Curated Experience</div>
-      </div>
-      <div class="testimonial-card">
-        <div class="testimonial-quote">"</div>
-        <p class="testimonial-text">For I know the plans I have for you, declares the Lord — plans to prosper you and not to harm you, plans to give you hope and a future.</p>
-        <div class="testimonial-author">— Jeremiah 29:11</div>
-      </div>
-      <div class="testimonial-card">
-        <div class="testimonial-quote">"</div>
-        <p class="testimonial-text">There is no greater gift you can give or receive than to honor your calling. It's why you were born. And how you become most truly alive.</p>
-        <div class="testimonial-author">— Oprah Winfrey</div>
-      </div>
-    </div>
-
-    <!-- COMMUNITY INVITATION -->
-    <div class="community-invite fade-up">
-      <div class="community-invite-inner">
-        <h3 class="community-invite-title">Be Part of <em>Our Story</em></h3>
-        <p class="community-invite-text">The testimonials are coming — and we'd love yours to be among the first. Desert Bloom is just the beginning. Every experience we create is an opportunity for women to move, connect, and bloom together. Join our community and help us write this story.</p>
-        
-      </div>
-    </div>
-  </div>
-</section>
-
-
 <!-- EXPERIENCES -->
 <section class="experiences" id="experiences">
   <div class="experiences-header fade-up">
     <div>
-      <span class="section-eyebrow" style="color:var(--terracotta);">What We Offer</span>
-      <h2 class="section-title" style="color:var(--midnight);">Curated <em style="color:var(--terracotta);">Experiences</em></h2>
+      <span class="section-eyebrow" style="color:var(--terracotta);">Curated Experiences</span>
+      <h2 class="section-title" style="color:var(--midnight);">Where Will You <em style="color:var(--terracotta);">Bloom Next?</em></h2>
+      <p style="font-size:1rem; color:var(--muted); margin-top:1rem; max-width:600px; line-height:1.8;">Each HMM experience is intentionally designed — curated with purpose, connection, and the richness of midlife in mind.</p>
     </div>
   </div>
 
-  <!-- CURRENT -->
-  <div class="exp-category-label fade-up" id="breeze">✦ Current</div>
-  <div class="exp-grid-new fade-up">
-    <div class="exp-card-new">
-      <div class="exp-card-badge exp-card-badge-open" style="position:static; display:inline-block; margin-bottom:0.5rem;">Registration Open</div>
-      <div class="exp-card-image">
-        <img src="https://i.imgur.com/9lhc52J.png" alt="Breeze at the Sea Panama City Beach">
-      </div>
-      <div class="exp-card-body">
-        <h3 class="exp-card-title">Breeze at the Sea</h3>
-        <p class="exp-card-location">Panama City Beach, Florida · April 22–25, 2027</p>
-        <p class="exp-card-desc">Good music, good food, great company, and lasting connections. This is more than a trip — it's our time.</p>
-        <a href="https://form.jotform.com/262057899218066" target="_blank" rel="noopener" class="exp-interest-btn">Interest Form →</a>
+  <!-- DESERT BLOOM 2026 -->
+  <div class="exp-row fade-up">
+    <div class="exp-row-image">
+      <img src="https://i.imgur.com/L4UUfJZ.jpeg" alt="Desert Bloom 2026">
+    </div>
+    <div class="exp-row-content">
+      <div class="exp-card-badge" style="display:inline-block; margin-bottom:1rem; background:var(--midnight); color:rgba(255,255,255,0.7);">Fully Booked · 2026</div>
+      <h3 class="exp-row-title">Desert Bloom</h3>
+      <p class="exp-row-location">Scottsdale, Arizona · October 16–19, 2026</p>
+      <p class="exp-row-desc">An intimate women's retreat — rest, reset, and reconnect in the desert. 2026 is fully booked. Stay connected to be first to know about 2027.</p>
+    </div>
+  </div>
+
+  <!-- DESERT BLOOM 2027 -->
+  <div class="exp-row exp-row-reverse fade-up" id="desert-bloom-2027">
+    <div class="exp-row-image">
+      <img src="https://i.imgur.com/WvyafeR.png" alt="Desert Bloom Becoming 2027">
+    </div>
+    <div class="exp-row-content">
+      <div class="exp-card-badge exp-card-badge-open" style="display:inline-block; margin-bottom:1rem;">Interest List Open</div>
+      <h3 class="exp-row-title">Desert Bloom: <em style="font-style:italic; color:var(--terracotta);">Becoming</em></h3>
+      <p class="exp-row-location">Scottsdale, Arizona · October 14–18, 2027</p>
+      <p class="exp-row-desc">There is still more unfolding. An elevated ladies-only experience designed for women ready to rest, reconnect, and bloom again.</p>
+
+      <!-- DESERT BLOOM 2027 INTEREST FORM -->
+      <div style="background:rgba(196,113,74,0.06); border:1px solid rgba(196,113,74,0.2); padding:1.8rem; margin-top:1.5rem;">
+        <div style="font-size:0.72rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--terracotta); margin-bottom:1.2rem;">✦ Join the Interest List</div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.8rem; margin-bottom:0.8rem;">
+          <input type="text" id="db27-first" placeholder="First name" style="background:#fff; border:1px solid rgba(107,95,86,0.2); padding:0.7rem 1rem; font-family:'DM Sans',sans-serif; font-size:0.9rem; outline:none; width:100%;">
+          <input type="text" id="db27-last" placeholder="Last name" style="background:#fff; border:1px solid rgba(107,95,86,0.2); padding:0.7rem 1rem; font-family:'DM Sans',sans-serif; font-size:0.9rem; outline:none; width:100%;">
+        </div>
+        <input type="email" id="db27-email" placeholder="Email address" style="background:#fff; border:1px solid rgba(107,95,86,0.2); padding:0.7rem 1rem; font-family:'DM Sans',sans-serif; font-size:0.9rem; outline:none; width:100%; margin-bottom:0.8rem; display:block;">
+        <button onclick="submitDB27()" style="width:100%; background:var(--terracotta); color:#fff; border:none; padding:0.9rem; font-family:'DM Sans',sans-serif; font-size:0.82rem; letter-spacing:0.16em; text-transform:uppercase; cursor:pointer;">I'm Interested →</button>
+        <div id="db27-success" style="display:none; margin-top:1rem; font-family:'Cormorant Garamond',serif; font-size:1rem; font-style:italic; color:var(--terracotta); text-align:center;">✦ You're on the list! We'll be in touch when details are released.</div>
       </div>
     </div>
   </div>
 
-
-</section>
-
-<!-- 2027 POLL -->
-<section class="poll-section" id="vote">
-  <div class="poll-inner fade-up">
-    <span class="section-eyebrow" style="color:#C9A96E;">Where Will HMM Take Us Next?</span>
-    <h2 class="poll-title">New Places. New Experiences.<br><em>More Life to Live.</em></h2>
-    <p class="poll-subtitle">2027 experiences are being curated now. Help us shape what's next — cast your vote below.</p>
-
-    <div class="poll-grid">
-
-      <!-- QUESTION 1: Destination -->
-      <div class="poll-card">
-        <div class="poll-card-number">01</div>
-        <h3 class="poll-card-title">Where Should HMM Go in 2027?</h3>
-        <p class="poll-card-desc">Choose your top destination pick.</p>
-        <div class="poll-options" id="dest-options">
-          <label class="poll-option"><input type="radio" name="destination" value="Martha's Vineyard"> <span>🌊 Martha's Vineyard — coastal, relaxed, sisterhood</span></label>
-          <label class="poll-option"><input type="radio" name="destination" value="Greece"> <span>🇬🇷 Greece — international, beautiful, bucket-list</span></label>
-          <label class="poll-option"><input type="radio" name="destination" value="Desert Escape"> <span>🌵 Desert Escape — wellness, restoration, luxury</span></label>
-          <label class="poll-option"><input type="radio" name="destination" value="California Wine Country"> <span>🍷 California Wine Country — vineyards, food, scenery</span></label>
-          <label class="poll-option"><input type="radio" name="destination" value="Cruise/Island Escape"> <span>🛳️ Cruise/Island Escape — easy, fun, relaxed</span></label>
-          <label class="poll-option"><input type="radio" name="destination" value="Surprise Me"> <span>✈️ Surprise me — I trust the HMM experience</span></label>
-        </div>
-      </div>
-
-      <!-- QUESTION 2: Experience Type -->
-      <div class="poll-card">
-        <div class="poll-card-number">02</div>
-        <h3 class="poll-card-title">What Kind of Experience Would You Actually Book?</h3>
-        <p class="poll-card-desc">Select all that apply.</p>
-        <div class="poll-options">
-          <label class="poll-option"><input type="checkbox" name="experience" value="Long weekend getaway"> <span>Long weekend getaway (3–4 days)</span></label>
-          <label class="poll-option"><input type="checkbox" name="experience" value="4-5 day domestic"> <span>4–5 day domestic experience</span></label>
-          <label class="poll-option"><input type="checkbox" name="experience" value="6-8 day international"> <span>6–8 day international experience</span></label>
-          <label class="poll-option"><input type="checkbox" name="experience" value="Wellness retreat"> <span>Wellness/restoration retreat</span></label>
-          <label class="poll-option"><input type="checkbox" name="experience" value="Girls luxury getaway"> <span>Girls' luxury getaway</span></label>
-          <label class="poll-option"><input type="checkbox" name="experience" value="Adventure culture"> <span>Adventure/culture experience</span></label>
-          <label class="poll-option"><input type="checkbox" name="experience" value="Open destination matters most"> <span>I'm open — destination matters most</span></label>
-        </div>
-      </div>
-
-      <!-- QUESTION 3: Budget -->
-      <div class="poll-card">
-        <div class="poll-card-number">03</div>
-        <h3 class="poll-card-title">What's Your Realistic Budget for a 2027 HMM Experience?</h3>
-        <p class="poll-card-desc">This helps us curate the right experience for you.</p>
-        <div class="poll-options">
-          <label class="poll-option"><input type="radio" name="budget" value="Under $1,000"> <span>Under $1,000</span></label>
-          <label class="poll-option"><input type="radio" name="budget" value="$1,000-$1,500"> <span>$1,000 – $1,500</span></label>
-          <label class="poll-option"><input type="radio" name="budget" value="$1,500-$2,500"> <span>$1,500 – $2,500</span></label>
-          <label class="poll-option"><input type="radio" name="budget" value="$2,500-$3,500"> <span>$2,500 – $3,500</span></label>
-          <label class="poll-option"><input type="radio" name="budget" value="$3,500+"> <span>$3,500+ for the right experience</span></label>
-        </div>
-      </div>
-
+  <!-- MARTHA'S VINEYARD -->
+  <div class="exp-row fade-up" id="marthas-vineyard">
+    <div class="exp-row-image">
+      <img src="https://i.imgur.com/xktCEII.png" alt="Savor the Season Martha's Vineyard 2027">
     </div>
+    <div class="exp-row-content">
+      <div class="exp-card-badge exp-card-badge-open" style="display:inline-block; margin-bottom:1rem;">Interest List Open</div>
+      <h3 class="exp-row-title">Savor the <em style="font-style:italic; color:var(--terracotta);">Season</em></h3>
+      <p class="exp-row-location">Martha's Vineyard · Juneteenth Weekend · June 19–22, 2027</p>
+      <p class="exp-row-desc">Celebrate Freedom. Embrace Sisterhood. Live Richly. A curated Juneteenth weekend experience rooted in culture, inspired by the coast, and designed for your next chapter.</p>
+      <p style="font-size:0.95rem; color:var(--muted); margin-top:1rem; line-height:1.8;">Spaces will be limited. Join the interest list to be notified first when details and pricing are released.</p>
 
-    <!-- Name + Email + Submit -->
-    <div class="poll-submit-area">
-      <div class="poll-name-row">
-        <input type="text" id="poll-name" placeholder="Your first name" class="poll-input">
-        <input type="email" id="poll-email" placeholder="Your email address" class="poll-input">
-      </div>
-      <button class="btn-primary poll-btn" onclick="submitPoll()">Cast Your Vote →</button>
-      <div id="poll-success" class="poll-success" style="display:none;">
-        ✦ Thank you! Your voice helps shape what's next for Her Midlife Movement.
+      <!-- MARTHA'S VINEYARD INTEREST FORM -->
+      <div style="background:rgba(196,113,74,0.06); border:1px solid rgba(196,113,74,0.2); padding:1.8rem; margin-top:1.5rem;">
+        <div style="font-size:0.72rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--terracotta); margin-bottom:1.2rem;">✦ Join the Interest List</div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.8rem; margin-bottom:0.8rem;">
+          <input type="text" id="mv-first" placeholder="First name" style="background:#fff; border:1px solid rgba(107,95,86,0.2); padding:0.7rem 1rem; font-family:'DM Sans',sans-serif; font-size:0.9rem; outline:none; width:100%;">
+          <input type="text" id="mv-last" placeholder="Last name" style="background:#fff; border:1px solid rgba(107,95,86,0.2); padding:0.7rem 1rem; font-family:'DM Sans',sans-serif; font-size:0.9rem; outline:none; width:100%;">
+        </div>
+        <input type="email" id="mv-email" placeholder="Email address" style="background:#fff; border:1px solid rgba(107,95,86,0.2); padding:0.7rem 1rem; font-family:'DM Sans',sans-serif; font-size:0.9rem; outline:none; width:100%; margin-bottom:0.8rem; display:block;">
+        <button onclick="submitMV()" style="width:100%; background:var(--terracotta); color:#fff; border:none; padding:0.9rem; font-family:'DM Sans',sans-serif; font-size:0.82rem; letter-spacing:0.16em; text-transform:uppercase; cursor:pointer;">I'm Interested →</button>
+        <div id="mv-success" style="display:none; margin-top:1rem; font-family:'Cormorant Garamond',serif; font-size:1rem; font-style:italic; color:var(--terracotta); text-align:center;">✦ You're on the list! We'll be in touch when details are released.</div>
       </div>
     </div>
   </div>
+
 </section>
 <section class="intro" id="about">
   <div class="intro-label">Who We Are</div>
@@ -1654,6 +1568,9 @@
               <input type="checkbox" id="int-desert" style="width:16px;height:16px;accent-color:var(--terracotta);"> 🌵 Desert Bloom: Becoming — Scottsdale, Arizona (October 14–18, 2027)
             </label>
             <label style="display:flex; align-items:center; gap:0.6rem; font-size:0.9rem; color:rgba(255,255,255,0.8); text-transform:none; letter-spacing:0;">
+              <input type="checkbox" id="int-mv" style="width:16px;height:16px;accent-color:var(--terracotta);"> 🏝 Savor the Season — Martha's Vineyard (June 19–22, 2027)
+            </label>
+            <label style="display:flex; align-items:center; gap:0.6rem; font-size:0.9rem; color:rgba(255,255,255,0.8); text-transform:none; letter-spacing:0;">
               <input type="checkbox" id="int-all" style="width:16px;height:16px;accent-color:var(--terracotta);"> ✨ Keep me posted on everything!
             </label>
           </div>
@@ -1725,10 +1642,9 @@
     <div class="footer-col">
       <h4>Experiences</h4>
       <ul>
-        <li><a href="#desert-bloom">Desert Bloom 2026</a></li>
+        <li><a href="#experiences">Desert Bloom 2026</a></li>
         <li><a href="#desert-bloom-2027">Desert Bloom: Becoming 2027</a></li>
-        <li><a href="#breeze">Breeze at the Sea</a></li>
-        <li><a href="#vote">What's Next for 2027?</a></li>
+        <li><a href="#marthas-vineyard">Savor the Season · MV</a></li>
       </ul>
     </div>
     <div class="footer-col">
@@ -1750,6 +1666,58 @@
 </footer>
 
 <script>
+  // Desert Bloom 2027 Interest Form
+  async function submitDB27() {
+    const first = document.getElementById('db27-first').value.trim();
+    const last = document.getElementById('db27-last').value.trim();
+    const email = document.getElementById('db27-email').value.trim();
+    if (!first || !email) { alert('Please enter your name and email.'); return; }
+    const btn = document.querySelector('#desert-bloom-2027 button');
+    btn.textContent = 'Sending…'; btn.disabled = true;
+    const res = await fetch('https://formspree.io/f/mnpqqawv', {
+      method: 'POST',
+      headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        _subject: `Desert Bloom 2027 Interest — ${first} ${last}`,
+        Name: `${first} ${last}`, Email: email,
+        Experience: 'Desert Bloom: Becoming — October 14–18, 2027 · Scottsdale, Arizona'
+      })
+    });
+    if (res.ok) {
+      document.getElementById('db27-success').style.display = 'block';
+      btn.textContent = '✦ You\'re On the List!'; btn.style.opacity = '0.7';
+    } else {
+      btn.textContent = 'I\'m Interested →'; btn.disabled = false;
+      alert('Something went wrong. Please email hermidlifemovement@icloud.com');
+    }
+  }
+
+  // Martha's Vineyard Interest Form
+  async function submitMV() {
+    const first = document.getElementById('mv-first').value.trim();
+    const last = document.getElementById('mv-last').value.trim();
+    const email = document.getElementById('mv-email').value.trim();
+    if (!first || !email) { alert('Please enter your name and email.'); return; }
+    const btn = document.querySelector('#marthas-vineyard button');
+    btn.textContent = 'Sending…'; btn.disabled = true;
+    const res = await fetch('https://formspree.io/f/xzebplja', {
+      method: 'POST',
+      headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        _subject: `Martha's Vineyard Interest — ${first} ${last}`,
+        Name: `${first} ${last}`, Email: email,
+        Experience: "Savor the Season — Martha's Vineyard · June 19–22, 2027"
+      })
+    });
+    if (res.ok) {
+      document.getElementById('mv-success').style.display = 'block';
+      btn.textContent = '✦ You\'re On the List!'; btn.style.opacity = '0.7';
+    } else {
+      btn.textContent = 'I\'m Interested →'; btn.disabled = false;
+      alert('Something went wrong. Please email hermidlifemovement@icloud.com');
+    }
+  }
+
   // Poll submission
   async function submitPoll() {
     const name = document.getElementById('poll-name').value.trim();
@@ -1836,6 +1804,7 @@
       const interests = [];
       if (document.getElementById('int-seabreeze').checked) interests.push('Breeze at the Sea — Panama City Beach');
       if (document.getElementById('int-desert').checked) interests.push('Desert Bloom 2027');
+      if (document.getElementById('int-mv').checked) interests.push('Savor the Season — Martha\'s Vineyard');
       if (document.getElementById('int-all').checked) interests.push('Keep me posted on everything');
 
       const btn = document.querySelector('#tab-join .form-submit');
