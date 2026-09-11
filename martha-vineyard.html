@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Savor the Season · Martha's Vineyard 2027 | Her Midlife Movement</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #FAF6F0;
+    --sand: #EFE6DA;
+    --terracotta: #C4714A;
+    --rust: #9B4E2A;
+    --sage: #4A6741;
+    --navy: #1B2A3B;
+    --gold: #B8883A;
+    --midnight: #1C1814;
+    --body: #3D322C;
+    --muted: #6B5F56;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--cream); color: var(--body); font-family: 'DM Sans', sans-serif; overflow-x: hidden; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    padding: 1.2rem 3rem; display: flex; justify-content: space-between; align-items: center;
+    background: rgba(250,246,240,0.96); backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(27,42,59,0.1);
+  }
+  .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; color: var(--navy); text-decoration: none; letter-spacing: 0.04em; }
+  .nav-logo span { color: var(--terracotta); }
+  .nav-back { font-size: 0.78rem; letter-spacing: 0.1em; color: var(--muted); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; transition: color 0.3s; }
+  .nav-back:hover { color: var(--terracotta); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh; display: flex; flex-direction: column;
+    justify-content: flex-end; position: relative; overflow: hidden;
+    background: var(--navy);
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: linear-gradient(160deg, #1B2A3B 0%, #2C4A3E 40%, #1B2A3B 100%);
+  }
+  .hero-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(27,42,59,0.95) 0%, rgba(27,42,59,0.4) 60%, transparent 100%);
+  }
+  .hero-image {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: cover; opacity: 0.35;
+  }
+  .hero-content {
+    position: relative; z-index: 2;
+    padding: 0 6rem 6rem;
+    max-width: 820px;
+  }
+  .hero-phase {
+    display: inline-block; font-size: 0.7rem; letter-spacing: 0.22em;
+    background: var(--terracotta); color: #fff;
+    padding: 0.4rem 1.1rem; margin-bottom: 2rem;
+  }
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3.5rem, 8vw, 7rem);
+    font-weight: 300; color: #fff; line-height: 0.95;
+    margin-bottom: 1.5rem;
+  }
+  .hero-title em { font-style: italic; color: #C9A96E; display: block; }
+  .hero-meta {
+    display: flex; gap: 2.5rem; margin-bottom: 2rem; flex-wrap: wrap;
+  }
+  .hero-meta-item { }
+  .hero-meta-label { font-size: 0.65rem; letter-spacing: 0.2em; color: rgba(255,255,255,0.45); margin-bottom: 0.3rem; }
+  .hero-meta-value { font-size: 0.92rem; color: rgba(255,255,255,0.9); }
+  .hero-tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem; font-style: italic; color: #C9A96E;
+    line-height: 1.5; max-width: 560px;
+  }
+
+  /* SCROLL INDICATOR */
+  .scroll-hint {
+    position: absolute; bottom: 2rem; right: 6rem; z-index: 2;
+    font-size: 0.68rem; letter-spacing: 0.18em; color: rgba(255,255,255,0.35);
+    writing-mode: vertical-rl; display: flex; align-items: center; gap: 0.8rem;
+  }
+  .scroll-hint::after { content: ''; display: block; width: 1px; height: 40px; background: rgba(255,255,255,0.2); }
+
+  /* PAIN SECTION */
+  .pain {
+    background: var(--cream); padding: 7rem 6rem;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center;
+  }
+  .pain-heading {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.2rem, 3.8vw, 3.5rem);
+    font-weight: 300; color: var(--navy); line-height: 1.2; margin-bottom: 2rem;
+  }
+  .pain-heading em { font-style: italic; color: var(--terracotta); }
+  .pain-list { list-style: none; display: flex; flex-direction: column; gap: 1.2rem; }
+  .pain-list li {
+    font-size: 1rem; color: var(--body); line-height: 1.7;
+    padding-left: 1.5rem; position: relative;
+  }
+  .pain-list li::before {
+    content: '—'; position: absolute; left: 0;
+    color: var(--terracotta); font-family: 'Cormorant Garamond', serif;
+  }
+  .pain-image-block { position: relative; }
+  .pain-image-block img { width: 100%; display: block; }
+  .pain-quote {
+    position: absolute; bottom: -2rem; left: -2rem;
+    background: var(--navy); padding: 2rem 2.2rem; max-width: 320px;
+  }
+  .pain-quote p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem; font-style: italic; color: #fff; line-height: 1.6;
+  }
+  .pain-quote cite { display: block; margin-top: 0.8rem; font-size: 0.7rem; letter-spacing: 0.15em; color: #C9A96E; font-style: normal; }
+
+  /* PROMISE */
+  .promise { background: var(--navy); padding: 7rem 6rem; text-align: center; }
+  .promise-eyebrow { font-size: 0.7rem; letter-spacing: 0.22em; color: #C9A96E; display: block; margin-bottom: 1.5rem; }
+  .promise-heading {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    font-weight: 300; color: #fff; line-height: 1.15; margin-bottom: 2rem;
+  }
+  .promise-heading em { font-style: italic; color: #C9A96E; }
+  .promise-body {
+    font-size: 1.1rem; color: rgba(255,255,255,0.72); line-height: 1.9;
+    max-width: 640px; margin: 0 auto 3rem;
+  }
+  .promise-pillars {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5px;
+    max-width: 900px; margin: 0 auto;
+  }
+  .promise-pillar {
+    background: rgba(255,255,255,0.05); padding: 2.5rem 2rem;
+    border-top: 2px solid var(--terracotta);
+  }
+  .promise-pillar-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem; color: #fff; margin-bottom: 0.8rem;
+  }
+  .promise-pillar-title em { font-style: italic; color: #C9A96E; }
+  .promise-pillar p { font-size: 0.88rem; color: rgba(255,255,255,0.6); line-height: 1.75; }
+
+  /* EXPERIENCE */
+  .experience { background: var(--sand); padding: 7rem 6rem; }
+  .experience-header { text-align: center; margin-bottom: 5rem; }
+  .experience-heading {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.2rem, 4vw, 3.5rem);
+    font-weight: 300; color: var(--navy); line-height: 1.2; margin-top: 1rem;
+  }
+  .experience-heading em { font-style: italic; color: var(--terracotta); }
+  .experience-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px; }
+  .exp-item {
+    background: var(--cream); padding: 3rem;
+    border-left: 3px solid transparent; transition: border-color 0.3s;
+  }
+  .exp-item:hover { border-left-color: var(--terracotta); }
+  .exp-item-icon { font-size: 1.8rem; margin-bottom: 1rem; display: block; }
+  .exp-item-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem; color: var(--navy); margin-bottom: 0.8rem;
+  }
+  .exp-item p { font-size: 0.92rem; color: var(--muted); line-height: 1.8; }
+
+  /* INVESTMENT */
+  .investment { background: var(--cream); padding: 7rem 6rem; }
+  .investment-inner { max-width: 900px; margin: 0 auto; }
+  .investment-header { text-align: center; margin-bottom: 4rem; }
+  .investment-heading {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.2rem, 4vw, 3.5rem);
+    font-weight: 300; color: var(--navy); margin-top: 1rem;
+  }
+  .investment-heading em { font-style: italic; color: var(--terracotta); }
+  .investment-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+  .investment-card {
+    border: 1px solid rgba(27,42,59,0.12); padding: 3rem;
+    position: relative; transition: transform 0.3s;
+  }
+  .investment-card:hover { transform: translateY(-4px); }
+  .investment-card.featured { border-color: var(--terracotta); border-width: 2px; }
+  .investment-card-badge {
+    position: absolute; top: -1px; right: 2rem;
+    background: var(--terracotta); color: #fff;
+    font-size: 0.65rem; letter-spacing: 0.15em; padding: 0.3rem 0.8rem;
+  }
+  .investment-card-title { font-size: 0.75rem; letter-spacing: 0.15em; color: var(--muted); margin-bottom: 1rem; }
+  .investment-card-price {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3rem; font-weight: 300; color: var(--navy); line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+  .investment-card-sub { font-size: 0.82rem; color: var(--muted); margin-bottom: 2rem; line-height: 1.6; }
+  .investment-card-features { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; }
+  .investment-card-features li { font-size: 0.88rem; color: var(--body); display: flex; align-items: center; gap: 0.6rem; }
+  .investment-card-features li::before { content: '✦'; color: var(--terracotta); font-size: 0.5rem; flex-shrink: 0; }
+  .investment-note { text-align: center; margin-top: 2.5rem; font-size: 0.85rem; color: var(--muted); line-height: 1.7; font-style: italic; }
+
+  /* LAUNCH PHASES */
+  .launch { background: var(--navy); padding: 7rem 6rem; }
+  .launch-header { text-align: center; margin-bottom: 5rem; }
+  .launch-heading {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.2rem, 4vw, 3.5rem);
+    font-weight: 300; color: #fff; margin-top: 1rem;
+  }
+  .launch-heading em { font-style: italic; color: #C9A96E; }
+  .launch-phases { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+  .launch-phase { background: rgba(255,255,255,0.04); padding: 3rem 2.5rem; }
+  .launch-phase-num { font-family: 'Cormorant Garamond', serif; font-size: 4rem; font-weight: 300; color: rgba(201,169,110,0.2); line-height: 1; margin-bottom: 1rem; }
+  .launch-phase-label { font-size: 0.65rem; letter-spacing: 0.22em; color: #C9A96E; margin-bottom: 0.8rem; display: block; }
+  .launch-phase-title { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; color: #fff; margin-bottom: 1rem; }
+  .launch-phase ul { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+  .launch-phase ul li { font-size: 0.88rem; color: rgba(255,255,255,0.65); padding-left: 1rem; position: relative; line-height: 1.6; }
+  .launch-phase ul li::before { content: '→'; position: absolute; left: 0; color: var(--terracotta); }
+
+  /* WAITLIST FORM */
+  .waitlist { background: var(--terracotta); padding: 7rem 6rem; }
+  .waitlist-inner { max-width: 680px; margin: 0 auto; text-align: center; }
+  .waitlist-heading {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    font-weight: 300; color: #fff; line-height: 1.15; margin-bottom: 1.2rem;
+  }
+  .waitlist-heading em { font-style: italic; }
+  .waitlist-sub { font-size: 1rem; color: rgba(255,255,255,0.85); line-height: 1.85; margin-bottom: 3rem; }
+  .waitlist-spots {
+    display: inline-block; background: rgba(28,24,20,0.3);
+    font-size: 0.75rem; letter-spacing: 0.15em; color: #fff;
+    padding: 0.5rem 1.4rem; margin-bottom: 2.5rem;
+  }
+  .wl-form { display: flex; flex-direction: column; gap: 1rem; text-align: left; }
+  .wl-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .wl-input {
+    background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3);
+    color: #fff; font-family: 'DM Sans', sans-serif; font-size: 0.95rem;
+    padding: 0.9rem 1.2rem; outline: none; transition: border-color 0.3s; width: 100%;
+  }
+  .wl-input::placeholder { color: rgba(255,255,255,0.5); }
+  .wl-input:focus { border-color: #fff; }
+  .wl-select {
+    background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3);
+    color: rgba(255,255,255,0.8); font-family: 'DM Sans', sans-serif; font-size: 0.95rem;
+    padding: 0.9rem 1.2rem; outline: none; width: 100%; cursor: pointer;
+  }
+  .wl-select option { background: var(--midnight); color: #fff; }
+  .wl-submit {
+    background: var(--midnight); color: #fff; border: none;
+    font-family: 'DM Sans', sans-serif; font-size: 0.85rem; letter-spacing: 0.16em;
+    padding: 1.1rem; cursor: pointer; transition: background 0.3s; width: 100%;
+  }
+  .wl-submit:hover { background: #000; }
+  .wl-success {
+    display: none; margin-top: 1.5rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem; font-style: italic; color: #fff; text-align: center;
+  }
+  .wl-legal { font-size: 0.75rem; color: rgba(255,255,255,0.55); line-height: 1.7; margin-top: 1rem; text-align: center; }
+
+  /* FOOTER */
+  footer { background: var(--midnight); padding: 3rem 6rem; display: flex; justify-content: space-between; align-items: center; }
+  .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: #fff; }
+  .footer-logo span { color: var(--terracotta); }
+  .footer-links { display: flex; gap: 2rem; }
+  .footer-links a { font-size: 0.78rem; color: rgba(255,255,255,0.4); text-decoration: none; transition: color 0.3s; }
+  .footer-links a:hover { color: #fff; }
+
+  /* ANIMATIONS */
+  .fade-up { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+  /* MOBILE */
+  @media (max-width: 600px) {
+    nav { padding: 1rem 1.5rem; }
+    .hero-content { padding: 0 2rem 4rem; }
+    .hero-title { font-size: 3rem; }
+    .pain { grid-template-columns: 1fr; padding: 4rem 2rem; gap: 4rem; }
+    .pain-quote { position: static; margin-top: 1.5rem; }
+    .promise { padding: 4rem 2rem; }
+    .promise-pillars { grid-template-columns: 1fr; }
+    .experience { padding: 4rem 2rem; }
+    .experience-grid { grid-template-columns: 1fr; }
+    .investment { padding: 4rem 2rem; }
+    .investment-cards { grid-template-columns: 1fr; }
+    .launch { padding: 4rem 2rem; }
+    .launch-phases { grid-template-columns: 1fr; }
+    .waitlist { padding: 4rem 2rem; }
+    .wl-row { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 1.5rem; text-align: center; padding: 2.5rem 2rem; }
+    .footer-links { flex-wrap: wrap; justify-content: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">Her Midlife <span>Movement</span></a>
+  <a href="index.html" class="nav-back">← Back to moreinmidlife.com</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <img class="hero-image" src="https://i.imgur.com/tCjkkvs.png" alt="Savor the Season Martha's Vineyard">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-phase">Priority Waitlist Now Open</div>
+    <h1 class="hero-title">
+      Savor<br>
+      <em>the Season</em>
+    </h1>
+    <div class="hero-meta">
+      <div class="hero-meta-item">
+        <div class="hero-meta-label">Destination</div>
+        <div class="hero-meta-value">Martha's Vineyard, Massachusetts</div>
+      </div>
+      <div class="hero-meta-item">
+        <div class="hero-meta-label">Dates</div>
+        <div class="hero-meta-value">June 17–21, 2027 · Juneteenth Weekend</div>
+      </div>
+      <div class="hero-meta-item">
+        <div class="hero-meta-label">Capacity</div>
+        <div class="hero-meta-value">Small Intimate Group · Curated Experience</div>
+      </div>
+    </div>
+    <p class="hero-tagline">Celebrate Freedom. Embrace Sisterhood. Live Richly.</p>
+  </div>
+  <div class="scroll-hint">Scroll to explore</div>
+</section>
+
+<!-- PAIN -->
+<section class="pain">
+  <div class="fade-up">
+    <h2 class="pain-heading">You give and give and give.<br><em>And somewhere in all of that — you got a little lost.</em></h2>
+    <ul class="pain-list">
+      <li>You've been the strong one for so long you can't remember the last time someone took care of you.</li>
+      <li>You keep saying "one day I'll do something just for me." One day keeps getting moved.</li>
+      <li>You have people in your life — but not the kind of sisterhood where you can be fully honest, fully present, fully you.</li>
+      <li>There's something stirring in you. A nudge. A whisper. Something that keeps saying — there's more for you. You just haven't given yourself permission to go after it yet.</li>
+      <li>You're not looking for perfect. You're looking for real. Real rest. Real connection. Real permission to show up boldly and freely — without apology and without regrets.</li>
+    </ul>
+  </div>
+  <div class="fade-up pain-image-block">
+    <img src="https://i.imgur.com/tCjkkvs.png" alt="Martha's Vineyard — Her Midlife Movement">
+    <div class="pain-quote">
+      <p>"I created this experience because I believe women deserve to be poured into. Not someday. Right now. In this season. As you are."</p>
+      <cite>— Davania · Founder, Her Midlife Movement</cite>
+    </div>
+  </div>
+</section>
+
+<!-- PROMISE -->
+<section class="promise">
+  <div class="fade-up">
+    <span class="promise-eyebrow">This is Heart Work</span>
+    <h2 class="promise-heading">This isn't just a getaway.<br><em>It's permission to come back to yourself.</em></h2>
+    <p class="promise-body">Every HMM experience is designed with intention — not just to take women somewhere beautiful, but to create the kind of space where something inside them shifts. Savor the Season is no different. It's rest, reset, sisterhood, and the freedom to show up boldly — all in one place, all at the same time.</p>
+    <div class="promise-pillars">
+      <div class="promise-pillar">
+        <div class="promise-pillar-title">Spark <em>Transformation</em></div>
+        <p>Step out of the routine that's been running you. Give yourself four days to interrupt the noise, breathe differently, and come back to who you actually are.</p>
+      </div>
+      <div class="promise-pillar">
+        <div class="promise-pillar-title">Deepen <em>Trust</em></div>
+        <p>Everything is handled. You don't have to plan, manage, or take care of anything. Just show up — and let yourself be taken care of for once.</p>
+      </div>
+      <div class="promise-pillar">
+        <div class="promise-pillar-title">Cultivate <em>Connection</em></div>
+        <p>The kind of sisterhood that doesn't end when the trip does. Women who see you, cheer for you, and show up for you long after everyone goes home.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="experience">
+  <div class="experience-header fade-up">
+    <span style="font-size:0.7rem; letter-spacing:0.22em; color:var(--terracotta); display:block; margin-bottom:0.8rem;">What's Included</span>
+    <h2 class="experience-heading">Four days curated<br><em>entirely for you.</em></h2>
+    <p style="font-size:1rem; color:var(--muted); margin-top:1rem; line-height:1.8; max-width:600px; margin-left:auto; margin-right:auto;">The details are still being finalized — because that's how I work. I don't rush the curation. But here's a picture of what this experience is being built around.</p>
+  </div>
+  <div class="experience-grid fade-up">
+    <div class="exp-item">
+      <span class="exp-item-icon">🏡</span>
+      <div class="exp-item-title">A Space That Welcomes You In</div>
+      <p>A carefully chosen property on Martha's Vineyard — selected because it feels like somewhere you belong. The kind of space where you walk through the door and immediately exhale.</p>
+    </div>
+    <div class="exp-item">
+      <span class="exp-item-icon">🌅</span>
+      <div class="exp-item-title">Morning Movement by the Sea</div>
+      <p>We move every day — because movement is part of who we are. A coastal walk, a stretch, something that wakes your body up gently and reminds you that you're alive and well.</p>
+    </div>
+    <div class="exp-item">
+      <span class="exp-item-icon">🍽️</span>
+      <div class="exp-item-title">Meals Worth Lingering Over</div>
+      <p>Food is communion. Some meals in, some out — all of them designed around the table, the conversation, and the kind of laughter that fills a room.</p>
+    </div>
+    <div class="exp-item">
+      <span class="exp-item-icon">✨</span>
+      <div class="exp-item-title">A Juneteenth Celebration</div>
+      <p>We're gathering on one of the most historically significant weekends of the year, in one of the most meaningful destinations for Black women in America. That's not an accident. We're going to celebrate — fully and freely.</p>
+    </div>
+    <div class="exp-item">
+      <span class="exp-item-icon">🤝</span>
+      <div class="exp-item-title">Communal Space & Sisterhood</div>
+      <p>Intentional time together. Not just activities — actual space to be present with each other. To talk, to laugh, to rest side by side. The kind of friendship that forms when women are given real room to show up.</p>
+    </div>
+    <div class="exp-item">
+      <span class="exp-item-icon">🌊</span>
+      <div class="exp-item-title">The Island. The Culture. The Surprises.</div>
+      <p>Martha's Vineyard has a spirit of its own. We're going to experience it — the coastlines, the culture, the charm. And a few things I'm keeping close until we get there.</p>
+    </div>
+  </div>
+</section>
+
+<!-- INVESTMENT -->
+<section class="investment">
+  <div class="investment-inner">
+    <div class="investment-header fade-up">
+      <span style="font-size:0.7rem; letter-spacing:0.22em; color:var(--terracotta);">Your Investment</span>
+      <h2 class="investment-heading">Four days that will<br><em>stay with you forever.</em></h2>
+      <p style="font-size:0.95rem; color:var(--muted); margin-top:1rem; line-height:1.8;">A $350 deposit secures your place. Full investment is $2,395 with payment plan options available.</p>
+    </div>
+    <div class="investment-cards fade-up" style="grid-template-columns:1fr; max-width:500px; margin:0 auto;">
+      <div class="investment-card">
+        <div class="investment-card-title">YOUR INVESTMENT</div>
+        <div class="investment-card-price">$2,395</div>
+        <div class="investment-card-sub">A $350 non-refundable deposit secures your spot. Payment plans available.</div>
+        <ul class="investment-card-features">
+          <li>4 nights curated accommodations</li>
+          <li>All curated group experiences</li>
+          <li>Selected meals & dining experiences</li>
+          <li>Juneteenth celebration</li>
+          <li>Morning movement sessions</li>
+          <li>HMM welcome gift</li>
+        </ul>
+      </div>
+    </div>
+    <p class="investment-note">This is a small, intimate group experience. Availability is limited intentionally — to protect the environment and ensure every woman feels seen. Once spots are filled, registration closes.</p>
+  </div>
+</section>
+
+<!-- DAVANIA POV -->
+<section style="background:var(--navy); padding:7rem 6rem;">
+  <div style="max-width:760px; margin:0 auto; text-align:center;" class="fade-up">
+    <span style="font-size:0.7rem; letter-spacing:0.22em; color:#C9A96E; display:block; margin-bottom:2rem;">From Davania</span>
+    <p style="font-family:'Cormorant Garamond',serif; font-size:clamp(1.3rem,2.5vw,1.8rem); font-style:italic; color:#fff; line-height:1.75; margin-bottom:2rem;">"I have watched women — strong, brilliant, faithful women — go years without doing something just for themselves. Not because they don't deserve it. Because they never gave themselves permission.</p>
+    <p style="font-family:'Cormorant Garamond',serif; font-size:clamp(1.3rem,2.5vw,1.8rem); font-style:italic; color:#fff; line-height:1.75; margin-bottom:2rem;">That's what this is. Permission. Permission to rest without guilt. To be in sisterhood without performing. To show up — boldly, freely, without regrets — and just be a woman who is choosing herself for four whole days.</p>
+    <p style="font-family:'Cormorant Garamond',serif; font-size:clamp(1.3rem,2.5vw,1.8rem); font-style:italic; color:#fff; line-height:1.75; margin-bottom:2rem;">Martha's Vineyard on Juneteenth weekend is not a coincidence. It's a declaration. We are gathering in a place that holds the legacy of Black women who came before us — women who also chose joy, rest, and each other. We're honoring that.</p>
+    <p style="font-family:'Cormorant Garamond',serif; font-size:clamp(1.3rem,2.5vw,1.8rem); font-style:italic; color:#fff; line-height:1.75; margin-bottom:2rem;">This is my heart work. And I would be honored to share it with you."</p>
+    <div style="font-size:0.75rem; letter-spacing:0.18em; color:#C9A96E;">— Davania · Founder, Her Midlife Movement</div>
+  </div>
+</section>
+
+<!-- WAITLIST FORM -->
+<section class="waitlist" id="waitlist">
+  <div class="waitlist-inner fade-up">
+    <h2 class="waitlist-heading">You've waited<br>long enough.<br><em>Come.</em></h2>
+    <p class="waitlist-sub">If something in you said yes while reading this — trust that. Join the priority list and be among the first to receive your invitation. A $350 deposit secures your place when registration opens.</p>
+    <div class="waitlist-spots">Limited availability · Small intimate group · Deposits now open</div>
+
+    <div class="wl-form">
+      <div class="wl-row">
+        <input type="text" id="wl-first" class="wl-input" placeholder="First name">
+        <input type="text" id="wl-last" class="wl-input" placeholder="Last name">
+      </div>
+      <input type="email" id="wl-email" class="wl-input" placeholder="Email address">
+      <input type="tel" id="wl-phone" class="wl-input" placeholder="Phone number (optional)">
+      <select id="wl-hear" class="wl-select">
+        <option value="">How did you hear about this experience?</option>
+        <option>Instagram</option>
+        <option>A friend or colleague</option>
+        <option>Her Midlife Movement website</option>
+        <option>Facebook</option>
+        <option>Other</option>
+      </select>
+      <select id="wl-payment" class="wl-select">
+        <option value="">Payment preference (helps us plan)</option>
+        <option>Paid in full — I prefer one payment</option>
+        <option>Payment plan — I'd like monthly installments</option>
+        <option>Not sure yet</option>
+      </select>
+      <button class="wl-submit" onclick="submitWaitlist()">Join the Priority Waitlist →</button>
+      <div style="text-align:center; margin-top:1.5rem;">
+        <div style="font-size:0.72rem; letter-spacing:0.15em; color:rgba(255,255,255,0.6); margin-bottom:1rem;">— OR —</div>
+        <a href="https://square.link/u/vEoNoD8o" target="_blank" style="display:block; background:#fff; color:var(--terracotta); font-family:'DM Sans',sans-serif; font-size:0.85rem; letter-spacing:0.16em; text-transform:uppercase; padding:1.1rem; text-decoration:none; transition:all 0.3s; font-weight:500;">Pay $350 Deposit to Secure My Spot →</a>
+        <p style="font-size:0.75rem; color:rgba(255,255,255,0.45); margin-top:0.8rem; line-height:1.6;">Credit & debit cards accepted · Apple Pay · Google Pay<br>Deposit is non-refundable and secures your place on the priority list.</p>
+      </div>
+      <div id="wl-success" class="wl-success">✦ You're on the list, sister. You chose yourself today — and that matters. We'll be in touch soon.</div>
+      <p class="wl-legal">By joining the waitlist you're expressing interest. A $350 non-refundable deposit will be required to secure your spot. Full investment is $2,395 with payment plan options available. Details shared upon registration.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Her Midlife <span>Movement</span></div>
+  <div class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="index.html#experiences">Experiences</a>
+    <a href="index.html#connect">Contact</a>
+    <a href="https://instagram.com/hermidlife.movement" target="_blank">@hermidlife.movement</a>
+  </div>
+</footer>
+
+<script>
+  async function submitWaitlist() {
+    const first = document.getElementById('wl-first').value.trim();
+    const last = document.getElementById('wl-last').value.trim();
+    const email = document.getElementById('wl-email').value.trim();
+    const phone = document.getElementById('wl-phone').value.trim();
+    const hear = document.getElementById('wl-hear').value;
+    const payment = document.getElementById('wl-payment').value;
+    if (!first || !email) { alert('Please enter your name and email to join the waitlist.'); return; }
+    const btn = document.querySelector('.wl-submit');
+    btn.textContent = 'Sending…'; btn.disabled = true;
+    const res = await fetch('https://formspree.io/f/xzebplja', {
+      method: 'POST',
+      headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        _subject: `MV Waitlist — ${first} ${last}`,
+        Name: `${first} ${last}`,
+        Email: email,
+        Phone: phone || '—',
+        'Heard About Us': hear || '—',
+        'Payment Preference': payment || '—',
+        Experience: "Savor the Season — Martha's Vineyard · June 17–21, 2027"
+      })
+    });
+    if (res.ok) {
+      document.getElementById('wl-success').style.display = 'block';
+      btn.textContent = '✦ You\'re On the List!';
+      btn.style.opacity = '0.6';
+    } else {
+      btn.textContent = 'Reserve My Spot on the Waitlist →';
+      btn.disabled = false;
+      alert('Something went wrong. Please email hermidlifemovement@icloud.com');
+    }
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
