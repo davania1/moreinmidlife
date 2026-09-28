@@ -2001,7 +2001,7 @@
 </script>
 
 <!-- JOIN THE MOVEMENT MODAL -->
-<div id="jtm-overlay" style="display:none; position:fixed; inset:0; background:rgba(28,24,20,0.7); z-index:9999; align-items:center; justify-content:center; padding:1.5rem;">
+<div id="jtm-overlay" style="position:fixed; inset:0; background:rgba(28,24,20,0.7); z-index:9999; align-items:center; justify-content:center; padding:1.5rem;">
   <div id="jtm-modal" style="background:var(--cream); max-width:480px; width:100%; border-radius:2px; padding:3rem 2.5rem; position:relative; max-height:90vh; overflow-y:auto;">
     
     <!-- Close button -->
@@ -2046,8 +2046,8 @@
 </div>
 
 <style>
-#jtm-overlay { display:none; }
-#jtm-overlay.active { display:flex; }
+#jtm-overlay { display:none !important; }
+#jtm-overlay.active { display:flex !important; }
 #jtm-modal input:focus { border-color:var(--terracotta); }
 #jtm-btn:hover { background:var(--midnight); }
 @media(max-width:480px){
