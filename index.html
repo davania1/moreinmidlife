@@ -1614,17 +1614,20 @@
 
     <!-- CONNECT CARDS -->
     <div class="connect-cards fade-up">
-      <div class="connect-card" onclick="switchTab('join', document.querySelectorAll('.tab-btn')[0])">
+      <div class="connect-card" onclick="openJTM()" style="cursor:pointer;">
         <div class="connect-card-icon">🌸</div>
         <div class="connect-card-title">Join the Movement</div>
-        <div class="connect-card-desc">Stay connected and tell us which experiences interest you.</div>
+        <div class="connect-card-desc">Stay connected and tell us which experiences interest you. Click here to sign up!</div>
       </div>
-      <div class="connect-card" onclick="switchTab('contact', document.querySelectorAll('.tab-btn')[1])">
+      <div class="connect-card" onclick="switchTab('contact', document.querySelectorAll('.tab-btn')[1]); document.getElementById('tab-contact-anchor').scrollIntoView({behavior:'smooth'});" style="cursor:pointer;">
         <div class="connect-card-icon">✉️</div>
         <div class="connect-card-title">Contact Davania</div>
-        <div class="connect-card-desc">Questions, partnerships, or just say hello.</div>
+        <div class="connect-card-desc">Questions, partnerships, or just say hello. Fill out the form below!</div>
       </div>
     </div>
+
+    <!-- ANCHOR for contact scroll -->
+    <div id="tab-contact-anchor"></div>
 
     <!-- FORM -->
     <div class="waitlist-form fade-up">
