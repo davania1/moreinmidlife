@@ -1163,7 +1163,7 @@
     <li><a href="#connect">Connect</a></li>
     <li><a href="martha-vineyard.html" style="color:var(--terracotta); font-weight:500;">Martha's Vineyard</a></li>
   </ul>
-  <a href="#connect" class="nav-cta">Join the Movement</a>
+  <a href="#" onclick="event.preventDefault();openJTM();" class="nav-cta">Join the Movement</a>
   <button class="hamburger" onclick="toggleMenu()" aria-label="Open menu">
     <span></span><span></span><span></span>
   </button>
@@ -1178,7 +1178,7 @@
   <a href="#experiences" onclick="toggleMenu()">Explore Experiences</a>
   <a href="#about" onclick="toggleMenu()">About</a>
   <a href="martha-vineyard.html" onclick="toggleMenu()" style="color:#C9A96E;">Martha's Vineyard</a>
-  <a href="#connect" onclick="toggleMenu()" class="menu-cta">Join the Movement</a>
+  <a href="#" onclick="toggleMenu();openJTM();" class="menu-cta">Join the Movement</a>
 </div>
 
 
@@ -1196,7 +1196,7 @@
       We plan trips and gatherings for women who are done waiting for "someday" — built around movement, connection, and a little adventure.
     </p>
     <div class="hero-buttons">
-      <a href="#connect" class="btn-primary">Join the Movement</a>
+      <a href="#" onclick="event.preventDefault();openJTM();" class="btn-primary">Join the Movement</a>
     </div>
   </div>
   <div class="hero-right">
@@ -1753,7 +1753,7 @@
     <div class="footer-col">
       <h4>Connect</h4>
       <ul>
-        <li><a href="#connect">Join the Movement</a></li>
+        <li><a href="#" onclick="event.preventDefault();openJTM();">Join the Movement</a></li>
         <li><a href="#connect">Contact Davania</a></li>
       </ul>
     </div>
@@ -1998,6 +1998,105 @@
       }
     }
   }
+</script>
+
+<!-- JOIN THE MOVEMENT MODAL -->
+<div id="jtm-overlay" style="display:none; position:fixed; inset:0; background:rgba(28,24,20,0.7); z-index:9999; align-items:center; justify-content:center; padding:1.5rem;">
+  <div id="jtm-modal" style="background:var(--cream); max-width:480px; width:100%; border-radius:2px; padding:3rem 2.5rem; position:relative; max-height:90vh; overflow-y:auto;">
+    
+    <!-- Close button -->
+    <button onclick="closeJTM()" style="position:absolute; top:1.2rem; right:1.5rem; background:none; border:none; font-size:1.4rem; cursor:pointer; color:var(--muted); line-height:1;">×</button>
+
+    <!-- Header -->
+    <div style="text-align:center; margin-bottom:2rem;">
+      <div style="font-size:0.68rem; letter-spacing:0.25em; text-transform:uppercase; color:var(--terracotta); margin-bottom:0.75rem;">Welcome</div>
+      <h2 style="font-family:'Cormorant Garamond',serif; font-size:2.2rem; font-weight:400; color:var(--midnight); line-height:1.2; margin-bottom:0.75rem;">Join the<br><em>Movement</em></h2>
+      <p style="font-size:0.9rem; color:var(--muted); line-height:1.7;">You belong here. Drop your name and email and we'll keep you close — first to know about new experiences, updates, and everything HMM.</p>
+    </div>
+
+    <!-- Form -->
+    <div style="display:flex; flex-direction:column; gap:1rem;">
+      <input id="jtm-name" type="text" placeholder="Your First Name" style="padding:0.85rem 1rem; border:1px solid #ddd; background:#fff; font-family:'DM Sans',sans-serif; font-size:0.9rem; color:var(--midnight); outline:none; border-radius:1px;">
+      <input id="jtm-email" type="email" placeholder="Your Email Address" style="padding:0.85rem 1rem; border:1px solid #ddd; background:#fff; font-family:'DM Sans',sans-serif; font-size:0.9rem; color:var(--midnight); outline:none; border-radius:1px;">
+      
+      <!-- Interest checkboxes -->
+      <div style="margin-top:0.5rem;">
+        <div style="font-size:0.72rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--muted); margin-bottom:0.75rem;">I'm interested in</div>
+        <div style="display:flex; flex-direction:column; gap:0.6rem;">
+          <label style="display:flex; align-items:center; gap:0.75rem; font-size:0.88rem; color:var(--midnight); cursor:pointer;">
+            <input type="checkbox" name="jtm-interest" value="Martha's Vineyard" style="accent-color:var(--terracotta);"> Savor the Season — Martha's Vineyard
+          </label>
+          <label style="display:flex; align-items:center; gap:0.75rem; font-size:0.88rem; color:var(--midnight); cursor:pointer;">
+            <input type="checkbox" name="jtm-interest" value="Desert Bloom 2027" style="accent-color:var(--terracotta);"> Desert Bloom: Becoming 2027
+          </label>
+          <label style="display:flex; align-items:center; gap:0.75rem; font-size:0.88rem; color:var(--midnight); cursor:pointer;">
+            <input type="checkbox" name="jtm-interest" value="Future Experiences" style="accent-color:var(--terracotta);"> Keep me posted on future experiences
+          </label>
+        </div>
+      </div>
+
+      <!-- Submit -->
+      <button onclick="submitJTM()" id="jtm-btn" style="margin-top:0.5rem; background:var(--terracotta); color:#fff; border:none; padding:1rem; font-family:'DM Sans',sans-serif; font-size:0.8rem; letter-spacing:0.18em; text-transform:uppercase; cursor:pointer; transition:background 0.3s;">Join the Movement →</button>
+      
+      <!-- Success -->
+      <div id="jtm-success" style="display:none; text-align:center; padding:1rem; background:#f0f4ee; font-size:0.9rem; color:#7A8C6E; line-height:1.7;">✦ Welcome to the movement, beautiful. We'll be in touch soon. 🌿</div>
+    </div>
+
+  </div>
+</div>
+
+<style>
+#jtm-overlay { display:none; }
+#jtm-overlay.active { display:flex; }
+#jtm-modal input:focus { border-color:var(--terracotta); }
+#jtm-btn:hover { background:var(--midnight); }
+@media(max-width:480px){
+  #jtm-modal { padding:2rem 1.5rem; }
+  #jtm-modal h2 { font-size:1.8rem; }
+}
+</style>
+
+<script>
+function openJTM() {
+  document.getElementById('jtm-overlay').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+function closeJTM() {
+  document.getElementById('jtm-overlay').classList.remove('active');
+  document.body.style.overflow = '';
+}
+document.getElementById('jtm-overlay').addEventListener('click', function(e) {
+  if (e.target === this) closeJTM();
+});
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeJTM();
+});
+
+async function submitJTM() {
+  const name = document.getElementById('jtm-name').value.trim();
+  const email = document.getElementById('jtm-email').value.trim();
+  const interests = [...document.querySelectorAll('input[name="jtm-interest"]:checked')].map(i => i.value).join(', ');
+  if (!name || !email) { alert('Please enter your name and email.'); return; }
+  const btn = document.getElementById('jtm-btn');
+  btn.textContent = 'Sending...'; btn.disabled = true;
+  try {
+    const res = await fetch('https://formspree.io/f/mpqvbwnp', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({ name, email, interests, _subject: 'New HMM Movement Sign-Up' })
+    });
+    if (res.ok) {
+      document.getElementById('jtm-success').style.display = 'block';
+      btn.style.display = 'none';
+    } else {
+      btn.textContent = 'Join the Movement →'; btn.disabled = false;
+      alert('Something went wrong. Please try again.');
+    }
+  } catch {
+    btn.textContent = 'Join the Movement →'; btn.disabled = false;
+    alert('Something went wrong. Please try again.');
+  }
+}
 </script>
 
 </body>
