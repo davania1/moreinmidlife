@@ -1768,6 +1768,16 @@
 </footer>
 
 <script>
+  function openJTM() {
+    var el = document.getElementById('jtm-overlay');
+    el.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  }
+  function closeJTM() {
+    var el = document.getElementById('jtm-overlay');
+    el.style.display = 'none';
+    document.body.style.overflow = '';
+  }
   // Desert Bloom 2027 Interest Form
   async function submitDB27() {
     const first = document.getElementById('db27-first').value.trim();
@@ -2001,7 +2011,7 @@
 </script>
 
 <!-- JOIN THE MOVEMENT MODAL -->
-<div id="jtm-overlay" style="position:fixed; inset:0; background:rgba(28,24,20,0.7); z-index:9999; align-items:center; justify-content:center; padding:1.5rem;">
+<div id="jtm-overlay" style="display:none; position:fixed; top:0; left:0; right:0; bottom:0; background:rgba(28,24,20,0.7); z-index:9999; align-items:center; justify-content:center; padding:1.5rem;">
   <div id="jtm-modal" style="background:var(--cream); max-width:480px; width:100%; border-radius:2px; padding:3rem 2.5rem; position:relative; max-height:90vh; overflow-y:auto;">
     
     <!-- Close button -->
@@ -2046,27 +2056,17 @@
 </div>
 
 <style>
-#jtm-overlay { display:none !important; }
-#jtm-overlay.active { display:flex !important; }
-#jtm-modal input:focus { border-color:var(--terracotta); }
-#jtm-btn:hover { background:var(--midnight); }
+#jtm-modal input:focus { border-color:#C4714A; }
 @media(max-width:480px){
-  #jtm-modal { padding:2rem 1.5rem; }
-  #jtm-modal h2 { font-size:1.8rem; }
+  #jtm-modal { padding:2rem 1.5rem !important; }
+  #jtm-modal h2 { font-size:1.8rem !important; }
 }
 </style>
 
 <script>
-function openJTM() {
-  document.getElementById('jtm-overlay').classList.add('active');
-  document.body.style.overflow = 'hidden';
-}
-function closeJTM() {
-  document.getElementById('jtm-overlay').classList.remove('active');
-  document.body.style.overflow = '';
-}
-document.getElementById('jtm-overlay').addEventListener('click', function(e) {
-  if (e.target === this) closeJTM();
+window.addEventListener('click', function(e) {
+  var overlay = document.getElementById('jtm-overlay');
+  if (e.target === overlay) closeJTM();
 });
 document.addEventListener('keydown', function(e) {
   if (e.key === 'Escape') closeJTM();
