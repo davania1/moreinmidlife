@@ -6,6 +6,16 @@
 <meta name="p:domain_verify" content="2c1336389c73afe9392ea97a7f6b5e46"/>
 <title>Her Midlife Movement | moreinmidlife.com</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<script>
+  function openJTM() {
+    var el = document.getElementById('jtm-overlay');
+    if (el) { el.style.display = 'flex'; document.body.style.overflow = 'hidden'; }
+  }
+  function closeJTM() {
+    var el = document.getElementById('jtm-overlay');
+    if (el) { el.style.display = 'none'; document.body.style.overflow = ''; }
+  }
+</script>
 <style>
   :root {
     --cream: #FAF6F0;
@@ -612,6 +622,7 @@
   @media (max-width: 600px) {
     .testimonials-section { padding: 4rem 2rem; }
     .testimonials-grid { grid-template-columns: 1fr; }
+    .db-photo-grid { grid-template-columns: repeat(2,1fr) !important; }
   }
 
   .community-invite {
@@ -1261,15 +1272,18 @@
   </div>
 
   <!-- DESERT BLOOM 2026 -->
-  <div class="exp-row fade-up">
+  <div class="exp-row fade-up" id="desert-bloom-2026">
     <div class="exp-row-image">
-      <img src="https://i.imgur.com/L4UUfJZ.jpeg" alt="Desert Bloom 2026">
+      <img src="desert-bloom-group.jpg" alt="Desert Bloom 2026 — Her Midlife Movement women in Fountain Hills, Arizona">
     </div>
     <div class="exp-row-content">
-      <div class="exp-card-badge" style="display:inline-block; margin-bottom:1rem; background:var(--midnight); color:rgba(255,255,255,0.7);">Fully Booked · 2026</div>
-      <h3 class="exp-row-title">Desert Bloom</h3>
-      <p class="exp-row-location">Scottsdale, Arizona · October 16–19, 2026</p>
-      <p class="exp-row-desc">An intimate women's retreat — rest, reset, and reconnect in the desert. 2026 is fully booked. Stay connected to be first to know about 2027.</p>
+      <div class="exp-card-badge" style="display:inline-block; margin-bottom:1rem; background:var(--midnight); color:rgba(255,255,255,0.7);">Completed · October 2026</div>
+      <h3 class="exp-row-title">Desert Bloom <em style="font-style:italic; color:var(--terracotta);">2026</em></h3>
+      <p class="exp-row-location">Fountain Hills, Arizona · October 16–19, 2026</p>
+      <p class="exp-row-desc">An intimate women's retreat — rest, reset, and reconnect in the desert. Desert Bloom 2026 was a beautiful, fully sold-out experience. Read what the women had to say.</p>
+      <div style="margin-top:1.5rem;">
+        <a href="#testimonials" class="exp-interest-btn" style="display:inline-block;">See the Memories →</a>
+      </div>
     </div>
   </div>
 
@@ -1364,7 +1378,7 @@
 <section class="about-davania" id="meet-davania">
   <div class="about-davania-inner">
     <div class="about-photo-col fade-up">
-      <img src="https://i.imgur.com/4OraH60.jpeg" alt="Davania — Founder of Her Midlife Movement" class="about-photo">
+      <img src="db-pool-portrait.jpg" alt="Davania — Founder of Her Midlife Movement" class="about-photo">
       <div class="about-photo-caption">Davania · Founder</div>
     </div>
     <div class="about-text-col fade-up">
@@ -1426,6 +1440,77 @@
       #framework .grid-3 { grid-template-columns: 1fr !important; }
     }
   </style>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials-section" id="testimonials">
+  <div class="testimonials-inner">
+    <div class="fade-up" style="margin-bottom:1rem;">
+      <span style="font-size:0.7rem; letter-spacing:0.22em; color:var(--terracotta); text-transform:uppercase;">Desert Bloom 2026 · A Look Back</span>
+    </div>
+    <h2 class="fade-up" style="font-family:'Cormorant Garamond',serif; font-size:clamp(2rem,4vw,3rem); color:var(--navy); font-weight:400; margin-bottom:1rem;">The experience is curated.<br><em>The connection is real.</em></h2>
+    <p class="fade-up" style="font-family:'DM Sans',sans-serif; font-size:0.95rem; color:var(--muted); line-height:1.85; max-width:640px; margin:0 auto 3.5rem;">In October 2026, eight women gathered in Fountain Hills, Arizona for the first Her Midlife Movement retreat — Desert Bloom. What they found was rest, connection, beauty, and each other. Here's what they had to say.</p>
+
+    <!-- EVENING PHOTO — full-width before quote cards -->
+    <div class="fade-up" style="margin-bottom:3.5rem;">
+      <img src="desert-bloom-evening.jpg" alt="Desert Bloom 2026 women laughing together at evening gathering" style="width:100%; max-width:960px; display:block; margin:0 auto; object-fit:cover; max-height:520px;" />
+    </div>
+
+    <div class="testimonials-grid fade-up">
+      <div class="testimonial-card">
+        <div class="testimonial-quote">"</div>
+        <p class="testimonial-text">The first time in a long time I felt like I could completely switch off my brain. Everything about this retreat made me forget about my usual responsibilities and invited me to take a well-needed moment for myself.</p>
+        <div class="testimonial-author">— Zenobia<span style="display:block; font-size:0.7rem; letter-spacing:0.15em; color:var(--terracotta); margin-top:0.3rem;">Desert Bloom 2026</span></div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-quote">"</div>
+        <p class="testimonial-text">It is not often that I find myself in a space where no one is depending on me to take care of them, and where my only responsibility was to simply be present and be cared for. That experience is a gift in itself, and I will cherish it forever.</p>
+        <div class="testimonial-author">— Tammy, Atlanta<span style="display:block; font-size:0.7rem; letter-spacing:0.15em; color:var(--terracotta); margin-top:0.3rem;">Desert Bloom 2026</span></div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-quote">"</div>
+        <p class="testimonial-text">Davania's attention to detail is unmatched. She truly thought of everything — all of the personal touches made for an unforgettable time. You won't leave the same!</p>
+        <div class="testimonial-author">— Jamé, Atlanta<span style="display:block; font-size:0.7rem; letter-spacing:0.15em; color:var(--terracotta); margin-top:0.3rem;">Desert Bloom 2026</span></div>
+      </div>
+    </div>
+
+    <!-- PHOTO GRID -->
+    <div class="fade-up" style="margin-top:4rem;">
+      <span style="font-size:0.7rem; letter-spacing:0.22em; color:var(--terracotta); text-transform:uppercase; display:block; text-align:center; margin-bottom:2rem;">Every Detail, Curated</span>
+      <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:0.75rem; max-width:960px; margin:0 auto;">
+        <img src="db-welcome-sign.jpg" alt="Welcome to Desert Bloom 2026" style="width:100%; aspect-ratio:1/1; object-fit:cover;" />
+        <img src="db-white-selfie.jpg" alt="Desert Bloom 2026 women in white" style="width:100%; aspect-ratio:1/1; object-fit:cover;" />
+        <img src="db-massage.jpg" alt="Outdoor massage with mountain view" style="width:100%; aspect-ratio:1/1; object-fit:cover;" />
+        <img src="db-dinner-table.jpg" alt="Desert Bloom 2026 dinner gathering" style="width:100%; aspect-ratio:1/1; object-fit:cover;" />
+        <img src="db-pool-portrait.jpg" alt="Desert Bloom 2026 poolside" style="width:100%; aspect-ratio:1/1; object-fit:cover;" />
+        <img src="db-fun-signs.jpg" alt="Desert Bloom 2026 fun moments" style="width:100%; aspect-ratio:1/1; object-fit:cover;" />
+      </div>
+    </div>
+
+    <!-- GROUP PHOTO -->
+    <div class="fade-up" style="margin-top:3rem;">
+      <img src="desert-bloom-group.jpg" alt="Desert Bloom 2026 — Her Midlife Movement women in Fountain Hills, Arizona" style="width:100%; max-width:860px; display:block; margin:0 auto; object-fit:cover;" />
+      <p style="font-family:'DM Sans',sans-serif; font-size:0.72rem; letter-spacing:0.16em; color:var(--muted); text-transform:uppercase; text-align:center; margin-top:1rem;">Desert Bloom 2026 &nbsp;·&nbsp; Fountain Hills, Arizona</p>
+    </div>
+
+    <!-- IN THREE WORDS -->
+    <div class="fade-up" style="margin-top:5rem; border-top:1px solid rgba(0,0,0,0.08); padding-top:4rem;">
+      <span style="font-size:0.7rem; letter-spacing:0.22em; color:var(--terracotta); text-transform:uppercase; display:block; margin-bottom:2rem;">How They Described It</span>
+      <div style="display:flex; flex-direction:column; gap:0.9rem; align-items:center;">
+        <p style="font-family:'Cormorant Garamond',serif; font-size:1.3rem; color:var(--navy); font-style:italic; letter-spacing:0.04em;">Connection. &nbsp;·&nbsp; Relaxation. &nbsp;·&nbsp; Renewed.</p>
+        <p style="font-family:'Cormorant Garamond',serif; font-size:1.3rem; color:var(--navy); font-style:italic; letter-spacing:0.04em;">Breathtaking. &nbsp;·&nbsp; Phenomenal. &nbsp;·&nbsp; Absolute.</p>
+        <p style="font-family:'Cormorant Garamond',serif; font-size:1.3rem; color:var(--navy); font-style:italic; letter-spacing:0.04em;">Classy. &nbsp;·&nbsp; Priceless. &nbsp;·&nbsp; Blessed.</p>
+      </div>
+    </div>
+
+    <!-- MORE THAN A GETAWAY -->
+    <div class="fade-up" style="margin-top:5rem; background:var(--navy); padding:4rem 3rem; max-width:700px; margin-left:auto; margin-right:auto; margin-top:4rem;">
+      <h3 style="font-family:'Cormorant Garamond',serif; font-size:clamp(1.5rem,3vw,2rem); color:#fff; font-weight:400; margin-bottom:1.2rem;">More Than a Getaway</h3>
+      <p style="font-family:'DM Sans',sans-serif; font-size:0.95rem; color:rgba(255,255,255,0.82); line-height:1.9; margin-bottom:2rem;">These experiences aren't about filling every minute of an itinerary. They're about creating room to pause, laugh, connect, explore, reflect, and make memories with women who may arrive as strangers and leave connected in a completely different way.</p>
+      <p style="font-family:'Cormorant Garamond',serif; font-size:1.15rem; font-style:italic; color:#C9A96E; margin-bottom:2rem;">There's More in Midlife.<br><span style="font-family:'DM Sans',sans-serif; font-size:0.78rem; font-style:normal; letter-spacing:0.1em; color:rgba(255,255,255,0.6);">Move. Travel. Live boldly. One season at a time.</span></p>
+      <a href="#experiences" style="display:inline-block; border:1px solid rgba(255,255,255,0.4); color:#fff; font-family:'DM Sans',sans-serif; font-size:0.78rem; letter-spacing:0.18em; text-transform:uppercase; padding:0.9rem 2.2rem; text-decoration:none; transition:all 0.3s;">Explore Upcoming Experiences →</a>
+    </div>
+  </div>
 </section>
 
 <!-- THERE IS MORE IN MIDLIFE -->
@@ -1589,7 +1674,7 @@
     <div class="footer-col">
       <h4>Experiences</h4>
       <ul>
-        <li><a href="#experiences">Desert Bloom 2026</a></li>
+        <li><a href="#desert-bloom-2026">Desert Bloom 2026</a></li>
         <li><a href="#desert-bloom-2027">Desert Bloom: Becoming 2027</a></li>
         <li><a href="#marthas-vineyard">Savor the Season · MV</a></li>
       </ul>
@@ -1612,16 +1697,6 @@
 </footer>
 
 <script>
-  function openJTM() {
-    var el = document.getElementById('jtm-overlay');
-    el.style.display = 'flex';
-    document.body.style.overflow = 'hidden';
-  }
-  function closeJTM() {
-    var el = document.getElementById('jtm-overlay');
-    el.style.display = 'none';
-    document.body.style.overflow = '';
-  }
   // Desert Bloom 2027 Interest Form
   async function submitDB27() {
     const first = document.getElementById('db27-first').value.trim();
