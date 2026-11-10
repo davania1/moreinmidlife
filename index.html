@@ -1303,7 +1303,7 @@
       <a href="#experiences" class="btn-primary">See What's Coming Up →</a>
       <a href="#" onclick="event.preventDefault();openJTM();" class="btn-outline">Join the Community</a>
     </div>
-    <p class="hero-trust">Desert Bloom 2026 · Martha's Vineyard 2027 · More on the way</p>
+    <p class="hero-trust">Desert Bloom 2026 · Martha's Vineyard 2027 · Dubai 2028</p>
   </div>
   <div class="hero-right">
     <div class="hero-slideshow">
@@ -1400,6 +1400,36 @@
       </div>
       <div style="margin-top:1.5rem;">
         <a href="martha-vineyard.html" class="exp-interest-btn" style="display:inline-block;">Explore the Experience →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- DUBAI 2028 -->
+  <div class="exp-row fade-up" id="dubai-2028" style="flex-direction:row-reverse;">
+    <div class="exp-row-image">
+      <img src="dubai-2028.jpg" alt="Her Midlife Movement — Dubai 2028" style="width:100%; height:100%; object-fit:cover;">
+    </div>
+    <div class="exp-row-content">
+      <div class="exp-card-badge" style="display:inline-block; margin-bottom:1rem; background:var(--midnight); color:rgba(255,255,255,0.8);">Interest List Open · 2028</div>
+      <h3 class="exp-row-title">Dubai: <em style="font-style:italic; color:var(--terracotta);">Bold &amp; Free</em></h3>
+      <p class="exp-row-location">Dubai, UAE · March 18–25, 2028 · 8 Days, 7 Nights</p>
+      <p class="exp-row-desc">From iconic landmarks to rich culture and unforgettable experiences — this is Dubai, curated the HMM way. A land-only international experience for women ready to explore, connect, and live boldly.</p>
+      <div style="display:flex; flex-wrap:wrap; gap:0.6rem; margin:1rem 0 1.5rem;">
+        <span style="font-size:0.75rem; letter-spacing:0.1em; background:rgba(196,113,74,0.08); color:var(--terracotta); padding:0.35rem 0.9rem; border:1px solid rgba(196,113,74,0.2);">Upscale Hotel</span>
+        <span style="font-size:0.75rem; letter-spacing:0.1em; background:rgba(196,113,74,0.08); color:var(--terracotta); padding:0.35rem 0.9rem; border:1px solid rgba(196,113,74,0.2);">Curated Experiences</span>
+        <span style="font-size:0.75rem; letter-spacing:0.1em; background:rgba(196,113,74,0.08); color:var(--terracotta); padding:0.35rem 0.9rem; border:1px solid rgba(196,113,74,0.2);">Private Group Transport</span>
+        <span style="font-size:0.75rem; letter-spacing:0.1em; background:rgba(196,113,74,0.08); color:var(--terracotta); padding:0.35rem 0.9rem; border:1px solid rgba(196,113,74,0.2);">HMM Welcome Gathering</span>
+      </div>
+      <!-- DUBAI INTEREST FORM -->
+      <div style="background:rgba(196,113,74,0.06); border:1px solid rgba(196,113,74,0.2); padding:1.8rem; margin-top:1.5rem;">
+        <div style="font-size:0.72rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--terracotta); margin-bottom:1.2rem;">✦ Join the Interest List</div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.8rem; margin-bottom:0.8rem;">
+          <input type="text" id="dxb-first" placeholder="First name" style="background:#fff; border:1px solid rgba(107,95,86,0.2); padding:0.7rem 1rem; font-family:'DM Sans',sans-serif; font-size:0.9rem; outline:none; width:100%;">
+          <input type="text" id="dxb-last" placeholder="Last name" style="background:#fff; border:1px solid rgba(107,95,86,0.2); padding:0.7rem 1rem; font-family:'DM Sans',sans-serif; font-size:0.9rem; outline:none; width:100%;">
+        </div>
+        <input type="email" id="dxb-email" placeholder="Email address" style="background:#fff; border:1px solid rgba(107,95,86,0.2); padding:0.7rem 1rem; font-family:'DM Sans',sans-serif; font-size:0.9rem; outline:none; width:100%; margin-bottom:0.8rem; display:block;">
+        <button onclick="submitDXB()" style="width:100%; background:var(--terracotta); color:#fff; border:none; padding:0.9rem; font-family:'DM Sans',sans-serif; font-size:0.82rem; letter-spacing:0.16em; text-transform:uppercase; cursor:pointer;">I'm Interested in Dubai →</button>
+        <div id="dxb-success" style="display:none; margin-top:1rem; font-family:'Cormorant Garamond',serif; font-size:1rem; font-style:italic; color:var(--terracotta); text-align:center;">✦ You're on the list! We'll be in touch when details are released.</div>
       </div>
     </div>
   </div>
@@ -1836,6 +1866,31 @@
 
 <script>
   // Desert Bloom 2027 Interest Form
+  async function submitDXB() {
+    const first = document.getElementById('dxb-first').value.trim();
+    const last = document.getElementById('dxb-last').value.trim();
+    const email = document.getElementById('dxb-email').value.trim();
+    if (!first || !email) { alert('Please enter your name and email.'); return; }
+    const btn = document.querySelector('#dubai-2028 button');
+    btn.textContent = 'Sending…'; btn.disabled = true;
+    const res = await fetch('https://formspree.io/f/mnpqqawv', {
+      method: 'POST',
+      headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        _subject: `Dubai 2028 Interest — ${first} ${last}`,
+        Name: `${first} ${last}`, Email: email,
+        Experience: 'Dubai: Bold & Free — March 18–25, 2028'
+      })
+    });
+    if (res.ok) {
+      document.getElementById('dxb-success').style.display = 'block';
+      btn.textContent = '✦ You\'re On the List!'; btn.style.opacity = '0.7';
+    } else {
+      btn.textContent = 'I\'m Interested in Dubai →'; btn.disabled = false;
+      alert('Something went wrong. Please email hermidlifemovement@icloud.com');
+    }
+  }
+
   async function submitDB27() {
     const first = document.getElementById('db27-first').value.trim();
     const last = document.getElementById('db27-last').value.trim();
