@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dubai: Bold & Free · 2028 | Her Midlife Movement</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #FAF6F0;
+    --sand: #EFE6DA;
+    --terracotta: #C4714A;
+    --rust: #9B4E2A;
+    --sage: #4A6741;
+    --navy: #1B2A3B;
+    --gold: #B8883A;
+    --midnight: #1C1814;
+    --body: #3D322C;
+    --muted: #6B5F56;
+    --desert-gold: #C9A96E;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--cream); color: var(--body); font-family: 'DM Sans', sans-serif; overflow-x: hidden; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    padding: 1.2rem 3rem; display: flex; justify-content: space-between; align-items: center;
+    background: rgba(250,246,240,0.96); backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(27,42,59,0.1);
+  }
+  .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; color: var(--navy); text-decoration: none; letter-spacing: 0.04em; }
+  .nav-logo span { color: var(--terracotta); }
+  .nav-back { font-size: 0.78rem; letter-spacing: 0.1em; color: var(--muted); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; transition: color 0.3s; }
+  .nav-back:hover { color: var(--terracotta); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh; display: flex; flex-direction: column;
+    justify-content: flex-end; position: relative; overflow: hidden;
+    background: var(--midnight);
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: linear-gradient(160deg, #1C1814 0%, #2C1F14 40%, #1C1814 100%);
+  }
+  .hero-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(28,24,20,0.97) 0%, rgba(28,24,20,0.82) 50%, rgba(28,24,20,0.68) 100%);
+  }
+  .hero-image {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: cover; opacity: 0.28;
+  }
+  .hero-content {
+    position: relative; z-index: 2;
+    padding: 0 6rem 6rem;
+    max-width: 820px;
+  }
+  .hero-phase {
+    display: inline-block; font-size: 0.7rem; letter-spacing: 0.22em;
+    background: var(--terracotta); color: #fff;
+    padding: 0.4rem 1.1rem; margin-bottom: 2rem;
+  }
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3.5rem, 8vw, 7rem);
+    font-weight: 300; color: #fff; line-height: 0.95;
+    margin-bottom: 1.5rem;
+  }
+  .hero-title em { font-style: italic; color: var(--desert-gold); display: block; }
+  .hero-meta {
+    display: flex; gap: 2.5rem; margin-bottom: 2rem; flex-wrap: wrap;
+  }
+  .hero-meta-label { font-size: 0.65rem; letter-spacing: 0.2em; color: rgba(255,255,255,0.45); margin-bottom: 0.3rem; }
+  .hero-meta-value { font-size: 0.92rem; color: rgba(255,255,255,0.9); }
+  .hero-tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem; font-style: italic; color: var(--desert-gold);
+    line-height: 1.5; max-width: 560px;
+  }
+
+  /* SCROLL INDICATOR */
+  .scroll-hint {
+    position: absolute; bottom: 2rem; right: 6rem; z-index: 2;
+    font-size: 0.68rem; letter-spacing: 0.18em; color: rgba(255,255,255,0.35);
+    writing-mode: vertical-rl; display: flex; align-items: center; gap: 0.8rem;
+  }
+  .scroll-hint::after { content: ''; display: block; width: 1px; height: 40px; background: rgba(255,255,255,0.2); }
+
+  /* INTRO SECTION */
+  .intro {
+    background: var(--cream); padding: 7rem 6rem;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center;
+  }
+  .intro-heading {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.2rem, 3.8vw, 3.5rem);
+    font-weight: 300; color: var(--navy); line-height: 1.2; margin-bottom: 2rem;
+  }
+  .intro-heading em { font-style: italic; color: var(--terracotta); }
+  .intro-body { font-size: 1rem; color: var(--body); line-height: 1.85; margin-bottom: 1.5rem; }
+  .intro-image-block { position: relative; }
+  .intro-image-block img { width: 100%; display: block; }
+  .intro-quote {
+    margin-top: 1.5rem;
+    background: var(--midnight); padding: 2rem 2.2rem;
+  }
+  .intro-quote p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem; font-style: italic; color: #fff; line-height: 1.6;
+  }
+  .intro-quote cite { display: block; margin-top: 0.8rem; font-size: 0.7rem; letter-spacing: 0.15em; color: var(--desert-gold); font-style: normal; }
+
+  /* PROMISE */
+  .promise { background: var(--midnight); padding: 7rem 6rem; text-align: center; }
+  .promise-eyebrow { font-size: 0.7rem; letter-spacing: 0.22em; color: var(--desert-gold); display: block; margin-bottom: 1.5rem; }
+  .promise-heading {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    font-weight: 300; color: #fff; line-height: 1.15; margin-bottom: 2rem;
+  }
+  .promise-heading em { font-style: italic; color: var(--desert-gold); }
+  .promise-body {
+    font-size: 1.1rem; color: rgba(255,255,255,0.72); line-height: 1.9;
+    max-width: 640px; margin: 0 auto 3rem;
+  }
+  .promise-pillars {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5px;
+    max-width: 1000px; margin: 0 auto;
+  }
+  .promise-pillar {
+    background: rgba(255,255,255,0.05); padding: 2.5rem 2rem;
+    border-top: 2px solid var(--terracotta);
+  }
+  .promise-pillar-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem; color: #fff; margin-bottom: 0.8rem;
+  }
+  .promise-pillar-title em { font-style: italic; color: var(--desert-gold); }
+  .promise-pillar p { font-size: 0.88rem; color: rgba(255,255,255,0.6); line-height: 1.75; }
+
+  /* EXPERIENCE */
+  .experience { background: var(--sand); padding: 7rem 6rem; }
+  .experience-header { text-align: center; margin-bottom: 5rem; }
+  .experience-heading {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.2rem, 4vw, 3.5rem);
+    font-weight: 300; color: var(--navy); line-height: 1.2; margin-top: 1rem;
+  }
+  .experience-heading em { font-style: italic; color: var(--terracotta); }
+  .experience-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px; }
+  .exp-item {
+    background: var(--cream); padding: 3rem;
+    border-left: 3px solid transparent; transition: border-color 0.3s;
+  }
+  .exp-item:hover { border-left-color: var(--terracotta); }
+  .exp-item-icon { font-size: 1.8rem; margin-bottom: 1rem; display: block; }
+  .exp-item-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem; color: var(--navy); margin-bottom: 0.8rem;
+  }
+  .exp-item p { font-size: 0.92rem; color: var(--muted); line-height: 1.8; }
+
+  /* COMING SOON BANNER */
+  .coming-soon {
+    background: var(--terracotta); padding: 3rem 6rem; text-align: center;
+  }
+  .coming-soon h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.8rem, 3vw, 2.8rem);
+    font-weight: 300; color: #fff; margin-bottom: 0.8rem;
+  }
+  .coming-soon h3 em { font-style: italic; }
+  .coming-soon p { font-size: 0.95rem; color: rgba(255,255,255,0.85); line-height: 1.7; max-width: 580px; margin: 0 auto; }
+
+  /* INTEREST FORM */
+  .interest { background: var(--cream); padding: 7rem 6rem; }
+  .interest-inner { max-width: 680px; margin: 0 auto; text-align: center; }
+  .interest-heading {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 300; color: var(--navy); line-height: 1.15; margin-bottom: 1.2rem;
+  }
+  .interest-heading em { font-style: italic; color: var(--terracotta); }
+  .interest-sub { font-size: 1rem; color: var(--muted); line-height: 1.85; margin-bottom: 3rem; }
+  .int-form { display: flex; flex-direction: column; gap: 1rem; text-align: left; }
+  .int-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .int-input {
+    background: var(--sand); border: 1px solid rgba(27,42,59,0.15);
+    color: var(--body); font-family: 'DM Sans', sans-serif; font-size: 0.95rem;
+    padding: 0.9rem 1.2rem; outline: none; transition: border-color 0.3s; width: 100%;
+  }
+  .int-input::placeholder { color: var(--muted); }
+  .int-input:focus { border-color: var(--terracotta); }
+  .int-submit {
+    background: var(--terracotta); color: #fff; border: none;
+    font-family: 'DM Sans', sans-serif; font-size: 0.85rem; letter-spacing: 0.16em;
+    text-transform: uppercase; padding: 1.1rem; cursor: pointer; transition: background 0.3s; width: 100%;
+  }
+  .int-submit:hover { background: var(--rust); }
+  .int-success {
+    display: none; margin-top: 1.5rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem; font-style: italic; color: var(--terracotta); text-align: center;
+  }
+  .int-legal { font-size: 0.75rem; color: var(--muted); line-height: 1.7; margin-top: 1rem; text-align: center; }
+
+  /* DAVANIA */
+  .davania { background: var(--midnight); padding: 7rem 6rem; }
+  .davania-inner { max-width: 760px; margin: 0 auto; text-align: center; }
+  .davania-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.3rem, 2.5vw, 1.8rem); font-style: italic; color: #fff; line-height: 1.75;
+    margin-bottom: 2rem;
+  }
+  .davania-attr { font-size: 0.75rem; letter-spacing: 0.18em; color: var(--desert-gold); }
+
+  /* FOOTER */
+  footer { background: var(--midnight); padding: 3rem 6rem; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.08); }
+  .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: #fff; }
+  .footer-logo span { color: var(--terracotta); }
+  .footer-links { display: flex; gap: 2rem; }
+  .footer-links a { font-size: 0.78rem; color: rgba(255,255,255,0.4); text-decoration: none; transition: color 0.3s; }
+  .footer-links a:hover { color: #fff; }
+
+  /* ANIMATIONS */
+  .fade-up { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+  /* MOBILE */
+  @media (max-width: 600px) {
+    nav { padding: 1rem 1.5rem; }
+    .hero-content { padding: 0 2rem 4rem; }
+    .hero-title { font-size: 3rem; }
+    .scroll-hint { right: 2rem; }
+    .intro { grid-template-columns: 1fr; padding: 4rem 2rem; gap: 4rem; }
+    .promise { padding: 4rem 2rem; }
+    .promise-pillars { grid-template-columns: 1fr 1fr; }
+    .experience { padding: 4rem 2rem; }
+    .experience-grid { grid-template-columns: 1fr; }
+    .coming-soon { padding: 3rem 2rem; }
+    .interest { padding: 4rem 2rem; }
+    .davania { padding: 4rem 2rem; }
+    footer { flex-direction: column; gap: 1.5rem; text-align: center; padding: 2.5rem 2rem; }
+    .footer-links { flex-wrap: wrap; justify-content: center; }
+    .int-row { grid-template-columns: 1fr; }
+    .promise-pillars { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 400px) {
+    .promise-pillars { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">Her Midlife <span>Movement</span></a>
+  <a href="index.html" class="nav-back">← Back to moreinmidlife.com</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <img class="hero-image" src="dubai-2028.jpg" alt="Dubai: Bold & Free — Her Midlife Movement 2028">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-phase">Interest List Open · 2028</div>
+    <h1 class="hero-title">
+      Dubai:<br>
+      <em>Bold &amp; Free</em>
+    </h1>
+    <div class="hero-meta">
+      <div class="hero-meta-item">
+        <div class="hero-meta-label">Destination</div>
+        <div class="hero-meta-value">Dubai, UAE</div>
+      </div>
+      <div class="hero-meta-item">
+        <div class="hero-meta-label">Dates</div>
+        <div class="hero-meta-value">March 18–25, 2028 · 8 Days, 7 Nights</div>
+      </div>
+      <div class="hero-meta-item">
+        <div class="hero-meta-label">Experience</div>
+        <div class="hero-meta-value">Land-Only · International · Curated Group</div>
+      </div>
+    </div>
+    <p class="hero-tagline">Some moments are better experienced than explained.</p>
+  </div>
+  <div class="scroll-hint">Scroll to explore</div>
+</section>
+
+<!-- INTRO -->
+<section class="intro">
+  <div class="fade-up">
+    <h2 class="intro-heading">You've dreamed of an adventure<br><em>that feels like you.</em></h2>
+    <p class="intro-body">Not a rushed tour. Not a cookie-cutter itinerary. A real, immersive experience in one of the most remarkable cities in the world — curated the HMM way. With the kind of women who make everything better.</p>
+    <p class="intro-body">Dubai is a city that moves boldly. Glass towers meet ancient markets. The modern and the timeless exist side by side. It's a place that meets you where you are and invites you to go further than you thought you would.</p>
+    <p class="intro-body">This is for the woman who is ready to explore something new — and to do it surrounded by a community that sees her and cheers her on.</p>
+  </div>
+  <div class="fade-up intro-image-block">
+    <img src="dubai-2028.jpg" alt="Dubai 2028 — Her Midlife Movement">
+    <div class="intro-quote">
+      <p>"I wanted to create something that takes us somewhere extraordinary — and lets us experience it fully, freely, and together."</p>
+      <cite>— Davania · Founder, Her Midlife Movement</cite>
+    </div>
+  </div>
+</section>
+
+<!-- PROMISE / PILLARS -->
+<section class="promise">
+  <div class="fade-up">
+    <span class="promise-eyebrow">What This Is Built On</span>
+    <h2 class="promise-heading">Culture. Adventure.<br><em>Luxury. Connection.</em></h2>
+    <p class="promise-body">Every HMM experience has a heartbeat. For Dubai: Bold & Free, it's the belief that midlife women deserve to explore the world boldly — with intention, with community, and with every detail handled.</p>
+    <div class="promise-pillars">
+      <div class="promise-pillar">
+        <div class="promise-pillar-title"><em>Culture</em></div>
+        <p>Step into a city with layers — from the historic Al Fahidi district to contemporary art, cuisine, and design. Experience Dubai as more than a skyline.</p>
+      </div>
+      <div class="promise-pillar">
+        <div class="promise-pillar-title"><em>Adventure</em></div>
+        <p>See it from above, from the sand, from the water. This isn't a passive trip. We're going to experience Dubai the way it's meant to be — fully and freely.</p>
+      </div>
+      <div class="promise-pillar">
+        <div class="promise-pillar-title"><em>Luxury</em></div>
+        <p>Upscale accommodations, curated dining, private group transport. Every logistic handled. You just show up and be present for the experience.</p>
+      </div>
+      <div class="promise-pillar">
+        <div class="promise-pillar-title"><em>Connection</em></div>
+        <p>The kind of sisterhood that happens when women travel together. HMM gatherings have a way of creating friendships that outlast the trip itself.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT'S INCLUDED (coming soon framing) -->
+<section class="experience">
+  <div class="experience-header fade-up">
+    <span style="font-size:0.7rem; letter-spacing:0.22em; color:var(--terracotta); display:block; margin-bottom:0.8rem;">What's Being Built</span>
+    <h2 class="experience-heading">Eight days curated<br><em>for the bold woman in you.</em></h2>
+    <p style="font-size:1rem; color:var(--muted); margin-top:1rem; line-height:1.8; max-width:600px; margin-left:auto; margin-right:auto;">Full details are still being curated — because I never rush what we build. Here's a picture of what this experience is being built around.</p>
+  </div>
+  <div class="experience-grid fade-up">
+    <div class="exp-item">
+      <span class="exp-item-icon">🏨</span>
+      <div class="exp-item-title">Upscale Accommodations</div>
+      <p>Shared upscale hotel accommodations — selected for comfort, location, and the HMM experience standard. The kind of place you don't want to leave in the morning.</p>
+    </div>
+    <div class="exp-item">
+      <span class="exp-item-icon">✨</span>
+      <div class="exp-item-title">HMM Welcome Gathering</div>
+      <p>We always begin the same way — intentionally. A welcome experience that sets the tone, starts the connections, and reminds every woman: you belong here.</p>
+    </div>
+    <div class="exp-item">
+      <span class="exp-item-icon">🌆</span>
+      <div class="exp-item-title">Curated Experiences</div>
+      <p>Iconic landmarks, cultural immersion, adventure and discovery — curated specifically for this group, this city, this season. Not the typical tourist checklist.</p>
+    </div>
+    <div class="exp-item">
+      <span class="exp-item-icon">🚐</span>
+      <div class="exp-item-title">Private Group Transport</div>
+      <p>Transportation for all scheduled group experiences. You move together, you don't have to figure anything out — just be present and enjoy the ride.</p>
+    </div>
+    <div class="exp-item">
+      <span class="exp-item-icon">🌊</span>
+      <div class="exp-item-title">Time to Explore</div>
+      <p>Built-in free time to follow your curiosity — the souk, the waterfront, the dining scene. Dubai rewards the woman who wanders. We'll make space for that.</p>
+    </div>
+    <div class="exp-item">
+      <span class="exp-item-icon">🤝</span>
+      <div class="exp-item-title">HMM Community</div>
+      <p>You're not just booking a trip. You're joining a community of women who are choosing to live boldly in midlife — and who will be in your corner long after Dubai.</p>
+    </div>
+  </div>
+</section>
+
+<!-- DETAILS COMING SOON BANNER -->
+<section class="coming-soon fade-up">
+  <h3>Full details &amp; pricing<br><em>coming soon.</em></h3>
+  <p style="margin-top:1rem;">Join the interest list below to be the first to know when registration opens — and to receive exclusive early access before the public announcement.</p>
+</section>
+
+<!-- DAVANIA SECTION -->
+<section class="davania">
+  <div class="davania-inner fade-up">
+    <span style="font-size:0.7rem; letter-spacing:0.22em; color:var(--desert-gold); display:block; margin-bottom:2rem;">From Davania</span>
+    <p class="davania-quote">"Dubai has been on my heart for a while. It's one of those cities that feels like it was made for a moment exactly like this — when a woman is ready to step into something bold, something new, something bigger than she thought she'd do.</p>
+    <p class="davania-quote">I wanted to bring our community there. Not as tourists passing through — but as women who arrive with intention, who explore with curiosity, and who leave having experienced something that changes how they see themselves and what's possible.</p>
+    <p class="davania-quote">This is two years away. And the interest list is open now because the women who say yes early always set the energy for the whole experience. If Dubai is calling you — listen to that."</p>
+    <div class="davania-attr">— Davania · Founder, Her Midlife Movement</div>
+  </div>
+</section>
+
+<!-- INTEREST LIST FORM -->
+<section class="interest" id="interest">
+  <div class="interest-inner fade-up">
+    <h2 class="interest-heading">Dubai is<br>calling.<br><em>Answer it.</em></h2>
+    <p class="interest-sub">Join the Dubai 2028 interest list and be the first to receive trip details, pricing, and early registration access — before we open to the public.</p>
+    <div class="int-form">
+      <div class="int-row">
+        <input type="text" id="dxb-first" class="int-input" placeholder="First name" required>
+        <input type="text" id="dxb-last" class="int-input" placeholder="Last name">
+      </div>
+      <input type="email" id="dxb-email" class="int-input" placeholder="Email address" required>
+      <button class="int-submit" onclick="submitDXB()">I'm Interested in Dubai 2028 →</button>
+      <div id="dxb-success" class="int-success">✦ You're on the list! Watch your inbox for updates.</div>
+      <p class="int-legal">By joining the list, you agree to receive updates about Dubai: Bold &amp; Free 2028. You can unsubscribe at any time. No obligation to book.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Her Midlife <span>Movement</span></div>
+  <div class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="martha-vineyard.html">Martha's Vineyard 2027</a>
+    <a href="mailto:hermidlifemovement@icloud.com">Contact</a>
+  </div>
+</footer>
+
+<script>
+  // Fade-up scroll animation
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // Dubai interest form submission
+  async function submitDXB() {
+    const first = document.getElementById('dxb-first').value.trim();
+    const last = document.getElementById('dxb-last').value.trim();
+    const email = document.getElementById('dxb-email').value.trim();
+    if (!first || !email) { alert('Please enter your first name and email address.'); return; }
+    const btn = document.querySelector('.int-submit');
+    btn.textContent = 'Sending…'; btn.disabled = true;
+    try {
+      const res = await fetch('https://formspree.io/f/mnpqqawv', {
+        method: 'POST',
+        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          _subject: `Dubai 2028 Interest — ${first} ${last}`,
+          Name: `${first} ${last}`,
+          Email: email,
+          Experience: 'Dubai: Bold & Free — March 18–25, 2028'
+        })
+      });
+      if (res.ok) {
+        document.getElementById('dxb-success').style.display = 'block';
+        btn.textContent = '✦ You\'re On the List!';
+        btn.style.opacity = '0.7';
+      } else {
+        btn.textContent = 'I\'m Interested in Dubai 2028 →';
+        btn.disabled = false;
+        alert('Something went wrong. Please email hermidlifemovement@icloud.com to join the list.');
+      }
+    } catch(e) {
+      btn.textContent = 'I\'m Interested in Dubai 2028 →';
+      btn.disabled = false;
+      alert('Something went wrong. Please email hermidlifemovement@icloud.com to join the list.');
+    }
+  }
+</script>
+
+</body>
+</html>

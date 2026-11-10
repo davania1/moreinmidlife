@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,6 +6,16 @@
 <meta name="p:domain_verify" content="2c1336389c73afe9392ea97a7f6b5e46"/>
 <title>Her Midlife Movement | moreinmidlife.com</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<script>
+  function openJTM() {
+    var el = document.getElementById('jtm-overlay');
+    if (el) { el.style.display = 'flex'; document.body.style.overflow = 'hidden'; }
+  }
+  function closeJTM() {
+    var el = document.getElementById('jtm-overlay');
+    if (el) { el.style.display = 'none'; document.body.style.overflow = ''; }
+  }
+</script>
 <style>
   :root {
     --cream: #FAF6F0;
@@ -16,6 +25,7 @@
     --sage: #7A8C6E;
     --desert-gold: #B8883A;
     --midnight: #1C1814;
+    --navy: #1C1814; /* alias for midnight — keep for legacy inline styles */
     --body-text: #3D322C;
     --muted: #6B5F56;
     --blush: #E8C4B0;
@@ -47,19 +57,39 @@
     color: var(--midnight); text-decoration: none;
   }
   .nav-logo span { color: var(--terracotta); }
-  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links { display: flex; gap: 2.2rem; list-style: none; }
   .nav-links a {
-    font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase;
+    font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase;
     color: var(--body-text); text-decoration: none; transition: color 0.3s;
+    position: relative; padding-bottom: 2px;
+  }
+  .nav-links a::after {
+    content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 1px;
+    background: var(--terracotta); transition: width 0.3s ease;
   }
   .nav-links a:hover { color: var(--terracotta); }
+  .nav-links a:hover::after { width: 100%; }
   .nav-cta {
-    font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase;
+    font-size: 0.75rem; letter-spacing: 0.16em; text-transform: uppercase;
     color: var(--cream); background: var(--terracotta);
-    padding: 0.65rem 1.6rem; border: none; cursor: pointer;
-    transition: background 0.3s; text-decoration: none; display: inline-block;
+    padding: 0.75rem 1.8rem; border: none; cursor: pointer;
+    transition: background 0.3s, transform 0.2s; text-decoration: none; display: inline-block;
+    font-weight: 500;
   }
-  .nav-cta:hover { background: var(--rust); }
+  .nav-cta:hover { background: var(--rust); transform: translateY(-1px); }
+
+  /* ── HERO SLIDESHOW ── */
+  .hero-slideshow {
+    position: absolute; inset: 0; overflow: hidden;
+    background: var(--midnight);
+  }
+  .hero-slideshow .slide {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover; object-position: center;
+    opacity: 0; transition: opacity 1.5s ease-in-out;
+  }
+  .hero-slideshow .slide.active { opacity: 1; }
 
   /* ── HERO ── */
   .hero {
@@ -73,45 +103,54 @@
     background: var(--cream);
   }
   .hero-eyebrow {
-    font-size: 0.72rem; letter-spacing: 0.25em; text-transform: uppercase;
-    color: var(--terracotta); margin-bottom: 1.5rem;
+    font-size: 0.7rem; letter-spacing: 0.28em; text-transform: uppercase;
+    color: var(--terracotta); margin-bottom: 1.2rem;
     display: flex; align-items: center; gap: 0.8rem;
   }
   .hero-eyebrow::before {
-    content: ''; display: block; width: 36px; height: 1.5px;
-    background: var(--terracotta);
+    content: ''; display: block; width: 32px; height: 1.5px;
+    background: var(--terracotta); flex-shrink: 0;
   }
   .hero-title {
     font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(3.2rem, 5.5vw, 5.2rem);
-    font-weight: 300; line-height: 1.1;
-    color: var(--midnight); margin-bottom: 2rem;
+    font-size: clamp(2.8rem, 5vw, 4.6rem);
+    font-weight: 300; line-height: 1.12;
+    color: var(--midnight); margin-bottom: 1.4rem;
+    letter-spacing: -0.01em;
   }
   .hero-title em { font-style: italic; color: var(--terracotta); }
   .hero-tagline {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 1.1rem; font-style: italic;
-    color: var(--terracotta); margin-bottom: 1rem; letter-spacing: 0.03em;
+    font-size: 1.05rem; font-style: italic;
+    color: var(--muted); margin-bottom: 0.8rem; letter-spacing: 0.03em;
   }
   .hero-desc {
-    font-size: 1.15rem; line-height: 1.9; color: var(--body-text);
-    max-width: 460px; margin-bottom: 3.5rem;
+    font-size: 1.05rem; line-height: 1.85; color: var(--body-text);
+    max-width: 440px; margin-bottom: 2.8rem;
   }
-  .hero-buttons { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+  .hero-buttons { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
   .btn-primary {
-    font-size: 0.85rem; letter-spacing: 0.16em; text-transform: uppercase;
-    background: var(--terracotta); color: #fff;
-    padding: 1.2rem 2.8rem; border: none; cursor: pointer;
-    transition: background 0.3s; text-decoration: none; display: inline-block;
+    font-size: 0.82rem; letter-spacing: 0.18em; text-transform: uppercase;
+    background: var(--terracotta); color: #fff; font-weight: 500;
+    padding: 1.15rem 2.6rem; border: 2px solid var(--terracotta); cursor: pointer;
+    transition: background 0.25s, transform 0.2s; text-decoration: none; display: inline-block;
   }
-  .btn-primary:hover { background: var(--rust); }
+  .btn-primary:hover { background: var(--rust); border-color: var(--rust); }
   .btn-outline {
-    font-size: 0.85rem; letter-spacing: 0.16em; text-transform: uppercase;
-    background: transparent; color: var(--terracotta);
-    padding: 1.2rem 2.8rem; border: 1.5px solid var(--terracotta);
-    cursor: pointer; transition: all 0.3s; text-decoration: none; display: inline-block;
+    font-size: 0.82rem; letter-spacing: 0.18em; text-transform: uppercase;
+    background: transparent; color: var(--midnight);
+    padding: 1.15rem 2.6rem; border: 1.5px solid rgba(28,24,20,0.3);
+    cursor: pointer; transition: all 0.25s; text-decoration: none; display: inline-block;
   }
-  .btn-outline:hover { background: var(--terracotta); color: #fff; }
+  .btn-outline:hover { border-color: var(--terracotta); color: var(--terracotta); }
+  .hero-trust {
+    margin-top: 2.2rem;
+    display: flex; align-items: center; gap: 0.9rem;
+    font-size: 0.75rem; letter-spacing: 0.08em; color: var(--muted);
+  }
+  .hero-trust::before {
+    content: ''; display: block; width: 20px; height: 1px; background: var(--muted);
+  }
 
   .hero-right {
     position: relative; overflow: hidden;
@@ -164,7 +203,7 @@
 
   /* ── INTRO ── */
   .intro {
-    padding: 7rem 5rem;
+    padding: 6rem 5rem;
     display: grid; grid-template-columns: 220px 1fr; gap: 5rem;
     align-items: start;
     background: var(--cream);
@@ -209,7 +248,7 @@
 
   /* ── PILLARS ── */
   .pillars {
-    background: var(--midnight); padding: 7rem 5rem;
+    background: var(--midnight); padding: 6rem 5rem;
     position: relative; z-index: 1;
   }
   .pillars-header {
@@ -365,11 +404,11 @@
     content: '"RICH"';
     position: absolute;
     font-family: 'Cormorant Garamond', serif;
-    font-size: 22vw; font-weight: 300;
-    color: rgba(196,113,74,0.06);
+    font-size: 14vw; font-weight: 300;
+    color: rgba(196,113,74,0.04);
     top: 50%; left: 50%;
     transform: translate(-50%, -50%);
-    letter-spacing: 0.1em; pointer-events: none; white-space: nowrap;
+    letter-spacing: 0.15em; pointer-events: none; white-space: nowrap;
   }
   .philosophy-inner { position: relative; max-width: 720px; margin: 0 auto; }
   .philosophy-quote {
@@ -467,16 +506,47 @@
     color: var(--terracotta); margin-bottom: 1.5rem; font-weight: 500;
   }
   .exp-grid-new {
-    display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; margin-bottom: 1rem;
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-bottom: 1rem;
   }
   .exp-grid-three { grid-template-columns: repeat(3, 1fr); }
+  /* ── LIFE IN MOTION MARQUEE ── */
+  .lim-track {
+    display: flex; gap: 0.5rem;
+    animation: limScroll 40s linear infinite;
+    width: max-content;
+  }
+  .lim-track img {
+    height: 320px; width: auto;
+    object-fit: cover; flex-shrink: 0;
+    display: block;
+  }
+  .lim-track:hover { animation-play-state: paused; }
+  @keyframes limScroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* ── EXPERIENCE ROWS ── */
+  .exp-row {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 5rem; align-items: center;
+    padding: 4rem 0; border-bottom: 1px solid rgba(107,95,86,0.1);
+  }
+  .exp-row:last-child { border-bottom: none; }
+  .exp-row-reverse { direction: rtl; }
+  .exp-row-reverse > * { direction: ltr; }
+  .exp-row-image img { width: 100%; display: block; }
+  .exp-row-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 300; color: var(--midnight); margin-bottom: 0.5rem; }
+  .exp-row-location { font-size: 0.78rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--terracotta); margin-bottom: 1.2rem; }
+  .exp-row-desc { font-size: 1rem; line-height: 1.9; color: var(--body-text); }
+
   .exp-card-new {
     background: var(--cream); border: 1px solid rgba(107,95,86,0.15);
     overflow: hidden; transition: transform 0.3s, box-shadow 0.3s;
   }
   .exp-card-new:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(28,24,20,0.1); }
-  .exp-card-image { position: relative; height: auto; overflow: hidden; }
-  .exp-card-image img { width: 100%; height: auto; object-fit: contain; display: block; }
+  .exp-card-image { position: relative; height: 220px; overflow: hidden; }
+  .exp-card-image img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
   .exp-card-image-soon {
     height: 200px; display: flex; align-items: center; justify-content: center;
   }
@@ -555,11 +625,12 @@
   }
   .testimonial-quote {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 4rem; color: var(--terracotta); line-height: 0.8;
-    margin-bottom: 1rem;
+    font-size: 2rem; color: var(--terracotta); line-height: 1;
+    margin-bottom: 0.6rem; opacity: 0.6;
   }
   .testimonial-text {
-    font-size: 0.95rem; line-height: 1.85; color: var(--body-text);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem; line-height: 1.75; color: var(--body-text);
     font-style: italic; margin-bottom: 1.2rem;
   }
   .testimonial-author {
@@ -569,6 +640,7 @@
   @media (max-width: 600px) {
     .testimonials-section { padding: 4rem 2rem; }
     .testimonials-grid { grid-template-columns: 1fr; }
+    .db-photo-grid { grid-template-columns: repeat(2,1fr) !important; }
   }
 
   .community-invite {
@@ -652,6 +724,7 @@
   }
 
   /* ── WHAT MATTERS MOST (inline) ── */
+  .what-matters {
     margin-top: 2.5rem;
     padding: 2rem 2.2rem;
     border-left: 3px solid var(--terracotta);
@@ -792,7 +865,7 @@
 
   /* ── CONNECT CARDS ── */
   .connect-cards {
-    display: grid; grid-template-columns: repeat(3, 1fr);
+    display: grid; grid-template-columns: repeat(2, 1fr);
     gap: 1.5rem; margin: 2.5rem 0;
   }
   .connect-card {
@@ -828,6 +901,127 @@
   .footer-copy { font-size: 0.75rem; color: rgba(255,255,255,0.25); letter-spacing: 0.05em; }
   .footer-insta { font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.4); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; transition: color 0.3s; }
   .footer-insta:hover { color: #C9A96E; }
+
+  /* ── DESERT BLOOM 2027 ── */
+  .desert-bloom-2027 {
+    background: var(--midnight);
+    padding: 6rem 5rem;
+  }
+  @media (max-width: 600px) {
+    .desert-bloom-2027 { padding: 4rem 2rem; }
+  }
+
+  /* ── 2027 POLL ── */
+  .poll-section { background: var(--midnight); padding: 7rem 5rem; }
+  .poll-inner { max-width: 1100px; margin: 0 auto; }
+  .poll-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.2rem, 4vw, 3.5rem); font-weight: 300; color: #fff; line-height: 1.2; margin: 1rem 0 1.2rem; }
+  .poll-title em { font-style: italic; color: var(--terracotta); }
+  .poll-subtitle { font-size: 1rem; color: rgba(255,255,255,0.65); margin-bottom: 3rem; line-height: 1.8; max-width: 600px; }
+  .poll-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-bottom: 3rem; }
+  .poll-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 2rem; border-top: 2px solid var(--terracotta); }
+  .poll-card-number { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; color: rgba(201,169,110,0.3); line-height: 1; margin-bottom: 0.8rem; }
+  .poll-card-title { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; color: #fff; margin-bottom: 0.5rem; line-height: 1.4; }
+  .poll-card-desc { font-size: 0.82rem; color: rgba(255,255,255,0.45); margin-bottom: 1.2rem; }
+  .poll-options { display: flex; flex-direction: column; gap: 0.7rem; }
+  .poll-option { display: flex; align-items: flex-start; gap: 0.7rem; cursor: pointer; }
+  .poll-option input { margin-top: 3px; accent-color: var(--terracotta); flex-shrink: 0; width: 15px; height: 15px; }
+  .poll-option span { font-size: 0.88rem; color: rgba(255,255,255,0.75); line-height: 1.5; }
+  .poll-option:hover span { color: #fff; }
+  .poll-submit-area { text-align: center; }
+  .poll-name-row { display: flex; gap: 1rem; justify-content: center; margin-bottom: 1.2rem; flex-wrap: wrap; }
+  .poll-input { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.18); color: #fff; font-family: 'DM Sans', sans-serif; font-size: 0.95rem; padding: 0.75rem 1.2rem; outline: none; transition: border-color 0.3s; width: 260px; }
+  .poll-input::placeholder { color: rgba(255,255,255,0.3); }
+  .poll-input:focus { border-color: var(--terracotta); }
+  .poll-btn { padding: 1rem 3rem; font-size: 0.85rem; border: none; cursor: pointer; }
+  .poll-success { margin-top: 1.5rem; font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-style: italic; color: #C9A96E; padding: 1rem; border: 1px solid rgba(201,169,110,0.3); max-width: 500px; margin-left: auto; margin-right: auto; }
+
+  /* ── MICRO-INTERACTIONS ── */
+  .btn-primary, .btn-outline, .nav-cta, .exp-interest-btn {
+    transition: background 0.25s ease, color 0.25s ease, transform 0.15s ease, box-shadow 0.25s ease;
+  }
+  .btn-primary:hover, .nav-cta:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(196,113,74,0.35);
+  }
+  .btn-outline:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(196,113,74,0.2);
+  }
+  .exp-interest-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 16px rgba(196,113,74,0.3);
+  }
+  /* Photo grid hover */
+  .db-photo-hover {
+    overflow: hidden;
+    display: block;
+  }
+  .db-photo-hover img {
+    transition: transform 0.5s ease;
+    display: block;
+    width: 100%;
+  }
+  .db-photo-hover:hover img { transform: scale(1.04); }
+
+  /* Testimonial card hover */
+  .testimonial-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .testimonial-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(28,24,20,0.1);
+  }
+
+  /* Day story section */
+  .day-story-section {
+    background: #FDFAF6;
+    border-radius: 2px;
+  }
+  .day-story-day {
+    max-width: 900px;
+    margin: 0 auto;
+    padding-bottom: 3.5rem;
+    margin-bottom: 3.5rem;
+    border-bottom: 1px solid rgba(196,113,74,0.15);
+  }
+  .day-story-day:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-bottom: 0;
+  }
+  .day-story-day-label {
+    font-size: 0.68rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-bottom: 0.5rem;
+  }
+  .day-story-day-label::before {
+    content: '';
+    display: block;
+    width: 28px;
+    height: 1px;
+    background: var(--terracotta);
+    flex-shrink: 0;
+  }
+  .day-story-day h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    font-weight: 400;
+    color: var(--midnight);
+    margin: 0.4rem 0 0.9rem;
+    line-height: 1.2;
+  }
+  .day-story-day p {
+    font-size: 0.95rem;
+    line-height: 1.9;
+    color: var(--body-text);
+    margin-bottom: 1.5rem;
+    max-width: 680px;
+  }
 
   /* ── ANIMATIONS ── */
   .fade-up {
@@ -890,7 +1084,9 @@
     /* Hero — simplified */
     .hero { grid-template-columns: 1fr; display: flex; flex-direction: column; min-height: auto; }
     .hero-left { order: 1; padding: 5rem 2rem 2rem; }
-    .hero-right { order: 2; height: auto; position: relative; }
+    .hero-right { order: 2; height: 320px; position: relative; }
+    .hero-slideshow { position: absolute; inset: 0; }
+    .hero-quote { display: none; }
     .hero-photo { height: 380px; width: 100%; object-fit: cover; display: block; object-position: top; }
     .hero-quote { display: none; }
     .hero-title { font-size: 2.2rem; }
@@ -978,17 +1174,6 @@
     footer { flex-direction: column; gap: 1.5rem; text-align: center; padding: 2rem; }
     footer > div:last-child { align-items: center; }
 
-    /* Founded banner */
-    .founded-banner { padding: 2rem; }
-    .founded-inner { flex-direction: column; align-items: flex-start; gap: 1.2rem; }
-
-    /* Intro */
-    .intro { grid-template-columns: 1fr; padding: 3.5rem 2rem; gap: 1.5rem; }
-
-    /* Photo row */
-    .photo-row { grid-template-columns: 1fr 1fr; height: 180px; }
-    .photo-row-item:last-child { display: none; }
-
     /* Pillars */
     .pillars { padding: 3.5rem 2rem; }
     .pillars-grid { grid-template-columns: 1fr; }
@@ -1011,6 +1196,8 @@
 
     /* Experiences */
     .experiences { padding: 3.5rem 2rem; }
+    .exp-row { grid-template-columns: 1fr; gap: 2rem; padding: 3rem 0; direction: ltr; }
+    .exp-row-reverse { direction: ltr; }
     .exp-grid { grid-template-columns: 1fr; }
     .exp-grid-new, .exp-grid-three { grid-template-columns: 1fr; }
     .exp-photo { height: auto; max-height: none; object-fit: contain; }
@@ -1020,12 +1207,15 @@
     .gallery-section { padding: 3.5rem 2rem; }
     .gallery-grid { grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(3, 140px); }
 
-    /* Testimonials */
-    .testimonials-section { padding: 3.5rem 2rem; }
-    .testimonials-grid { grid-template-columns: 1fr; }
-    .community-invite { padding: 2rem 1.5rem; }
+    /* Framework */
+    #framework { padding: 4rem 2rem !important; }
+    #framework > div { grid-template-columns: 1fr !important; gap: 3rem !important; }
 
-    /* Why I Do This */
+    /* Life in Motion */
+    #life-in-motion { padding: 4rem 2rem !important; }
+    #life-in-motion > div > div:last-child { grid-template-columns: 1fr !important; }
+
+    /* Testimonials */
     .why-section { padding: 3.5rem 2rem; }
     .why-inner { grid-template-columns: 1fr; gap: 2rem; }
     .why-photo { display: block; }
@@ -1050,6 +1240,16 @@
     /* Connect cards */
     .connect-cards { grid-template-columns: 1fr; gap: 1rem; }
 
+    /* Poll */
+    .poll-section { padding: 4rem 2rem; }
+    .poll-grid { grid-template-columns: 1fr; }
+    .poll-name-row { flex-direction: column; align-items: stretch; }
+    .poll-input { width: 100%; }
+
+    /* Martha's Vineyard */
+    #marthas-vineyard { padding: 4rem 2rem !important; }
+    #marthas-vineyard > div > div { grid-template-columns: 1fr !important; gap: 2.5rem !important; }
+
     /* Footer */
     footer { padding: 3rem 2rem; }
     .footer-top { grid-template-columns: 1fr; gap: 2rem; }
@@ -1062,14 +1262,14 @@
 <nav>
   <a href="https://www.moreinmidlife.com" class="nav-logo">Her Midlife <span>Movement</span></a>
   <ul class="nav-links">
-    <li><a href="#meet-davania">Meet Davania</a></li>
-    <li><a href="#why">Why I Do This</a></li>
+    <li><a href="#meet-davania">About</a></li>
     <li><a href="#desert-bloom">Desert Bloom</a></li>
-    <li><a href="#experiences">Explore Experiences</a></li>
-    <li><a href="#about">About</a></li>
+    <li><a href="#experiences">Experiences</a></li>
     <li><a href="#connect">Connect</a></li>
+    <li><a href="martha-vineyard.html" style="color:var(--terracotta); font-weight:500;">Martha's Vineyard ✦</a></li>
+    <li><a href="dubai-2028.html" style="color:var(--terracotta); font-weight:500;">Dubai 2028 ✦</a></li>
   </ul>
-  <a href="#connect" class="nav-cta">Join the Movement</a>
+  <a href="#" onclick="event.preventDefault();openJTM();" class="nav-cta">Join the Movement</a>
   <button class="hamburger" onclick="toggleMenu()" aria-label="Open menu">
     <span></span><span></span><span></span>
   </button>
@@ -1078,19 +1278,20 @@
 <!-- MOBILE MENU -->
 <div class="mobile-menu" id="mobileMenu">
   <button class="mobile-menu-close" onclick="toggleMenu()">✕</button>
-  <a href="#meet-davania" onclick="toggleMenu()">Meet Davania</a>
-  <a href="#why" onclick="toggleMenu()">Why I Do This</a>
+  <a href="#meet-davania" onclick="toggleMenu()">About Davania</a>
   <a href="#desert-bloom" onclick="toggleMenu()">Desert Bloom</a>
-  <a href="#experiences" onclick="toggleMenu()">Explore Experiences</a>
-  <a href="#about" onclick="toggleMenu()">About</a>
-  <a href="#connect" onclick="toggleMenu()" class="menu-cta">Join the Movement</a>
+  <a href="#experiences" onclick="toggleMenu()">Experiences</a>
+  <a href="#connect" onclick="toggleMenu()">Connect</a>
+  <a href="martha-vineyard.html" onclick="toggleMenu()" style="color:#C9A96E;">Martha's Vineyard ✦</a>
+  <a href="dubai-2028.html" onclick="toggleMenu()" style="color:#C9A96E;">Dubai 2028 ✦</a>
+  <a href="#" onclick="toggleMenu();openJTM();" class="menu-cta">Join the Movement</a>
 </div>
 
 
 <!-- HERO -->
 <section class="hero">
   <div class="hero-left">
-    <div class="hero-eyebrow">For Women in Midlife</div>
+    <div class="hero-eyebrow">Retreats &amp; Experiences for Women in Midlife</div>
     <h1 class="hero-title">
       Bloom<br>
       <em>where you</em><br>
@@ -1098,22 +1299,28 @@
     </h1>
     <p class="hero-tagline">Move. Travel. Live Boldly. One Season at a Time.</p>
     <p class="hero-desc">
-      Her Midlife Movement curates meaningful experiences that inspire connection, movement, adventure, and personal growth for those embracing the richness of midlife.
+      Intimate retreats and curated travel experiences for women ready to exhale, reconnect, and start living more richly — right now, in this season.
     </p>
     <div class="hero-buttons">
-      <a href="#desert-bloom" class="btn-primary">Explore Desert Bloom</a>
-      <a href="#meet-davania" class="btn-outline">Meet Davania</a>
+      <a href="#experiences" class="btn-primary">See What's Coming Up →</a>
+      <a href="#" onclick="event.preventDefault();openJTM();" class="btn-outline">Join the Community</a>
     </div>
+    <p class="hero-trust">Desert Bloom 2026 · Martha's Vineyard 2027 · Dubai 2028</p>
   </div>
   <div class="hero-right">
-    <img class="hero-photo"
-      src="https://i.imgur.com/8j4homk.jpeg"
-      alt="Women in community — Thank You for Being a Friend experience"
-      onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-    <div class="hero-photo-fallback" style="display:none;"></div>
+    <div class="hero-slideshow">
+      <img src="https://i.imgur.com/8j4homk.jpeg" alt="Her Midlife Movement community" class="slide active">
+      <img src="https://i.imgur.com/lt6gFgV.jpeg" alt="Her Midlife Movement experience" class="slide">
+      <img src="https://i.imgur.com/TVXDzJh.jpeg" alt="Her Midlife Movement moment" class="slide">
+      <img src="https://i.imgur.com/QJziDfK.jpeg" alt="Her Midlife Movement travel" class="slide">
+      <img src="https://i.imgur.com/qBUCgGR.jpeg" alt="Her Midlife Movement sisterhood" class="slide">
+      <img src="https://i.imgur.com/xCMpllb.jpeg" alt="Her Midlife Movement wellness" class="slide">
+      <img src="https://i.imgur.com/C5lnzGH.jpeg" alt="Her Midlife Movement community" class="slide">
+      <img src="https://i.imgur.com/RKpiF5K.jpeg" alt="Her Midlife Movement adventure" class="slide">
+    </div>
     <div class="hero-quote">
       <p>"This is my ministry — using vision, creativity, and hospitality to create spaces where women feel seen, valued, and renewed."</p>
-      <cite>Her Midlife Movement</cite>
+      <cite>— Davania, Founder · Her Midlife Movement</cite>
     </div>
   </div>
 </section>
@@ -1150,354 +1357,341 @@
 </div>
 
 
-<!-- ABOUT DAVANIA -->
+<!-- EXPERIENCES -->
+<section class="experiences" id="experiences">
+  <div class="experiences-header fade-up">
+    <div>
+      <span class="section-eyebrow" style="color:var(--terracotta);">Curated Experiences</span>
+      <h2 class="section-title" style="color:var(--midnight);">Where Will You <em style="color:var(--terracotta);">Bloom Next?</em></h2>
+      <p style="font-size:1rem; color:var(--muted); margin-top:1rem; max-width:600px; line-height:1.8;">Each HMM experience is intentionally designed — curated with purpose, connection, and the richness of midlife in mind.</p>
+    </div>
+  </div>
+
+  <!-- DESERT BLOOM 2026 -->
+  <div class="exp-row fade-up" id="desert-bloom-2026">
+    <div class="exp-row-image">
+      <img src="desert-bloom-group.jpg" alt="Desert Bloom 2026 — Her Midlife Movement women in Fountain Hills, Arizona">
+    </div>
+    <div class="exp-row-content">
+      <div class="exp-card-badge" style="display:inline-block; margin-bottom:1rem; background:var(--midnight); color:rgba(255,255,255,0.7);">Completed · October 2026</div>
+      <h3 class="exp-row-title">Desert Bloom <em style="font-style:italic; color:var(--terracotta);">2026</em></h3>
+      <p class="exp-row-location">Fountain Hills, Arizona · October 16–19, 2026</p>
+      <p class="exp-row-desc">An intimate women's retreat — rest, reset, and reconnect in the desert. Desert Bloom 2026 was a beautiful, fully sold-out experience. Read what the women had to say.</p>
+      <div style="margin-top:1.5rem;">
+        <a href="#testimonials" class="exp-interest-btn" style="display:inline-block;">See the Memories →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- MARTHA'S VINEYARD -->
+  <div class="exp-row exp-row-reverse fade-up" id="marthas-vineyard">
+    <div class="exp-row-image">
+      <img src="https://i.imgur.com/tCjkkvs.png" alt="Savor the Season Martha's Vineyard 2027">
+    </div>
+    <div class="exp-row-content">
+      <div class="exp-card-badge exp-card-badge-open" style="display:inline-block; margin-bottom:1rem; background:var(--terracotta); color:#fff;">Now Booking · Juneteenth 2027</div>
+      <h3 class="exp-row-title">Savor the <em style="font-style:italic; color:var(--terracotta);">Season</em></h3>
+      <p class="exp-row-location">Martha's Vineyard · Juneteenth Weekend · June 17–21, 2027</p>
+      <p class="exp-row-desc">A curated Juneteenth weekend rooted in Black history, culture, connection, rest and the beauty of Martha's Vineyard. Five days designed entirely for you.</p>
+      <div style="margin-top:1.2rem; padding:1.2rem 1.5rem; background:rgba(196,113,74,0.06); border:1px solid rgba(196,113,74,0.2); display:inline-block;">
+        <span style="font-size:0.85rem; color:var(--midnight); font-weight:500;">$2,395 per person</span>
+        <span style="color:var(--muted); margin:0 0.75rem;">·</span>
+        <span style="font-size:0.85rem; color:var(--midnight);">$350 deposit to reserve</span>
+        <span style="color:var(--muted); margin:0 0.75rem;">·</span>
+        <span style="font-size:0.85rem; color:var(--midnight);">Payment plans available</span>
+      </div>
+      <div style="margin-top:1.5rem;">
+        <a href="martha-vineyard.html" class="exp-interest-btn" style="display:inline-block;">Explore the Experience →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- DESERT BLOOM 2027 -->
+  <div class="exp-row fade-up" id="desert-bloom-2027">
+    <div class="exp-row-image">
+      <img src="https://i.imgur.com/WvyafeR.png" alt="Desert Bloom Becoming 2027">
+    </div>
+    <div class="exp-row-content">
+      <div class="exp-card-badge exp-card-badge-open" style="display:inline-block; margin-bottom:1rem;">Interest List Open</div>
+      <h3 class="exp-row-title">Desert Bloom: <em style="font-style:italic; color:var(--terracotta);">Becoming</em></h3>
+      <p class="exp-row-location">Scottsdale, Arizona · October 14–18, 2027</p>
+      <p class="exp-row-desc">There is still more unfolding. An elevated ladies-only experience designed for women ready to rest, reconnect, and bloom again.</p>
+
+      <!-- DESERT BLOOM 2027 INTEREST FORM -->
+      <div style="background:rgba(196,113,74,0.06); border:1px solid rgba(196,113,74,0.2); padding:1.8rem; margin-top:1.5rem;">
+        <div style="font-size:0.72rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--terracotta); margin-bottom:1.2rem;">✦ Join the Interest List</div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.8rem; margin-bottom:0.8rem;">
+          <input type="text" id="db27-first" placeholder="First name" style="background:#fff; border:1px solid rgba(107,95,86,0.2); padding:0.7rem 1rem; font-family:'DM Sans',sans-serif; font-size:0.9rem; outline:none; width:100%;">
+          <input type="text" id="db27-last" placeholder="Last name" style="background:#fff; border:1px solid rgba(107,95,86,0.2); padding:0.7rem 1rem; font-family:'DM Sans',sans-serif; font-size:0.9rem; outline:none; width:100%;">
+        </div>
+        <input type="email" id="db27-email" placeholder="Email address" style="background:#fff; border:1px solid rgba(107,95,86,0.2); padding:0.7rem 1rem; font-family:'DM Sans',sans-serif; font-size:0.9rem; outline:none; width:100%; margin-bottom:0.8rem; display:block;">
+        <button onclick="submitDB27()" style="width:100%; background:var(--terracotta); color:#fff; border:none; padding:0.9rem; font-family:'DM Sans',sans-serif; font-size:0.82rem; letter-spacing:0.16em; text-transform:uppercase; cursor:pointer;">I'm Interested →</button>
+        <div id="db27-success" style="display:none; margin-top:1rem; font-family:'Cormorant Garamond',serif; font-size:1rem; font-style:italic; color:var(--terracotta); text-align:center;">✦ You're on the list! We'll be in touch when details are released.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DUBAI 2028 -->
+  <div class="exp-row fade-up" id="dubai-2028" style="flex-direction:row-reverse;">
+    <div class="exp-row-image">
+      <img src="dubai-2028.jpg" alt="Her Midlife Movement — Dubai 2028" style="width:100%; height:100%; object-fit:cover;">
+    </div>
+    <div class="exp-row-content">
+      <div class="exp-card-badge" style="display:inline-block; margin-bottom:1rem; background:var(--midnight); color:rgba(255,255,255,0.8);">Interest List Open · 2028</div>
+      <h3 class="exp-row-title">Dubai: <em style="font-style:italic; color:var(--terracotta);">Bold &amp; Free</em></h3>
+      <p class="exp-row-location">Dubai, UAE · March 18–25, 2028 · 8 Days, 7 Nights</p>
+      <p class="exp-row-desc">From iconic landmarks to rich culture and unforgettable experiences — this is Dubai, curated the HMM way. A land-only international experience for women ready to explore, connect, and live boldly.</p>
+      <div style="display:flex; flex-wrap:wrap; gap:0.6rem; margin:1rem 0 1.5rem;">
+        <span style="font-size:0.75rem; letter-spacing:0.1em; background:rgba(196,113,74,0.08); color:var(--terracotta); padding:0.35rem 0.9rem; border:1px solid rgba(196,113,74,0.2);">Upscale Hotel</span>
+        <span style="font-size:0.75rem; letter-spacing:0.1em; background:rgba(196,113,74,0.08); color:var(--terracotta); padding:0.35rem 0.9rem; border:1px solid rgba(196,113,74,0.2);">Curated Experiences</span>
+        <span style="font-size:0.75rem; letter-spacing:0.1em; background:rgba(196,113,74,0.08); color:var(--terracotta); padding:0.35rem 0.9rem; border:1px solid rgba(196,113,74,0.2);">Private Group Transport</span>
+        <span style="font-size:0.75rem; letter-spacing:0.1em; background:rgba(196,113,74,0.08); color:var(--terracotta); padding:0.35rem 0.9rem; border:1px solid rgba(196,113,74,0.2);">HMM Welcome Gathering</span>
+      </div>
+      <!-- DUBAI CTA -->
+      <div style="margin-top:1.5rem; display:flex; flex-direction:column; gap:0.8rem;">
+        <a href="dubai-2028.html" style="display:block; text-align:center; background:var(--midnight); color:#fff; font-family:'DM Sans',sans-serif; font-size:0.82rem; letter-spacing:0.16em; text-transform:uppercase; padding:1rem 2rem; text-decoration:none; transition:background 0.3s;">Explore the Experience →</a>
+        <a href="dubai-2028.html#interest" style="display:block; text-align:center; background:transparent; color:var(--terracotta); font-family:'DM Sans',sans-serif; font-size:0.82rem; letter-spacing:0.16em; text-transform:uppercase; padding:0.9rem 2rem; text-decoration:none; border:1.5px solid var(--terracotta); transition:all 0.3s;">Join the Interest List</a>
+      </div>
+    </div>
+  </div>
+
+
+</section>
+
+
+<!-- LIFE IN MOTION -->
+<section style="background:var(--midnight); padding:7rem 0;" id="life-in-motion">
+  <div style="max-width:1100px; margin:0 auto; padding:0 5rem;" class="fade-up">
+    <div style="text-align:center; margin-bottom:4rem;">
+      <span class="section-eyebrow" style="color:#C9A96E;">Movement · Community · Joy</span>
+      <h2 style="font-family:'Cormorant Garamond',serif; font-size:clamp(2.2rem,4vw,3.5rem); font-weight:300; color:#fff; margin-top:0.8rem; line-height:1.2;">Life in <em style="font-style:italic; color:var(--terracotta);">Motion</em></h2>
+      <p style="font-size:1rem; color:rgba(255,255,255,0.65); margin-top:1rem; max-width:560px; margin-left:auto; margin-right:auto; line-height:1.8;">This is what Her Midlife Movement looks like in real life — women connecting, moving, laughing, and living fully in every season.</p>
+    </div>
+  </div>
+
+  <!-- SCROLLING PHOTO STRIP -->
+  <div style="overflow:hidden; width:100%;">
+    <div class="lim-track">
+      <img src="https://i.imgur.com/LwRVq5T.jpeg" alt="Her Midlife Movement">
+      <img src="https://i.imgur.com/qmrZ4d8.jpeg" alt="Her Midlife Movement">
+      <img src="https://i.imgur.com/yli23ck.jpeg" alt="Her Midlife Movement">
+      <img src="https://i.imgur.com/y17iySa.jpeg" alt="Her Midlife Movement">
+      <img src="https://i.imgur.com/xr7FIrZ.jpeg" alt="Her Midlife Movement">
+      <img src="https://i.imgur.com/TRwboD1.jpeg" alt="Her Midlife Movement">
+      <img src="https://i.imgur.com/KiQ4R80.jpeg" alt="Her Midlife Movement">
+      <img src="https://i.imgur.com/oRReFpe.jpeg" alt="Her Midlife Movement">
+      <img src="https://i.imgur.com/sohzIP1.jpeg" alt="Her Midlife Movement">
+      <!-- Duplicate for seamless loop -->
+      <img src="https://i.imgur.com/LwRVq5T.jpeg" alt="Her Midlife Movement">
+      <img src="https://i.imgur.com/qmrZ4d8.jpeg" alt="Her Midlife Movement">
+      <img src="https://i.imgur.com/yli23ck.jpeg" alt="Her Midlife Movement">
+      <img src="https://i.imgur.com/y17iySa.jpeg" alt="Her Midlife Movement">
+      <img src="https://i.imgur.com/xr7FIrZ.jpeg" alt="Her Midlife Movement">
+      <img src="https://i.imgur.com/TRwboD1.jpeg" alt="Her Midlife Movement">
+      <img src="https://i.imgur.com/KiQ4R80.jpeg" alt="Her Midlife Movement">
+      <img src="https://i.imgur.com/oRReFpe.jpeg" alt="Her Midlife Movement">
+      <img src="https://i.imgur.com/sohzIP1.jpeg" alt="Her Midlife Movement">
+    </div>
+  </div>
+</section>
+
+<!-- MEET DAVANIA -->
 <section class="about-davania" id="meet-davania">
   <div class="about-davania-inner">
     <div class="about-photo-col fade-up">
-      <img src="https://i.imgur.com/4OraH60.jpeg" alt="Davania — Founder of Her Midlife Movement" class="about-photo">
+      <img src="davania_photo.jpg" alt="Davania — Founder of Her Midlife Movement" class="about-photo">
       <div class="about-photo-caption">Davania · Founder</div>
     </div>
     <div class="about-text-col fade-up">
       <span class="section-eyebrow" style="color:var(--terracotta);">Meet the Heart Behind Her Midlife Movement</span>
       <h2 class="about-heading">Hi, I'm <em>Davania.</em></h2>
       <div class="about-story">
-        <p>I've always believed life is meant to be lived fully.</p>
-        <p>I'm a woman of faith, mother, grandmother, speaker, mentor, traveler, fitness enthusiast, Project Consultant, real estate professional, and curator of meaningful experiences. My faith is the foundation of everything I do, and my family is where I find my greatest joy and grounding.</p>
-        <p>Her Midlife Movement grew from the life I was already living — encouraging women, building community, staying active, exploring new places, and creating thoughtful experiences that bring people together.</p>
+        <p>Woman of faith. Traveler. Movement lover. Community builder. Curator of meaningful experiences.</p>
+        <p>Honestly, Her Midlife Movement wasn't planned. I was already doing this — checking in on friends, planning the trip, hosting the dinner, showing up. One day I looked around and realized it had a name.</p>
         <p>I find joy in the details: the carefully planned itinerary, the handwritten note, the perfect gathering space, the unexpected surprise, and the moments people remember long after an experience ends.</p>
-        <p>Through Her Midlife Movement, I bring together faith, movement, travel, encouragement, and genuine connection to inspire women to embrace midlife with confidence, joy, and purpose.</p>
         <p style="font-family:'Cormorant Garamond',serif; font-size:1.3rem; font-style:italic; color:var(--terracotta);">My hope is that every woman who encounters this community feels seen, encouraged, and reminded that there is always more waiting for her.</p>
       </div>
     </div>
   </div>
 </section>
 
-
-<!-- WHAT MATTERS MOST -->
-<section class="what-matters-section">
-  <div class="what-matters-section-inner fade-up">
-    <span class="section-eyebrow">The Values Behind Everything</span>
-    <h2 class="what-matters-section-title">What Matters <em>Most to Me</em></h2>
-    <div class="what-matters-values-row">
-      <div class="what-matters-value-item">
-        <div class="wm-icon">✦</div>
-        <div class="wm-label">Faith</div>
-      </div>
-      <div class="what-matters-value-item">
-        <div class="wm-icon">✦</div>
-        <div class="wm-label">Family</div>
-      </div>
-      <div class="what-matters-value-item">
-        <div class="wm-icon">✦</div>
-        <div class="wm-label">Movement</div>
-      </div>
-      <div class="what-matters-value-item">
-        <div class="wm-icon">✦</div>
-        <div class="wm-label">Meaningful Travel</div>
-      </div>
-      <div class="what-matters-value-item">
-        <div class="wm-icon">✦</div>
-        <div class="wm-label">Genuine Connection</div>
-      </div>
-      <div class="what-matters-value-item">
-        <div class="wm-icon">✦</div>
-        <div class="wm-label">Living with Purpose</div>
-      </div>
-    </div>
-    <p class="what-matters-section-sub">These aren't just the pillars of Her Midlife Movement — they're the values that guide my life every day.</p>
-  </div>
-</section>
-
-
-<!-- WHY I DO THIS -->
-<section class="why-section" id="why">
-  <div class="why-inner">
-    <div class="why-content fade-up">
-      <span class="section-eyebrow">The Heart Behind It All</span>
-      <h2 class="why-title">Why I Do <em>This</em></h2>
-      <div class="why-body">
-        <p>I do this because I believe women are worth it.</p>
-        <p>Not someday. Not when the kids are grown, the mortgage is paid, or the timing is perfect. <em>Now.</em> In this season. At this age. With this body, this faith, and this beautiful, complicated, full life.</p>
-        <p>I've watched too many women pour endlessly into everyone around them — their families, their careers, their communities — while quietly shelving their own dreams, adventures, and joy. Telling themselves there will be time later. That it's too expensive. That they're too old. That they've missed their window.</p>
-        <p style="font-family:'Cormorant Garamond',serif; font-size:1.4rem; font-style:italic; color:var(--terracotta);">I don't believe that. Not for a single second.</p>
-        <p>Movement matters because our bodies were made to move — not just in fitness, but in life. To explore new places. To step into new rooms. To keep growing, learning, and saying yes to things that scare us a little.</p>
-        <p>Friendships matter because we were never meant to do life alone. The right community — women who see you, cheer for you, travel with you, pray with you, and laugh until you cry with you — that's not a luxury. That's medicine.</p>
-        <p>We don't stop living simply because we're in midlife. If anything, midlife is when we finally have the wisdom to live fully. We know what matters. We've survived what we thought would break us. We've learned who we are.</p>
-        <p>And God placed this vision on my heart because He knows what women need — and He chose me to help create it. That's not something I take lightly. Every experience I curate is an act of obedience, love, and service.</p>
-        <p style="font-family:'Cormorant Garamond',serif; font-size:1.3rem; font-style:italic; color:var(--midnight);">This is why I do this.<br>And I'm so grateful you found your way here.</p>
-      </div>
-      <a href="#connect" class="btn-primary" style="margin-top:2rem; display:inline-block;">Join Our Community →</a>
-    </div>
-    <div class="why-photo fade-up">
-      <img src="https://i.imgur.com/8Y0NU1q.png" alt="Her Midlife Movement — Why I Do This">
-    </div>
-  </div>
-</section>
-
-
-<!-- MINISTRY -->
-<section class="ministry">
+<!-- WHY HMM EXISTS -->
+<section class="ministry" id="why">
   <div class="fade-up">
     <h2 class="ministry-title">
-      This is heart work.<br>
-      <em>Ministry expressed through vision, creativity, hospitality, and connection.</em>
+      Nothing here happens by accident.<br>
+      <em>Every detail is there so a woman can walk in, exhale, and just be taken care of for a while.</em>
     </h2>
   </div>
   <div class="fade-up">
     <div class="ministry-body">
-      <p>Her Midlife Movement creates intentional spaces where women feel seen, valued, and renewed.</p>
-      <p>Every experience we curate is an act of love — an invitation for women to exhale, reconnect with themselves, and remember just how rich this season of life can be.</p>
-      <p>You were made to bloom. We're here to tend the garden.</p>
-      <div style="margin-top:2.5rem;">
-        <a href="#connect" class="btn-outline" style="border-color:#fff; color:#fff;">Join Our Community</a>
+      <p>I do this because I believe women are worth it. Not someday — <em>now.</em> In this season. At this age. With this body, this faith, and this beautiful, complicated, full life.</p>
+      <p>Every experience I curate is an act of obedience, love, and service. This is heart work. And I'm so grateful you found your way here.</p>
+    </div>
+  </div>
+</section>
+
+<!-- HMM PROMISE - THREE CARDS -->
+<section style="background:var(--midnight); padding:6rem 2rem;" id="framework">
+  <div style="max-width:1100px; margin:0 auto;" class="fade-up">
+    <div style="text-align:center; margin-bottom:4rem;">
+      <span class="section-eyebrow" style="color:#C9A96E;">The HMM Promise</span>
+      <h2 style="font-family:'Cormorant Garamond',serif; font-size:clamp(2rem,3.5vw,3rem); font-weight:300; color:#fff; margin-top:1rem; line-height:1.2;">What every experience <em style="font-style:italic; color:var(--terracotta);">is built on.</em></h2>
+    </div>
+    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:2rem;">
+      <div style="background:rgba(255,255,255,0.05); border:1px solid rgba(196,113,74,0.25); padding:2.5rem 2rem; text-align:center;">
+        <div style="font-size:0.68rem; letter-spacing:0.25em; text-transform:uppercase; color:#C9A96E; margin-bottom:1rem;">Transformation</div>
+        <h3 style="font-family:'Cormorant Garamond',serif; font-size:1.8rem; color:#fff; font-weight:300; margin-bottom:1rem;">You leave <em style="color:var(--terracotta);">differently</em> than you arrived.</h3>
+        <p style="font-size:0.88rem; color:rgba(255,255,255,0.6); line-height:1.8;">Not just rested — actually shifted. Every HMM experience is designed to interrupt routine and open something new in you.</p>
+      </div>
+      <div style="background:rgba(255,255,255,0.05); border:1px solid rgba(196,113,74,0.25); padding:2.5rem 2rem; text-align:center;">
+        <div style="font-size:0.68rem; letter-spacing:0.25em; text-transform:uppercase; color:#C9A96E; margin-bottom:1rem;">Trust</div>
+        <h3 style="font-family:'Cormorant Garamond',serif; font-size:1.8rem; color:#fff; font-weight:300; margin-bottom:1rem;">You can <em style="color:var(--terracotta);">exhale,</em> be present, and feel cared for.</h3>
+        <p style="font-size:0.88rem; color:rgba(255,255,255,0.6); line-height:1.8;">Safe space. Thoughtful details. An environment where women can trust the experience and trust themselves a little more.</p>
+      </div>
+      <div style="background:rgba(255,255,255,0.05); border:1px solid rgba(196,113,74,0.25); padding:2.5rem 2rem; text-align:center;">
+        <div style="font-size:0.68rem; letter-spacing:0.25em; text-transform:uppercase; color:#C9A96E; margin-bottom:1rem;">Connection</div>
+        <h3 style="font-family:'Cormorant Garamond',serif; font-size:1.8rem; color:#fff; font-weight:300; margin-bottom:1rem;">You leave with more than <em style="color:var(--terracotta);">memories.</em></h3>
+        <p style="font-size:0.88rem; color:rgba(255,255,255,0.6); line-height:1.8;">Real relationships. Women who check on you, who show up, who remember. Not just Instagram follows — actual community.</p>
       </div>
     </div>
   </div>
+  <style>
+    @media(max-width:768px){
+      #framework .grid-3 { grid-template-columns: 1fr !important; }
+    }
+  </style>
 </section>
-
-
-<!-- DESERT BLOOM -->
-<section class="desert-bloom" id="desert-bloom">
-  <div class="bloom-visual fade-up">
-    <img class="bloom-photo"
-      src="https://i.imgur.com/L4UUfJZ.jpeg"
-      alt="Desert Bloom — The Arizona Midlife Reset">
-
-  </div>
-  <div class="bloom-content fade-up">
-    <span class="bloom-tag">Flagship Experience · Scottsdale, Arizona</span>
-    <h2 class="bloom-title">
-      Desert<br>
-      <em>Bloom</em>
-    </h2>
-    <p class="bloom-desc">
-      Desert Bloom is an intimate women's retreat created by Her Midlife Movement — designed for women who are ready to rest, reset, and reconnect. Arrive solo or with a friend — connection unfolds naturally in this thoughtfully curated space where everything is taken care of. You don't have to plan anything. You just have to show up.
-    </p>
-    <div class="bloom-features">
-      <div class="bloom-feature">Private Luxury Home</div>
-      <div class="bloom-feature">Elevated Dining</div>
-      <div class="bloom-feature">Signature Desert Experience</div>
-      <div class="bloom-feature">Curated Moments</div>
-      <div class="bloom-feature">Sisterhood Connection</div>
-      <div class="bloom-feature">Time to Rest &amp; Reset</div>
-      <div class="bloom-feature">Scottsdale, Arizona</div>
-      <div class="bloom-feature">Limited Intimate Group</div>
-    </div>
-    <a href="#connect" class="btn-primary">Stay Tuned for Next Year →</a>
-  </div>
-</section>
-
 
 <!-- TESTIMONIALS -->
 <section class="testimonials-section" id="testimonials">
-  <div class="testimonials-inner fade-up">
-    <span class="section-eyebrow">Words That Move Us</span>
-    <h2 class="section-title">Voices That <em>Inspire</em></h2>
+  <div class="testimonials-inner">
+    <div class="fade-up" style="margin-bottom:1rem;">
+      <span style="font-size:0.7rem; letter-spacing:0.22em; color:var(--terracotta); text-transform:uppercase;">Desert Bloom 2026 · A Look Back</span>
+    </div>
+    <h2 class="fade-up" style="font-family:'Cormorant Garamond',serif; font-size:clamp(2rem,4vw,3rem); color:var(--navy); font-weight:400; margin-bottom:1rem;">The experience is curated.<br><em>The connection is real.</em></h2>
+    <p class="fade-up" style="font-family:'DM Sans',sans-serif; font-size:0.95rem; color:var(--muted); line-height:1.85; max-width:640px; margin:0 auto 3.5rem;">In October 2026, eight women gathered in Fountain Hills, Arizona for the first Her Midlife Movement retreat — Desert Bloom. What they found was rest, connection, beauty, and each other. Here's what they had to say.</p>
+
+    <!-- EVENING PHOTO — full-width before quote cards -->
+    <div class="fade-up" style="margin-bottom:3.5rem;">
+      <img src="desert-bloom-evening.jpg" alt="Desert Bloom 2026 women laughing together at evening gathering" style="width:100%; max-width:960px; display:block; margin:0 auto; object-fit:cover; max-height:520px;" />
+    </div>
+
     <div class="testimonials-grid fade-up">
       <div class="testimonial-card">
         <div class="testimonial-quote">"</div>
-        <p class="testimonial-text">The time and thoughtfulness Davania puts into making sure we love the Experience is what we love. We never know where we're going — and we trust her completely.</p>
-        <div class="testimonial-author">— Thank You for Being a Friend · Curated Experience</div>
+        <p class="testimonial-text">The first time in a long time I felt like I could completely switch off my brain. Everything about this retreat made me forget about my usual responsibilities and invited me to take a well-needed moment for myself.</p>
+        <div class="testimonial-author">— Zenobia, Atlanta, GA<span style="display:block; font-size:0.7rem; letter-spacing:0.15em; color:var(--terracotta); margin-top:0.3rem;">Desert Bloom 2026</span></div>
       </div>
       <div class="testimonial-card">
         <div class="testimonial-quote">"</div>
-        <p class="testimonial-text">For I know the plans I have for you, declares the Lord — plans to prosper you and not to harm you, plans to give you hope and a future.</p>
-        <div class="testimonial-author">— Jeremiah 29:11</div>
+        <p class="testimonial-text">It is not often that I find myself in a space where no one is depending on me to take care of them, and where my only responsibility was to simply be present and be cared for. That experience is a gift in itself, and I will cherish it forever.</p>
+        <div class="testimonial-author">— Tamika, Memphis, TN<span style="display:block; font-size:0.7rem; letter-spacing:0.15em; color:var(--terracotta); margin-top:0.3rem;">Desert Bloom 2026</span></div>
       </div>
       <div class="testimonial-card">
         <div class="testimonial-quote">"</div>
-        <p class="testimonial-text">There is no greater gift you can give or receive than to honor your calling. It's why you were born. And how you become most truly alive.</p>
-        <div class="testimonial-author">— Oprah Winfrey</div>
+        <p class="testimonial-text">Davania's attention to detail is unmatched. She truly thought of everything — all of the personal touches made for an unforgettable time. You won't leave the same!</p>
+        <div class="testimonial-author">— Jamé, Grapevine, TX<span style="display:block; font-size:0.7rem; letter-spacing:0.15em; color:var(--terracotta); margin-top:0.3rem;">Desert Bloom 2026</span></div>
       </div>
     </div>
 
-    <!-- COMMUNITY INVITATION -->
-    <div class="community-invite fade-up">
-      <div class="community-invite-inner">
-        <h3 class="community-invite-title">Be Part of <em>Our Story</em></h3>
-        <p class="community-invite-text">The testimonials are coming — and we'd love yours to be among the first. Desert Bloom is just the beginning. Every experience we create is an opportunity for women to move, connect, and bloom together. Join our community and help us write this story.</p>
-        <a href="#connect" class="btn-primary">Join the Community →</a>
+    <!-- DAY-BY-DAY STORY -->
+    <div class="fade-up day-story-section" style="margin-top:5rem; border-top:1px solid rgba(0,0,0,0.08); padding-top:4rem;">
+      <span style="font-size:0.7rem; letter-spacing:0.22em; color:var(--terracotta); text-transform:uppercase; display:block; text-align:center; margin-bottom:0.6rem;">The Weekend, Day by Day</span>
+      <h3 style="font-family:'Cormorant Garamond',serif; font-size:clamp(1.6rem,3.5vw,2.4rem); font-weight:400; text-align:center; color:var(--midnight); margin-bottom:3rem;">How It Unfolded</h3>
+
+      <!-- FRIDAY -->
+      <div class="day-story-day">
+        <div class="day-story-day-label">Friday Evening</div>
+        <h4>Arrive &amp; Exhale</h4>
+        <p>She didn't need to do a thing. Just arrive. A personalized welcome gift was waiting on every bed — a Desert Bloom robe, fuzzy slippers, a handwritten card, and an Exhale oil. Muumuus were on, mocktails were poured, and the weekend officially began.</p>
+        <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:0.75rem;">
+          <div class="db-photo-hover"><img src="db-welcome-sign.jpg" alt="Welcome to Desert Bloom 2026 sign with giant paper flowers" style="aspect-ratio:3/4; object-fit:cover;" /></div>
+          <div class="db-photo-hover"><img src="db-welcome-gifts.jpg" alt="Personalized Desert Bloom arrival gifts — robe, slippers, welcome card" style="aspect-ratio:3/4; object-fit:cover;" /></div>
+          <div class="db-photo-hover"><img src="db-muumuus-women.jpg" alt="Women in muumuus at Desert Bloom 2026" style="aspect-ratio:3/4; object-fit:cover;" /></div>
+        </div>
       </div>
+
+      <!-- SATURDAY -->
+      <div class="day-story-day">
+        <div class="day-story-day-label">Saturday</div>
+        <h4>Bloom</h4>
+        <p>Saturday was the heart of the retreat. A sacred flower ceremony invited each woman to choose the bloom that spoke to her season — rest, renewal, joy, peace, becoming. That evening, everyone gathered at a candlelit table for a private chef dinner.</p>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.75rem;">
+          <div class="db-photo-hover"><img src="db-flower-ceremony-flowers.jpg" alt="Flowers laid out for the ceremony" style="aspect-ratio:3/4; object-fit:cover;" /></div>
+          <div class="db-photo-hover"><img src="db-dinner-table2.jpg" alt="Women at the private chef dinner — Desert Bloom 2026" style="aspect-ratio:3/4; object-fit:cover;" /></div>
+        </div>
+      </div>
+
+      <!-- SUNDAY -->
+      <div class="day-story-day">
+        <div class="day-story-day-label">Sunday</div>
+        <h4>Rest &amp; Release</h4>
+        <p>Sunday was a full exhale. Massages, robes, and quiet moments. Then as the sun went down, the group gathered for the release ceremony — letting go of what no longer served them and making room for what was next.</p>
+        <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:0.75rem;">
+          <div class="db-photo-hover"><img src="db-massage.jpg" alt="Outdoor massage at Desert Bloom 2026" style="aspect-ratio:3/4; object-fit:cover;" /></div>
+          <div class="db-photo-hover"><img src="db-white-selfie.jpg" alt="Women in robes at Desert Bloom 2026" style="aspect-ratio:3/4; object-fit:cover;" /></div>
+          <div class="db-photo-hover"><img src="db-release.jpg" alt="Release — Desert Bloom 2026" style="aspect-ratio:3/4; object-fit:cover;" /></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PHOTO GRID -->
+    <div class="fade-up" style="margin-top:4rem;">
+      <span style="font-size:0.7rem; letter-spacing:0.22em; color:var(--terracotta); text-transform:uppercase; display:block; text-align:center; margin-bottom:2rem;">Every Detail, Curated</span>
+      <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:0.75rem; max-width:960px; margin:0 auto;">
+        <div class="db-photo-hover"><img src="db-welcome-sign.jpg" alt="Welcome to Desert Bloom 2026 sign" style="aspect-ratio:1/1; object-fit:cover; object-position:top;" /></div>
+        <div class="db-photo-hover"><img src="db-fun-signs.jpg" alt="Desert Bloom 2026 fun moments" style="aspect-ratio:1/1; object-fit:cover;" /></div>
+        <div class="db-photo-hover"><img src="db-welcome-gifts.jpg" alt="Personalized Desert Bloom arrival gifts" style="aspect-ratio:1/1; object-fit:cover;" /></div>
+        <div class="db-photo-hover"><img src="db-flower-ceremony-flowers.jpg" alt="Flowers for the ceremony — Desert Bloom 2026" style="aspect-ratio:1/1; object-fit:cover;" /></div>
+        <div class="db-photo-hover"><img src="db-exhale-decor.jpg" alt="Exhale — Desert Bloom 2026 table decor" style="aspect-ratio:1/1; object-fit:cover;" /></div>
+        <div class="db-photo-hover"><img src="db-lanterns.jpg" alt="Desert Bloom 2026 floating lanterns on the pool" style="aspect-ratio:1/1; object-fit:cover; object-position:top;" /></div>
+        <div class="db-photo-hover"><img src="desert-bloom-evening.jpg" alt="Desert Bloom 2026 evening" style="aspect-ratio:1/1; object-fit:cover;" /></div>
+        <div class="db-photo-hover"><img src="db-white-selfie.jpg" alt="Women in robes at Desert Bloom 2026" style="aspect-ratio:1/1; object-fit:cover;" /></div>
+        <div class="db-photo-hover"><img src="desert-bloom-group.jpg" alt="Desert Bloom 2026 group" style="aspect-ratio:1/1; object-fit:cover; object-position:top;" /></div>
+      </div>
+    </div>
+
+    <!-- GROUP PHOTO -->
+    <div class="fade-up" style="margin-top:3rem;">
+      <img src="desert-bloom-group.jpg" alt="Desert Bloom 2026 — Her Midlife Movement women in Fountain Hills, Arizona" style="width:100%; max-width:860px; display:block; margin:0 auto; object-fit:cover;" />
+      <p style="font-family:'DM Sans',sans-serif; font-size:0.72rem; letter-spacing:0.16em; color:var(--muted); text-transform:uppercase; text-align:center; margin-top:1rem;">Desert Bloom 2026 &nbsp;·&nbsp; Fountain Hills, Arizona</p>
+    </div>
+
+    <!-- IN THREE WORDS -->
+    <div class="fade-up" style="margin-top:5rem; border-top:1px solid rgba(0,0,0,0.08); padding-top:4rem;">
+      <span style="font-size:0.7rem; letter-spacing:0.22em; color:var(--terracotta); text-transform:uppercase; display:block; margin-bottom:2rem;">How They Described It</span>
+      <div style="display:flex; flex-direction:column; gap:0.9rem; align-items:center;">
+        <p style="font-family:'Cormorant Garamond',serif; font-size:1.3rem; color:var(--navy); font-style:italic; letter-spacing:0.04em;">Connection. &nbsp;·&nbsp; Relaxation. &nbsp;·&nbsp; Renewed.</p>
+        <p style="font-family:'Cormorant Garamond',serif; font-size:1.3rem; color:var(--navy); font-style:italic; letter-spacing:0.04em;">Breathtaking. &nbsp;·&nbsp; Phenomenal. &nbsp;·&nbsp; Absolute.</p>
+        <p style="font-family:'Cormorant Garamond',serif; font-size:1.3rem; color:var(--navy); font-style:italic; letter-spacing:0.04em;">Classy. &nbsp;·&nbsp; Priceless. &nbsp;·&nbsp; Blessed.</p>
+      </div>
+    </div>
+
+    <!-- MORE THAN A GETAWAY -->
+    <div class="fade-up" style="margin-top:5rem; background:var(--navy); padding:4rem 3rem; max-width:700px; margin-left:auto; margin-right:auto; margin-top:4rem;">
+      <h3 style="font-family:'Cormorant Garamond',serif; font-size:clamp(1.5rem,3vw,2rem); color:#fff; font-weight:400; margin-bottom:1.2rem;">More Than a Getaway</h3>
+      <p style="font-family:'DM Sans',sans-serif; font-size:0.95rem; color:rgba(255,255,255,0.82); line-height:1.9; margin-bottom:2rem;">These experiences aren't about filling every minute of an itinerary. They're about creating room to pause, laugh, connect, explore, reflect, and make memories with women who may arrive as strangers and leave connected in a completely different way.</p>
+      <p style="font-family:'Cormorant Garamond',serif; font-size:1.15rem; font-style:italic; color:#C9A96E; margin-bottom:2rem;">There's More in Midlife.<br><span style="font-family:'DM Sans',sans-serif; font-size:0.78rem; font-style:normal; letter-spacing:0.1em; color:rgba(255,255,255,0.6);">Move. Travel. Live boldly. One season at a time.</span></p>
+      <a href="#experiences" style="display:inline-block; border:1px solid rgba(255,255,255,0.4); color:#fff; font-family:'DM Sans',sans-serif; font-size:0.78rem; letter-spacing:0.18em; text-transform:uppercase; padding:0.9rem 2.2rem; text-decoration:none; transition:all 0.3s;">Explore Upcoming Experiences →</a>
     </div>
   </div>
 </section>
 
-
-<!-- EXPERIENCES -->
-<section class="experiences" id="experiences">
-  <div class="experiences-header fade-up">
-    <div>
-      <span class="section-eyebrow" style="color:var(--terracotta);">What We Offer</span>
-      <h2 class="section-title" style="color:var(--midnight);">Curated <em style="color:var(--terracotta);">Experiences</em></h2>
-    </div>
-  </div>
-
-  <!-- CURRENT -->
-  <div class="exp-category-label fade-up" id="breeze">✦ Current</div>
-  <div class="exp-grid-new fade-up">
-    <div class="exp-card-new">
-      <div class="exp-card-badge exp-card-badge-open" style="position:static; display:inline-block; margin-bottom:0.5rem;">Registration Open</div>
-      <div class="exp-card-image">
-        <img src="https://i.imgur.com/6jdaOlk.jpeg" alt="Breeze at the Sea Panama City Beach">
-      </div>
-      <div class="exp-card-body">
-        <h3 class="exp-card-title">Breeze at the Sea</h3>
-        <p class="exp-card-location">Panama City Beach, Florida · April 22–25, 2027</p>
-        <p class="exp-card-desc">Good music, good food, great company, and lasting connections. This is more than a trip — it's our time.</p>
-        <a href="https://form.jotform.com/262057899218066" target="_blank" rel="noopener" class="exp-interest-btn">Interest Form →</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- COMING SOON -->
-  <div class="exp-category-label fade-up" id="pour" style="margin-top:3rem;">✦ Coming Soon</div>
-  <div class="exp-grid-new fade-up">
-    <div class="exp-card-new exp-card-soon">
-      <div class="exp-card-image">
-        <img src="https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=700&q=80" alt="Napa Valley California Wine" style="width:100%;height:220px;object-fit:cover;display:block;">
-        <div class="exp-card-badge">Coming Soon</div>
-      </div>
-      <div class="exp-card-body">
-        <div class="exp-card-icon">🍷</div>
-        <h3 class="exp-card-title">Pour Into Yourself</h3>
-        <p class="exp-card-location">Napa Valley/Sonoma, California · Date TBA</p>
-        <p class="exp-card-desc">Wine country, beautiful views, meaningful conversations, and unforgettable moments with your people.</p>
-        <a href="#connect" class="exp-interest-btn">Join the Interest List →</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- FUTURE -->
-  <div class="exp-category-label fade-up" id="greece" style="margin-top:3rem;">✦ Future Experiences</div>
-  <div class="exp-grid-new exp-grid-three fade-up">
-    <div class="exp-card-new exp-card-soon">
-      <div class="exp-card-image">
-        <img src="https://images.unsplash.com/photo-1601581875309-fafbf2d3ed3a?w=700&q=80" alt="Santorini Greece blue domes" style="width:100%;height:220px;object-fit:cover;display:block;">
-        <div class="exp-card-badge">Future</div>
-      </div>
-      <div class="exp-card-body">
-        <div class="exp-card-icon">🇬🇷</div>
-        <h3 class="exp-card-title">Beyond the Blue — Greece 2027</h3>
-        <p class="exp-card-location">Greece · 2027 · Date TBA</p>
-        <p class="exp-card-desc">Whitewashed walls, turquoise water, and the kind of trip that stays with you forever.</p>
-        <a href="#connect" class="exp-interest-btn">Join the Interest List →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- INTRO -->
-<section class="intro" id="about">
-  <div class="intro-label">Who We Are</div>
-  <div class="intro-content fade-up">
-    <h2 class="intro-heading">
-      More than an experience.<br>
-      <em>A way of living richly.</em>
-    </h2>
-    <div class="intro-body">
-      <p>Her Midlife Movement is a lifestyle community created for women who are ready to move, travel, connect, and live more fully in every season.</p>
-      <p>We bring together movement, meaningful travel, faith, friendship, and thoughtfully curated experiences that encourage women to reconnect with themselves, embrace new possibilities, and enjoy the richness of midlife.</p>
-      <p>This is a space for joy, restoration, adventure, honest conversation, and becoming more of who you were created to be.</p>
-    </div>
-  </div>
-</section>
-
-
-<!-- PHOTO ROW -->
-<div class="photo-row">
-  <div class="photo-row-item">
-    <img src="https://images.unsplash.com/photo-1598257006458-087169a1f08d?w=600&q=80"
-      alt="Women laughing together"
-      onerror="this.style.display='none'; this.parentNode.style.background='#C4714A';">
-  </div>
-  <div class="photo-row-item">
-    <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=600&q=80"
-      alt="Women in community connection"
-      onerror="this.style.display='none'; this.parentNode.style.background='#C9A96E';">
-  </div>
-  <div class="photo-row-item">
-    <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&q=80"
-      alt="Women wellness and movement"
-      onerror="this.style.display='none'; this.parentNode.style.background='#7A8C6E';">
-  </div>
-</div>
-
-
-<!-- PILLARS -->
-<section class="pillars" id="pillars">
-  <div class="pillars-header fade-up">
-    <span class="section-eyebrow">What We Stand For</span>
-    <h2 class="section-title">Our Five <em>Foundations</em></h2>
-  </div>
-  <div class="pillars-grid">
-    <div class="pillar fade-up">
-      <div class="pillar-number">01</div>
-      <div class="pillar-title">Connection</div>
-      <p class="pillar-desc">Creating spaces where rich, meaningful relationships are built — and where you experience the power of genuine community with women who truly see you.</p>
-    </div>
-    <div class="pillar fade-up">
-      <div class="pillar-number">02</div>
-      <div class="pillar-title">Movement</div>
-      <p class="pillar-desc">Moving your body. Moving into new experiences. Moving beyond fear and stagnation. Moving through life's transitions with courage and grace.</p>
-    </div>
-    <div class="pillar fade-up">
-      <div class="pillar-number">03</div>
-      <div class="pillar-title">Curated Experience</div>
-      <p class="pillar-desc">The details matter. Beautiful environments, meaningful conversations, shared meals, reflection, surprise moments, and elevated touches that make you feel truly cared for.</p>
-    </div>
-    <div class="pillar fade-up">
-      <div class="pillar-number">04</div>
-      <div class="pillar-title">Mindset & Faith</div>
-      <p class="pillar-desc">Midlife isn't about becoming someone new — it's about becoming more of who you were created to be. We believe faith gives us the courage to keep growing, the strength to keep moving, and the peace to embrace every new season with purpose.</p>
-    </div>
-    <div class="pillar fade-up">
-      <div class="pillar-number">05</div>
-      <div class="pillar-title">Rest + Joy + Adventure</div>
-      <p class="pillar-desc">Our experiences blend wellness, travel, friendship, fun, exploration, self-care, and personal growth — because you deserve all of it, all at once.</p>
-    </div>
-    <div class="pillar pillar-rich fade-up">
-      <div>
-        <div class="rich-center-word">Rich</div>
-        <div class="rich-center-sub">The Thread Through Everything</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- PHILOSOPHY -->
+<!-- THERE IS MORE IN MIDLIFE -->
 <section class="philosophy" id="philosophy">
   <div class="philosophy-inner fade-up">
     <h2 class="philosophy-quote">
-      "Midlife is not a chapter ending.<br>
-      It's the chapter where you finally<br>
-      <em>become fully yourself.</em>"
+      There is more<br>
+      <em>in midlife.</em>
     </h2>
     <div class="philosophy-divider"></div>
-    <p class="philosophy-sub">We believe in a life that is rich — not financially, but rich in all the ways that truly matter.</p>
-    <div class="rich-pillars">
-      <div class="rich-item">
-        <div class="rich-item-word">Relationships</div>
-        <div class="rich-item-label">Deep &amp; Genuine</div>
-      </div>
-      <div class="rich-item">
-        <div class="rich-item-word">Experiences</div>
-        <div class="rich-item-label">Curated &amp; Meaningful</div>
-      </div>
-      <div class="rich-item">
-        <div class="rich-item-word">Conversations</div>
-        <div class="rich-item-label">Real &amp; Transformative</div>
-      </div>
-      <div class="rich-item">
-        <div class="rich-item-word">Memories</div>
-        <div class="rich-item-label">Lasting &amp; Cherished</div>
-      </div>
-      <div class="rich-item">
-        <div class="rich-item-word">Purpose</div>
-        <div class="rich-item-label">Clear &amp; Alive</div>
-      </div>
+    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; max-width:800px; margin:2.5rem auto 0; text-align:center;">
+      <div><div style="font-family:'Cormorant Garamond',serif; font-size:1.3rem; font-style:italic; color:var(--terracotta);">More joy.</div><div style="font-size:0.8rem; color:var(--muted); margin-top:0.3rem;">More movement.</div></div>
+      <div><div style="font-family:'Cormorant Garamond',serif; font-size:1.3rem; font-style:italic; color:var(--terracotta);">More meaningful friendships.</div><div style="font-size:0.8rem; color:var(--muted); margin-top:0.3rem;">More places to see.</div></div>
+      <div><div style="font-family:'Cormorant Garamond',serif; font-size:1.3rem; font-style:italic; color:var(--terracotta);">More memories to make.</div><div style="font-size:0.8rem; color:var(--muted); margin-top:0.3rem;">More purpose to uncover.</div></div>
     </div>
+    <p style="font-family:'Cormorant Garamond',serif; font-size:1.4rem; font-style:italic; color:var(--midnight); margin-top:2.5rem;">We're here to live all of it.</p>
   </div>
 </section>
 
@@ -1511,34 +1705,31 @@
 
     <!-- CONNECT CARDS -->
     <div class="connect-cards fade-up">
-      <div class="connect-card" onclick="switchTab('join', null); document.querySelector('.tab-btn').click();">
+      <div class="connect-card" onclick="openJTM()" style="cursor:pointer;">
         <div class="connect-card-icon">🌸</div>
         <div class="connect-card-title">Join the Movement</div>
-        <div class="connect-card-desc">Stay connected for updates and upcoming experiences.</div>
+        <div class="connect-card-desc">Stay connected and tell us which experiences interest you. Click here to sign up!</div>
       </div>
-      <div class="connect-card" onclick="switchTab('waitlist', document.querySelectorAll('.tab-btn')[1])">
-        <div class="connect-card-icon">🌵</div>
-        <div class="connect-card-title">Desert Bloom Waitlist</div>
-        <div class="connect-card-desc">Be first to know when Desert Bloom 2027 opens.</div>
-      </div>
-      <div class="connect-card" onclick="switchTab('contact', document.querySelectorAll('.tab-btn')[2])">
+      <div class="connect-card" onclick="switchTab('contact', document.querySelectorAll('.tab-btn')[1]); document.getElementById('tab-contact-anchor').scrollIntoView({behavior:'smooth'});" style="cursor:pointer;">
         <div class="connect-card-icon">✉️</div>
         <div class="connect-card-title">Contact Davania</div>
-        <div class="connect-card-desc">Questions, partnerships, or just say hello.</div>
+        <div class="connect-card-desc">Questions, partnerships, or just say hello. Fill out the form below!</div>
       </div>
     </div>
 
-    <!-- WAITLIST FORM -->
+    <!-- ANCHOR for contact scroll -->
+    <div id="tab-contact-anchor"></div>
+
+    <!-- FORM -->
     <div class="waitlist-form fade-up">
       <div class="form-tabs">
         <button class="tab-btn active" onclick="switchTab('join', this)">Join the Movement</button>
-        <button class="tab-btn" onclick="switchTab('waitlist', this)">Desert Bloom Waitlist</button>
         <button class="tab-btn" onclick="switchTab('contact', this)">Contact Davania</button>
       </div>
 
       <!-- JOIN THE MOVEMENT TAB -->
       <div id="tab-join" class="tab-panel active">
-        <p style="font-size:0.95rem; color:rgba(255,255,255,0.7); line-height:1.8; margin-bottom:1.5rem;">Tell us what speaks to you, and we'll keep you connected to the experiences, encouragement, and updates that fit your season.</p>
+        <p style="font-size:0.95rem; color:rgba(255,255,255,0.7); line-height:1.8; margin-bottom:1.5rem;">Tell us what speaks to you and we'll keep you connected to everything Her Midlife Movement.</p>
         <div class="form-row">
           <div class="form-group">
             <label>First Name</label>
@@ -1568,67 +1759,22 @@
           <label>Which experiences interest you? <span style="opacity:0.5">(select all that apply)</span></label>
           <div style="display:flex; flex-direction:column; gap:0.6rem; margin-top:0.3rem;">
             <label style="display:flex; align-items:center; gap:0.6rem; font-size:0.9rem; color:rgba(255,255,255,0.8); text-transform:none; letter-spacing:0;">
-              <input type="checkbox" id="int-seabreeze" style="width:16px;height:16px;accent-color:var(--terracotta);"> Breeze at the Sea — Panama City Beach (April 2027)
+              <input type="checkbox" id="int-seabreeze" style="width:16px;height:16px;accent-color:var(--terracotta);"> 🌊 Breeze at the Sea — Panama City Beach (April 2027)
             </label>
             <label style="display:flex; align-items:center; gap:0.6rem; font-size:0.9rem; color:rgba(255,255,255,0.8); text-transform:none; letter-spacing:0;">
-              <input type="checkbox" id="int-desert" style="width:16px;height:16px;accent-color:var(--terracotta);"> Desert Bloom 2027 — Scottsdale, Arizona
+              <input type="checkbox" id="int-desert" style="width:16px;height:16px;accent-color:var(--terracotta);"> 🌵 Desert Bloom: Becoming — Scottsdale, Arizona (October 14–18, 2027)
             </label>
             <label style="display:flex; align-items:center; gap:0.6rem; font-size:0.9rem; color:rgba(255,255,255,0.8); text-transform:none; letter-spacing:0;">
-              <input type="checkbox" id="int-wine" style="width:16px;height:16px;accent-color:var(--terracotta);"> Pour Into Yourself — Napa Valley/Sonoma, California
+              <input type="checkbox" id="int-mv" style="width:16px;height:16px;accent-color:var(--terracotta);"> 🏝 Savor the Season — Martha's Vineyard (June 17–21, 2027)
             </label>
             <label style="display:flex; align-items:center; gap:0.6rem; font-size:0.9rem; color:rgba(255,255,255,0.8); text-transform:none; letter-spacing:0;">
-              <input type="checkbox" id="int-greece" style="width:16px;height:16px;accent-color:var(--terracotta);"> Beyond the Blue — Greece 2027
-            </label>
-            <label style="display:flex; align-items:center; gap:0.6rem; font-size:0.9rem; color:rgba(255,255,255,0.8); text-transform:none; letter-spacing:0;">
-              <input type="checkbox" id="int-all" style="width:16px;height:16px;accent-color:var(--terracotta);"> All of the above — keep me posted on everything!
+              <input type="checkbox" id="int-all" style="width:16px;height:16px;accent-color:var(--terracotta);"> ✨ Keep me posted on everything!
             </label>
           </div>
         </div>
         <button class="btn-primary form-submit" onclick="submitForm('join')">Join the Movement →</button>
         <div id="join-success" class="form-success" style="display:none;">
           ✦ Thank you for joining — welcome to the movement! We'll be in touch soon.
-        </div>
-      </div>
-
-      <!-- WAITLIST TAB -->
-      <div id="tab-waitlist" class="tab-panel" style="display:none;">
-        <p style="font-size:0.95rem; color:rgba(255,255,255,0.7); line-height:1.8; margin-bottom:1.5rem;">Desert Bloom 2026 is fully booked! Join the waitlist to be the first to know when Desert Bloom 2027 opens.</p>
-        <div class="form-row">
-          <div class="form-group">
-            <label>First Name</label>
-            <input type="text" id="wl-first" placeholder="Your first name">
-          </div>
-          <div class="form-group">
-            <label>Last Name</label>
-            <input type="text" id="wl-last" placeholder="Your last name">
-          </div>
-        </div>
-        <div class="form-group">
-          <label>Email Address</label>
-          <input type="email" id="wl-email" placeholder="your@email.com">
-        </div>
-        <div class="form-group">
-          <label>Phone (optional)</label>
-          <input type="tel" id="wl-phone" placeholder="(000) 000-0000">
-        </div>
-        <div class="form-group">
-          <label>How did you hear about us?</label>
-          <select id="wl-source">
-            <option value="">Select one…</option>
-            <option>Instagram</option>
-            <option>A friend or colleague</option>
-            <option>Facebook</option>
-            <option>Google Search</option>
-            <option>Other</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label>Anything you'd like us to know? <span style="opacity:0.5">(optional)</span></label>
-          <textarea id="wl-note" rows="3" placeholder="What draws you to Desert Bloom?"></textarea>
-        </div>
-        <button class="btn-primary form-submit" onclick="submitForm('waitlist')">Join the Waitlist →</button>
-        <div id="waitlist-success" class="form-success" style="display:none;">
-          ✦ You're on the list! We'll be in touch soon.
         </div>
       </div>
 
@@ -1652,7 +1798,8 @@
           <label>Subject</label>
           <select id="ct-subject">
             <option value="">Select one…</option>
-            <option>Desert Bloom Retreat</option>
+            <option>Desert Bloom: Becoming 2027</option>
+            <option>Breeze at the Sea 2027</option>
             <option>Upcoming Experiences</option>
             <option>Group or Private Event</option>
             <option>Media or Press</option>
@@ -1670,10 +1817,8 @@
         </div>
       </div>
     </div>
-
   </div>
 </section>
-
 
 <!-- FOOTER -->
 <footer>
@@ -1694,17 +1839,15 @@
     <div class="footer-col">
       <h4>Experiences</h4>
       <ul>
-        <li><a href="#desert-bloom">Desert Bloom</a></li>
-        <li><a href="#breeze">Breeze at the Sea</a></li>
-        <li><a href="#pour">Pour Into Yourself</a></li>
-        <li><a href="#greece">Beyond the Blue</a></li>
+        <li><a href="#desert-bloom-2026">Desert Bloom 2026</a></li>
+        <li><a href="#desert-bloom-2027">Desert Bloom: Becoming 2027</a></li>
+        <li><a href="#marthas-vineyard">Savor the Season · MV</a></li>
       </ul>
     </div>
     <div class="footer-col">
       <h4>Connect</h4>
       <ul>
-        <li><a href="#connect">Join the Movement</a></li>
-        <li><a href="#connect">Desert Bloom Waitlist</a></li>
+        <li><a href="#" onclick="event.preventDefault();openJTM();">Join the Movement</a></li>
         <li><a href="#connect">Contact Davania</a></li>
       </ul>
     </div>
@@ -1719,6 +1862,127 @@
 </footer>
 
 <script>
+  // Desert Bloom 2027 Interest Form
+  async function submitDXB() {
+    const first = document.getElementById('dxb-first').value.trim();
+    const last = document.getElementById('dxb-last').value.trim();
+    const email = document.getElementById('dxb-email').value.trim();
+    if (!first || !email) { alert('Please enter your name and email.'); return; }
+    const btn = document.querySelector('#dubai-2028 button');
+    btn.textContent = 'Sending…'; btn.disabled = true;
+    const res = await fetch('https://formspree.io/f/mnpqqawv', {
+      method: 'POST',
+      headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        _subject: `Dubai 2028 Interest — ${first} ${last}`,
+        Name: `${first} ${last}`, Email: email,
+        Experience: 'Dubai: Bold & Free — March 18–25, 2028'
+      })
+    });
+    if (res.ok) {
+      document.getElementById('dxb-success').style.display = 'block';
+      btn.textContent = '✦ You\'re On the List!'; btn.style.opacity = '0.7';
+    } else {
+      btn.textContent = 'I\'m Interested in Dubai →'; btn.disabled = false;
+      alert('Something went wrong. Please email hermidlifemovement@icloud.com');
+    }
+  }
+
+  async function submitDB27() {
+    const first = document.getElementById('db27-first').value.trim();
+    const last = document.getElementById('db27-last').value.trim();
+    const email = document.getElementById('db27-email').value.trim();
+    if (!first || !email) { alert('Please enter your name and email.'); return; }
+    const btn = document.querySelector('#desert-bloom-2027 button');
+    btn.textContent = 'Sending…'; btn.disabled = true;
+    const res = await fetch('https://formspree.io/f/mnpqqawv', {
+      method: 'POST',
+      headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        _subject: `Desert Bloom 2027 Interest — ${first} ${last}`,
+        Name: `${first} ${last}`, Email: email,
+        Experience: 'Desert Bloom: Becoming — October 14–18, 2027 · Scottsdale, Arizona'
+      })
+    });
+    if (res.ok) {
+      document.getElementById('db27-success').style.display = 'block';
+      btn.textContent = '✦ You\'re On the List!'; btn.style.opacity = '0.7';
+    } else {
+      btn.textContent = 'I\'m Interested →'; btn.disabled = false;
+      alert('Something went wrong. Please email hermidlifemovement@icloud.com');
+    }
+  }
+
+  // Martha's Vineyard Interest Form
+  async function submitMV() {
+    const first = document.getElementById('mv-first').value.trim();
+    const last = document.getElementById('mv-last').value.trim();
+    const email = document.getElementById('mv-email').value.trim();
+    if (!first || !email) { alert('Please enter your name and email.'); return; }
+    const btn = document.querySelector('#marthas-vineyard button');
+    btn.textContent = 'Sending…'; btn.disabled = true;
+    const res = await fetch('https://formspree.io/f/xzebplja', {
+      method: 'POST',
+      headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        _subject: `Martha's Vineyard Interest — ${first} ${last}`,
+        Name: `${first} ${last}`, Email: email,
+        Experience: "Savor the Season — Martha's Vineyard · June 17–21, 2027"
+      })
+    });
+    if (res.ok) {
+      document.getElementById('mv-success').style.display = 'block';
+      btn.textContent = '✦ You\'re On the List!'; btn.style.opacity = '0.7';
+    } else {
+      btn.textContent = 'I\'m Interested →'; btn.disabled = false;
+      alert('Something went wrong. Please email hermidlifemovement@icloud.com');
+    }
+  }
+
+  // Poll submission
+  async function submitPoll() {
+    const name = document.getElementById('poll-name').value.trim();
+    const email = document.getElementById('poll-email').value.trim();
+    if (!name || !email) { alert('Please enter your name and email to submit your vote.'); return; }
+
+    const destination = document.querySelector('input[name="destination"]:checked')?.value || 'Not selected';
+    const budget = document.querySelector('input[name="budget"]:checked')?.value || 'Not selected';
+    const experiences = [...document.querySelectorAll('input[name="experience"]:checked')].map(el => el.value).join(', ') || 'Not selected';
+
+    const btn = document.querySelector('.poll-btn');
+    btn.textContent = 'Sending…'; btn.disabled = true;
+
+    const res = await fetch(`https://formspree.io/f/mpqvbwnp`, {
+      method: 'POST',
+      headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        _subject: `HMM 2027 Poll — ${name}`,
+        Name: name, Email: email,
+        'Top Destination': destination,
+        'Experience Type': experiences,
+        'Budget Range': budget,
+        Type: '2027 Destination Poll'
+      })
+    });
+
+    if (res.ok) {
+      document.getElementById('poll-success').style.display = 'block';
+      btn.textContent = '✦ Vote Cast!'; btn.style.opacity = '0.7';
+    } else {
+      btn.textContent = 'Cast Your Vote →'; btn.disabled = false;
+      alert('Something went wrong. Please try again or email hermidlifemovement@icloud.com');
+    }
+  }
+
+  // Slideshow
+  const slides = document.querySelectorAll('.hero-slideshow .slide');
+  let currentSlide = 0;
+  setInterval(() => {
+    slides[currentSlide].classList.remove('active');
+    currentSlide = (currentSlide + 1) % slides.length;
+    slides[currentSlide].classList.add('active');
+  }, 4000);
+
   function toggleMenu() {
     const menu = document.getElementById('mobileMenu');
     menu.classList.toggle('open');
@@ -1761,9 +2025,8 @@
       const interests = [];
       if (document.getElementById('int-seabreeze').checked) interests.push('Breeze at the Sea — Panama City Beach');
       if (document.getElementById('int-desert').checked) interests.push('Desert Bloom 2027');
-      if (document.getElementById('int-wine').checked) interests.push('Pour Into Yourself');
-      if (document.getElementById('int-greece').checked) interests.push("Beyond the Blue — Greece 2027");
-      if (document.getElementById('int-all').checked) interests.push('All Experiences');
+      if (document.getElementById('int-mv').checked) interests.push('Savor the Season — Martha\'s Vineyard');
+      if (document.getElementById('int-all').checked) interests.push('Keep me posted on everything');
 
       const btn = document.querySelector('#tab-join .form-submit');
       btn.textContent = 'Sending…'; btn.disabled = true;
@@ -1854,6 +2117,95 @@
       }
     }
   }
+</script>
+
+<!-- JOIN THE MOVEMENT MODAL -->
+<div id="jtm-overlay" style="display:none; position:fixed; top:0; left:0; right:0; bottom:0; background:rgba(28,24,20,0.7); z-index:9999; align-items:center; justify-content:center; padding:1.5rem;">
+  <div id="jtm-modal" style="background:var(--cream); max-width:480px; width:100%; border-radius:2px; padding:3rem 2.5rem; position:relative; max-height:90vh; overflow-y:auto;">
+    
+    <!-- Close button -->
+    <button onclick="closeJTM()" style="position:absolute; top:1.2rem; right:1.5rem; background:none; border:none; font-size:1.4rem; cursor:pointer; color:var(--muted); line-height:1;">×</button>
+
+    <!-- Header -->
+    <div style="text-align:center; margin-bottom:2rem;">
+      <div style="font-size:0.68rem; letter-spacing:0.25em; text-transform:uppercase; color:var(--terracotta); margin-bottom:0.75rem;">Welcome</div>
+      <h2 style="font-family:'Cormorant Garamond',serif; font-size:2.2rem; font-weight:400; color:var(--midnight); line-height:1.2; margin-bottom:0.75rem;">Join the<br><em>Movement</em></h2>
+      <p style="font-size:0.9rem; color:var(--muted); line-height:1.7;">You belong here. Drop your name and email and we'll keep you close — first to know about new experiences, updates, and everything HMM.</p>
+    </div>
+
+    <!-- Form -->
+    <div style="display:flex; flex-direction:column; gap:1rem;">
+      <input id="jtm-name" type="text" placeholder="Your First Name" style="padding:0.85rem 1rem; border:1px solid #ddd; background:#fff; font-family:'DM Sans',sans-serif; font-size:0.9rem; color:var(--midnight); outline:none; border-radius:1px;">
+      <input id="jtm-email" type="email" placeholder="Your Email Address" style="padding:0.85rem 1rem; border:1px solid #ddd; background:#fff; font-family:'DM Sans',sans-serif; font-size:0.9rem; color:var(--midnight); outline:none; border-radius:1px;">
+      
+      <!-- Interest checkboxes -->
+      <div style="margin-top:0.5rem;">
+        <div style="font-size:0.72rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--muted); margin-bottom:0.75rem;">I'm interested in</div>
+        <div style="display:flex; flex-direction:column; gap:0.6rem;">
+          <label style="display:flex; align-items:center; gap:0.75rem; font-size:0.88rem; color:var(--midnight); cursor:pointer;">
+            <input type="checkbox" name="jtm-interest" value="Martha's Vineyard" style="accent-color:var(--terracotta);"> Savor the Season — Martha's Vineyard
+          </label>
+          <label style="display:flex; align-items:center; gap:0.75rem; font-size:0.88rem; color:var(--midnight); cursor:pointer;">
+            <input type="checkbox" name="jtm-interest" value="Desert Bloom 2027" style="accent-color:var(--terracotta);"> Desert Bloom: Becoming 2027
+          </label>
+          <label style="display:flex; align-items:center; gap:0.75rem; font-size:0.88rem; color:var(--midnight); cursor:pointer;">
+            <input type="checkbox" name="jtm-interest" value="Future Experiences" style="accent-color:var(--terracotta);"> Keep me posted on future experiences
+          </label>
+        </div>
+      </div>
+
+      <!-- Submit -->
+      <button onclick="submitJTM()" id="jtm-btn" style="margin-top:0.5rem; background:var(--terracotta); color:#fff; border:none; padding:1rem; font-family:'DM Sans',sans-serif; font-size:0.8rem; letter-spacing:0.18em; text-transform:uppercase; cursor:pointer; transition:background 0.3s;">Join the Movement →</button>
+      
+      <!-- Success -->
+      <div id="jtm-success" style="display:none; text-align:center; padding:1rem; background:#f0f4ee; font-size:0.9rem; color:#7A8C6E; line-height:1.7;">✦ Welcome to the movement, beautiful. We'll be in touch soon. 🌿</div>
+    </div>
+
+  </div>
+</div>
+
+<style>
+#jtm-modal input:focus { border-color:#C4714A; }
+@media(max-width:480px){
+  #jtm-modal { padding:2rem 1.5rem !important; }
+  #jtm-modal h2 { font-size:1.8rem !important; }
+}
+</style>
+
+<script>
+window.addEventListener('click', function(e) {
+  var overlay = document.getElementById('jtm-overlay');
+  if (e.target === overlay) closeJTM();
+});
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeJTM();
+});
+
+async function submitJTM() {
+  const name = document.getElementById('jtm-name').value.trim();
+  const email = document.getElementById('jtm-email').value.trim();
+  const interests = [...document.querySelectorAll('input[name="jtm-interest"]:checked')].map(i => i.value).join(', ');
+  if (!name || !email) { alert('Please enter your name and email.'); return; }
+  const btn = document.getElementById('jtm-btn');
+  btn.textContent = 'Sending...'; btn.disabled = true;
+  try {
+    const res = await fetch('https://formspree.io/f/mpqvbwnp', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({ name, email, interests, _subject: 'New HMM Movement Sign-Up' })
+    });
+    if (res.ok) {
+      document.getElementById('jtm-success').style.display = 'block';
+      btn.style.display = 'none';
+    } else {
+      btn.textContent = 'Join the Movement →'; btn.disabled = false;
+      alert('Something went wrong. Please try again.');
+    }
+  } catch {
+    btn.textContent = 'Join the Movement →'; btn.disabled = false;
+    alert('Something went wrong. Please try again.');
+  }
+}
 </script>
 
 </body>
