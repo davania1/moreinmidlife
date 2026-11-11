@@ -1759,13 +1759,13 @@
           <label>Which experiences interest you? <span style="opacity:0.5">(select all that apply)</span></label>
           <div style="display:flex; flex-direction:column; gap:0.6rem; margin-top:0.3rem;">
             <label style="display:flex; align-items:center; gap:0.6rem; font-size:0.9rem; color:rgba(255,255,255,0.8); text-transform:none; letter-spacing:0;">
-              <input type="checkbox" id="int-seabreeze" style="width:16px;height:16px;accent-color:var(--terracotta);"> 🌊 Breeze at the Sea — Panama City Beach (April 2027)
+              <input type="checkbox" id="int-mv" style="width:16px;height:16px;accent-color:var(--terracotta);"> 🏝 Savor the Season — Martha's Vineyard (June 17–21, 2027)
             </label>
             <label style="display:flex; align-items:center; gap:0.6rem; font-size:0.9rem; color:rgba(255,255,255,0.8); text-transform:none; letter-spacing:0;">
               <input type="checkbox" id="int-desert" style="width:16px;height:16px;accent-color:var(--terracotta);"> 🌵 Desert Bloom: Becoming — Scottsdale, Arizona (October 14–18, 2027)
             </label>
             <label style="display:flex; align-items:center; gap:0.6rem; font-size:0.9rem; color:rgba(255,255,255,0.8); text-transform:none; letter-spacing:0;">
-              <input type="checkbox" id="int-mv" style="width:16px;height:16px;accent-color:var(--terracotta);"> 🏝 Savor the Season — Martha's Vineyard (June 17–21, 2027)
+              <input type="checkbox" id="int-dubai" style="width:16px;height:16px;accent-color:var(--terracotta);"> ✈️ Dubai: Bold &amp; Free — Dubai, UAE (March 18–25, 2028)
             </label>
             <label style="display:flex; align-items:center; gap:0.6rem; font-size:0.9rem; color:rgba(255,255,255,0.8); text-transform:none; letter-spacing:0;">
               <input type="checkbox" id="int-all" style="width:16px;height:16px;accent-color:var(--terracotta);"> ✨ Keep me posted on everything!
@@ -1798,8 +1798,9 @@
           <label>Subject</label>
           <select id="ct-subject">
             <option value="">Select one…</option>
+            <option>Savor the Season — Martha's Vineyard 2027</option>
             <option>Desert Bloom: Becoming 2027</option>
-            <option>Breeze at the Sea 2027</option>
+            <option>Dubai: Bold &amp; Free 2028</option>
             <option>Upcoming Experiences</option>
             <option>Group or Private Event</option>
             <option>Media or Press</option>
@@ -2023,9 +2024,9 @@
       if (!first || !email) { alert('Please enter your name and email to join the movement.'); return; }
 
       const interests = [];
-      if (document.getElementById('int-seabreeze').checked) interests.push('Breeze at the Sea — Panama City Beach');
-      if (document.getElementById('int-desert').checked) interests.push('Desert Bloom 2027');
       if (document.getElementById('int-mv').checked) interests.push('Savor the Season — Martha\'s Vineyard');
+      if (document.getElementById('int-desert').checked) interests.push('Desert Bloom: Becoming 2027');
+      if (document.getElementById('int-dubai').checked) interests.push('Dubai: Bold & Free 2028');
       if (document.getElementById('int-all').checked) interests.push('Keep me posted on everything');
 
       const btn = document.querySelector('#tab-join .form-submit');
